@@ -1,0 +1,169 @@
+.iconos {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 48px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 0.2;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+
+
+
+
+body{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   --color_fondo:rgb(171, 171, 171);
+   --tel: calc(200px);
+   --tell: calc(var(--tel)* 2.2);
+}
+
+
+
+
+
+.area{
+
+    display: flex;
+}
+
+.pantalla{
+    position: absolute;
+    width: 210px;
+    height:460px;
+    border-radius:25px;
+}
+
+.telefono{
+    position: relative;
+    width: var(--tel);
+    height:var(--tell);
+    border-left: 8px solid;
+    border-right:  8px solid;
+    border-top: 12px solid;
+    border-bottom: 16px solid;
+    pointer-events: none;
+    border-radius: 25px;
+     z-index: 3;
+    
+
+
+    & .notch{
+        transform:translateY(-17%) translateX(37%);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        
+        justify-content: center;
+        width: 58%;
+        height: 4%;
+        background-color: rgb(0, 0, 0);
+        border-radius: 10px;
+
+       
+    }
+    & .notch2{
+        opacity: 1;
+        width: 60%;
+        height: 2%;
+        border-radius:20px;
+        background-color: rgb(0, 0, 0);
+        transform:translateY(-220%) translateX(33%);
+    }
+    & .notchr{
+        
+        position: absolute;
+        opacity: 1;
+        background-color: rgb(43, 0, 255);
+        height: 4%;
+        width: 8%;
+
+      
+        &.nl{
+      
+            transform: translateX(176%) translateY(-155%);
+            background: radial-gradient(circle farthest-side at left bottom, rgba(0,0,0,0) 96%, rgb(0, 0, 0) 99%);
+        }
+
+        &.nr{
+            background: radial-gradient(circle farthest-side at right bottom, rgba(226, 226, 226, 0) 99%, rgb(0, 0, 0) 99%);
+            transform: translateX(983%) translateY(-153%);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+.camara{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(159, 170, 170);
+    transform: translateX(65px) translateY(-32px);
+}
+
+
+.altavoz{
+    width: 20px;
+    height: 10px;
+    border-radius: 25px;
+    background-color: rgb(50, 57, 57);
+    transform: translateX(88px) translateY(-42px);
+}
+
+.encender{
+    position: absolute;
+    scale: 0.3;
+    width:0px;
+    height: 80px;
+    border: none;
+   border-right:2px solid ;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 14%, rgba(255,37,0,1) 99%);
+    pointer-events: all;
+    
+
+
+    transform: translateX(4790%) translateY(440%);
+}
+
+
+
+
+
+
+
+
+
+    
+
+
+    
+
+
+

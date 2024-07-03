@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+    <div class="from_contenedor">
+        <div class="login_contenedor">
+            <h2>Bienvenido</h2>
+            <p>Seleciona el metodo de autemtificacion</p>
+            <form action="">
+                <p>
+                    <div class="inputs" >
+                        <label class="uno"  ><input type="text" name="user" id="user"  /><span style="text-align: left;">Usuario</span></label>
+                    <label class="dos"><input type="password"><span style="text-align: left;">Contraseña</span></label>
+                    </div>
+                </p>
+                <div class="opciones">
+                    <div>
+                        <label>Guardar <input type="checkbox" name="guardar"></label>
+                    </div>
+                    <div>
+                        <a href="#">Recuperar Contraseña</a>
+                    </div>
+                </div>
+                <p>
+                    <input type="submit" class="btn enviar" value="Enviar"   class="Iniciar Sesion">
+                </p>
+
+                <div class="prov">
+                    <span>Elegir Otro metodo</span>
+                    <button  class=" btn iniciar Google">Google</button>
+                    <button  class=" btn iniciar Facebook">Facebook</button>
+                    <button  class=" btn iniciar Microsoft">Microsoft</button>  
+                </div>
+            </form>
+        </div>
+
+
+        <div class="bienvenido_pantalla">
+
+        </div>
+
+    </div>
+
+
+<script>
+
+
+
+
+var input = document.getElementById("user");
+input.oninput = function() {
+  if (input.value === "") {
+    
+  }
+};
+
+
+var inputElement = document.getElementById("user");
+            var inputValue = inputElement.value;
+
+            if (inputValue === "") {
+                input.style.backgroundColor = "red";
+            } else {
+                input.style.backgroundColor = "blue";
+            }
+
+            // Desenfocar el input después de verificar
+            inputElement.blur();
+</script>
+
+</body>
+
+</html>

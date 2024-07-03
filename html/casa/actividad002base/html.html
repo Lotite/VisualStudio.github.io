@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     alert("hola");
+ const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host:" monorail.proxy.rlwy.net",
+  user: "root",
+  password: "b-Eh5ebC6DG5-34edEaDA2BAahH5eFaB" ,
+  database: "railway",
+});
+
+connection.connect();
+
+connection.connect();
+
+connection.query('SELECT 1', (error, results, fields) => {
+  if (error) {
+    alert("mal");
+  } else {
+   alert("bien");
+  }
+});
+
+
+connection.end();
+  </script>
+</body>
+</html>

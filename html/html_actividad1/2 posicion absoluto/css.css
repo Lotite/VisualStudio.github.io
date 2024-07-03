@@ -1,0 +1,71 @@
+body{
+margin:0;
+}
+
+
+div{
+	float:Left;
+	width:35%;
+	height:80%;
+	margin-top:10%;
+	margin-Left:10%;
+	margin-right:0;
+	background-color:red;
+	border:solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+#uno{
+	width: 35%;
+	right:10%;
+	border:solid;
+}
+
+#dos{
+	Left:  10%; 
+	width: 35%;
+	border:solid;
+}
+*/
+
+/*
+#uno{
+	Left:  10%; 
+	right:70%;
+	border:solid;
+}
+
+#dos{
+	Left:  40%; 
+	right:40%;
+	border:solid;
+}
+
+#tres{
+	Left:  70%; 
+	right:10%;
+	border:solid;
+}
+*/
+
+
+
+
+
+
+
+
+

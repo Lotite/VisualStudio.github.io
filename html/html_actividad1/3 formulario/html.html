@@ -1,0 +1,74 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="css.css" />
+</head>
+<div id="contenedor">
+	<form id="formulario" action="#" method="post">
+		<fieldset id="personal">
+			<legend>Información Personal</legend>
+			<label for="apelidos">Apelidos : </label>
+			<input name="apelidos" id="apelidos" type="text" tabindex="1" />
+			<br />
+			<label for="nome">Nome : </label>
+			<input name="nome" id="nome" type="text" tabindex="2" />
+			<br />
+			<label for="direccion">Dirección : </label>
+			<input name="direccion" id="direccion" type="text"
+			tabindex="3" />
+			<p>...mais información personal...</p>
+		</fieldset>
+		<fieldset id="opt">
+			<legend>Sistema Operativo</legend>
+			<select name="choice">
+			<optgroup label="Linux">
+				<option label="Fedora" selected="selected" value="Fedora">Fedora
+				</option>
+				<option label="Suse" value="Suse">Suse
+				</option>
+				<option label="Ubuntu" value="Ubuntu">Ubuntu
+				</option>
+				<option label="Outro Linux" value="OutroL">Outro Linux
+				</option>
+			</optgroup>
+			<optgroup label="Windows">
+				<option label="Windows XP" value="XP">Windows XP
+				</option>
+				<option label="Windows Vista" value="Vista">Windows Vista
+				</option>
+				<option label="Windows 2003 Server" value="2003">Windows 2003 Server
+				</option>
+				<option label="Windows 2008 Server" value="2008">Windows 2008 Server
+				</option>
+				<option label="Outro Windows" value="OutroW">Outro Windows
+				CSS para formularios 2
+				</option>
+			</optgroup>
+			<optgroup label="OutroS">
+				<option label="MAC OS X" value="MACOSX">MAC OS X
+				</option>
+				<option label="Outro SO" value="OutroSO">Outro SO
+				</option>
+			</optgroup>
+			</select>
+		</fieldset>
+		<fieldset id="pc">
+			<legend>Ordenador Personal</legend>
+			<p>¿Tes ordenador na túa casa?</p>
+			<label for="yes">si : </label>
+			<input name="tes_pc" id="yes" type="radio"
+			value="yes" tabindex="35" />
+			<br />
+			<label for="no">non : </label>
+			<input name="tes_pc" id="no" type="radio"
+			value="no" tabindex="35" />
+			<br />
+			<p>...se tes ordenador describe as súas
+			características principais :</p>
+			<textarea name="caracteristicas_pc" tabindex="40" cols="40" rows="5">
+			</textarea>
+		</fieldset>
+		<p>
+		<input id="btnenviar" type="submit" value="Enviar" />
+		<input id="btnreiniciar" type="reset" value="Reiniciar" />
+		</p>
+	</form>
+</div>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css.css'>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+    <iframe src="html1.html" onload="cambiarColorH1()"  frameborder="0" scrolling="yes" seamless="seamless" style="display:block; width:400px; height:700px;"></iframe>
+    <script>
+        function cambiarColorH1() {
+            const iframe = document.querySelector('iframe');
+            const ifra = iframe.contentDocument.querySelector('html');
+            ifra.style.scrollbarWidth = "none";
+        }
+    </script>
+    
+    
+
+
+
+
+
+</body>
+</html>

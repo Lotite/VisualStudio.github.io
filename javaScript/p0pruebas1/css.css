@@ -1,0 +1,13 @@
+.pregunta *   {
+    float: left;
+    &:last-child{
+    }
+}
+
+
+
+
+
+
+
+

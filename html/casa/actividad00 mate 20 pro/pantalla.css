@@ -1,0 +1,19 @@
+body{
+    display: flex;
+    min-width: 210px;
+    min-height: 460px;
+    margin: 0;
+    padding: 0;
+    
+}
+body *{
+    position: absolute;
+}
+.pantalla{
+    background: url(fondo.jpg);
+    background-size: 210px;
+    position: fixed;
+    width: 210px;
+    height: 460px;
+
+}

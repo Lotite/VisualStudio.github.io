@@ -1,0 +1,33 @@
+body{
+	margin:20px;
+	
+}
+
+h1 {
+	margin-bottom:100px;
+}
+
+
+
+#indice{
+
+	width:20%;
+	float:left;
+	background-color:red;
+	height:80%;
+}
+
+
+
+#contenido{
+	float: right;
+	background-color: blue;
+	height: 70%;
+	width: 60%;
+	overflow: hidden;
+}
+
+#contenido > div {
+	height: 100%;
+	margin-bottom: 2000px ;
+}

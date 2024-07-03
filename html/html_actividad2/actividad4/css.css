@@ -1,0 +1,29 @@
+body{
+    background-color:#fddbbd;
+}
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    color:#b8b4b0;
+}
+
+p{
+    float: left;
+    width: 20%;
+    height: 20%;
+    margin-left: 2%;
+    border: dashed #cf894d;
+    padding: 1%;
+    text-align: justify;
+    background-color: #f2d0ab;
+    line-height: 150%;
+    
+}
+
+p::first-letter{
+    font-size: 200%;
+    color: #b58845;
+    margin-bottom: 5px;
+    float:left ;
+}
+

@@ -1,0 +1,6 @@
+El objetivo de  este proyecto es el manejo de variables,funciones y bucles en JS,
+Aunque el nivel de este ejercicio es muy bajo fue un buen comienzo , cumpli con los objetivos
+y ademas de eso pude aprender  a modificar el html mediante el js , crear un cronometro y  recordar
+ conceptos en html y css.
+Cosas a mejorar: usar menos clases y mas identificadores ademas de improbisar mas.
+coas a añadir: boton de eliminar , pausar , continuar.

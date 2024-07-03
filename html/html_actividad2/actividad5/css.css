@@ -1,0 +1,56 @@
+*{
+    font-family:sans-serif;
+}
+
+h1{
+    background-color: #bbbbbb;
+    margin: 0;
+}
+h2::before{
+    content: "lotfi:";
+}
+h2{
+    text-align: end;
+    background-color: #dddddd;
+    margin: 0;
+    border-bottom: dashed #bbbbbb;
+}
+
+
+
+
+.bloque{
+    float: left;
+    width: 20%;
+    margin-left: 3%;
+    padding: 1%;
+
+}
+
+
+
+h3{
+    background-color: #eeeeee;
+    padding: 5px 10px;
+    text-align: center;
+    
+}
+
+
+.bloque div{
+    border: solid;
+
+}
+
+h4{
+    color: white;
+    margin: 0;
+    padding-right:5px ;
+    text-align: end;
+    background-color: #cccccc ;
+}
+
+p{
+    margin: 5px;
+    overflow: auto;
+}

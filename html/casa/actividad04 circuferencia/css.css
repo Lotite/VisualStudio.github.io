@@ -1,0 +1,77 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #1900ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.varapro {
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+
+
+
+    & .outer-box{
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+        width: 200px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+
+
+        & .inner-box{
+        
+            font-size: 24px;
+            width: 150px;
+            height: 150px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            border-radius: 50%;
+        }
+        
+    }
+
+
+
+    & svg{
+        position: absolute;
+        
+        & circle{
+            fill: none;
+            stroke: url(#gracolor);
+            stroke-width:20px;
+            stroke-dasharray: 550;
+            stroke-dashoffset: 550;
+            animation: log 2s infinite ease-in-out;
+           
+        }
+    }
+
+
+
+    
+
+
+
+
+
+
+}
+
+
+@keyframes log {
+
+
+
+    100%{
+        stroke-dashoffset: 50;
+       }
+    
+}

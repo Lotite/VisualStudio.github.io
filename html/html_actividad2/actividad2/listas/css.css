@@ -1,0 +1,16 @@
+#una {
+    list-style: lower-alpha;
+}
+.murcia {color:green;}
+
+ul#dos  {
+    list-style: lower-roman;
+    background-color: rgb(234, 255, 0);
+    text-indent: 20px;
+    list-style-position: inside;
+}
+
+
+#tres{
+    list-style-image: url("../icono.png") ;
+}

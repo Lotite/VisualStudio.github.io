@@ -1,0 +1,29 @@
+body > div{
+    position: absolute;
+    margin-top: 10%;
+    height: 80%;
+    overflow: hidden;
+
+}
+
+
+
+
+#indice{
+    background-color: red;
+    left: 5%;
+    width: 25%;
+}
+
+
+#contenido{
+    width: 50%;
+    right: 10%;
+    background-color: aqua;
+}
+
+
+#contenido div{
+    margin: 20 20 ;
+    height: 100%;
+}

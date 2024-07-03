@@ -1,0 +1,40 @@
+#contenedor{
+    background-color:#DDEEEE;
+    border: solid;
+    padding: 20px 10px;
+    max-width: 500px;
+    min-width: 500px;
+}
+
+#personal,#opt,#pc{
+border: solid white;
+
+}
+
+legend {
+    background-color: white;
+    font-weight: bold;
+}
+
+
+#pc input , #personal input,textarea{
+    border:none;
+    display: block;
+}
+
+ label{
+    float: left;
+    display:block; 
+    text-align: right;
+    width: 100px;
+    padding-right:10px;
+    }
+
+
+#btnenviar , #btnreiniciar{
+    
+    border: solid white;
+    color: red;
+    width: 215px;
+    margin-left:15px ;
+}

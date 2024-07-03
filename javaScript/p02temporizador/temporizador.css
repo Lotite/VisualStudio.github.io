@@ -1,0 +1,65 @@
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+.pantalla{
+    justify-content: center;
+    width:600px;
+    height: 270px;
+    background-color: white;
+    position: relative;
+    
+    & > * {
+        position: absolute;
+    }
+}
+
+.temporizador{
+    left: 35%;
+    top: 2%;
+    font-weight: bold;
+    font-size: 400%;
+    font-family: sans-serif;
+}
+
+.txt{
+    left: 10%;
+    top: 70%;
+    width: 365px;
+    height: 30px;
+}
+.agregar{
+    right: 10%;
+    top: 70%;
+    height: 34px;
+}
+input[type="button"] , button{
+    background-color: rgb(19, 13, 94);
+    color: aliceblue;
+    border-radius: 3px;
+    border: 2px solid rgba(0, 0, 0, 0.247);
+}
+.tareas{
+    background-color: white;
+    width: 100%;
+    transition: all 10s ease-in-out;
+    height: auto;
+    max-height: 400px;
+    overflow: auto;
+    top: 90%;
+}
+.tarea{
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    & input{
+        height: 34px;
+        margin-right: 20px;
+    }
+}
+.crono{
+    margin-left: 20px;
+    width: 50px;
+}

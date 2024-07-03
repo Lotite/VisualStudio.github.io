@@ -1,0 +1,64 @@
+
+body{
+	margin:auto 2%
+	font-family:sans-serif;
+	
+	}
+ h1, h2 {
+	 font-size:200%;
+	width:calc(100% - 20px);
+	margin:0;
+	padding: 5px 10px ;
+	text-align:vertical-align;
+}
+
+ h1{
+	background:#bbbbbbbb;
+}
+
+h2{
+	background-color:#dddddd;
+	text-align:right;
+	border-bottom: dashed #bbbbbbbb;
+}
+
+
+
+
+
+
+.bloque {
+float:left;
+padding:1%;
+
+margin: 2% 0 0  2%;
+padding:0 auto;
+border-left:dashed #bbbbbbbb;
+border-right:dashed #bbbbbbbb;
+width:20%;}
+
+
+ h3{
+	 margin-top:0;
+	 text-transform: uppercase; 
+	background:#EEEEEE;
+	text-align:center;
+	padding:10px;
+}
+
+.bloque > div{
+	border:1px solid;
+	margin:10px 0;
+}
+
+h4 {
+	margin:0;
+	background:#DDDDDD;
+	color:white;
+	text-align:right;	
+}
+
+p{
+	margin:5px ;
+	overflow:auto;
+}

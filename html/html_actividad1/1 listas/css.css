@@ -1,0 +1,49 @@
+/*
+a{ 
+	text-decoration:none;
+	color:black;
+	
+}
+
+li{ 
+
+	list-style-type:none;
+	background-color:orange;
+	padding:20px;
+	width:150px;
+	font-weight:bold;
+	border:5px solid white;
+	
+	&:hover{
+		background-color:blue;
+		& a {
+			color:white;
+		}
+	}
+	
+	
+  }
+  */
+
+  ul{list-style: none;}
+
+  li{
+      float: left;
+      background-color: aqua;
+      padding: 10px;
+      border-left: #ccc solid;
+  }
+  
+  li:first-child{
+      border: none;
+  }
+  
+  
+  a{
+      color: white;
+      text-decoration: none;
+  
+  }
+  
+  li:hover a {color:blue;}
+  

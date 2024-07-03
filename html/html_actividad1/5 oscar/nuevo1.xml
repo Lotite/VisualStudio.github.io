@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE grupo  [
+	<!ELEMENT grupo (alumno+)>
+	<!ELEMENT alumno (nombrecompleto,fila,edad)>
+	 <!ATTLIST  alumno 
+		colorPelo (rubio|castaño) "castaño"
+		usuario ID #REQUIRED
+		usuarioDelegado IDREF #REQUIRED
+		formaGrupoCon IDREFS #IMPLIED
+		>
+	<!ELEMENT nombrecompleto (nombre,apellidos)>
+	<!ELEMENT fila (#PCDATA)>
+	<!ELEMENT edad EMPTY>
+	<!ELEMENT nombre (#PCDATA)>
+	<!ELEMENT apellidos (#PCDATA)>
+]>
+<grupo>
+	<alumno usuario="asi101" usuarioDelegado="asi104" formaGrupoCon="asi102 asi103">
+		<nombrecompleto>
+			<nombre>Sergio</nombre>
+			<apellidos>López</apellidos>
+		</nombrecompleto>
+		<fila>1</fila>
+		<edad/>
+	</alumno>
+	<alumno usuario="asi102" usuarioDelegado="asi104">
+		<nombrecompleto>
+			<nombre>Carlos</nombre>
+			<apellidos>Pérez López</apellidos>
+		</nombrecompleto>
+		<fila>1</fila>
+		<edad/>
+	</alumno>
+	<alumno usuario="asi103" usuarioDelegado="asi104">
+		<nombrecompleto>
+			<nombre>Cristian</nombre>
+			<apellidos>López Pérez</apellidos>
+		</nombrecompleto>
+		<fila>1</fila>
+		<edad/>
+	</alumno>
+	<alumno usuario="asi104" usuarioDelegado="asi104">
+		<nombrecompleto>
+			<nombre>Diego</nombre>
+			<apellidos>López Pérez</apellidos>
+		</nombrecompleto>
+		<fila>1</fila>
+		<edad/>
+	</alumno>
+</grupo>

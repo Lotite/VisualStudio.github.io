@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+    <table border="1" cellspacing="0" cellpading="0" >
+        <tr>
+            <td>
+                <div class="pausa n1" >
+                    <div class="uno"  ></div>
+                    <div class="dos"></div>
+                </div>
+            </td>
+            <td>
+                <div class="pausa n2" >
+                    <div class="uno" id="uno" ></div>
+                    <div class="dos" id="dos"></div>
+                </div> 
+            </td>
+            <td>
+                <input type="checkbox">
+    <div class="pausa n3" >
+        <div class="uno" id="uno" ></div>
+        <div class="dos" id="dos"></div>
+    </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Se pausa con el hover</td>
+            <td>Se pausa con un boton</td>
+            <td>Se pausa con un checkbox</td>
+        </tr>
+    </table>
+
+
+ 
+
+
+    
+
+    <div class="triangulo1"></div>
+    <div class="triangulo2"></div>
+    <button onclick="cambiarEstilo()"></button>
+    
+
+</body>
+
+
+
+
+<script>
+var estado = true;
+
+function cambiarEstilo() {
+    var pas1 =  document.getElementById("uno").style;
+    var pas2 =  document.getElementById("dos").style;
+  if (estado) {
+
+
+    pas1.height="33px";
+
+    pas1.borderRight =" 0px solid transparent";
+   pas1.borderBottom="10px solid transparent";
+   pas1.borderLeft="15px solid white";
+   pas1.borderTop="10px solid transparent";
+
+ 
+
+   pas2.width="0";
+   pas2.height="0";
+   pas2.scale="1.83"; 
+
+   pas2.borderRight =" 0px solid transparent";
+   pas2.borderBottom="10px solid transparent";
+   pas2.borderLeft="15px solid white";
+   pas2.borderTop="10px solid transparent";
+
+
+
+
+
+
+    estado=false;
+  } else {
+    pas1.height="46px";
+    pas1.border="2px solid white";
+    pas1.borderLeft="12px solid white";
+
+   pas2.height="46px";
+   pas2.scale="1";
+   pas2.border="2px solid white";
+   pas2.borderLeft="12px solid white";
+   
+
+
+
+
+    estado=true;
+  }
+}
+
+
+</script>
+
+
+
+
+</html>

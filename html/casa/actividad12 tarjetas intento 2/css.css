@@ -1,0 +1,79 @@
+body{
+    padding: 0;
+    margin: 0;
+    color: white;
+    
+}
+
+.cartas .carta{
+    width: 300px;
+    height:360px;
+    min-width: 300px;
+    min-height: 360px;
+    background-color: rgb(23, 183, 231);
+    margin: 20px 20px 20px -100px;
+    transition: 300ms;
+    padding: 30px;
+    position: relative;
+    border-radius: 15px;
+    border: 3px solid rgba(0, 0, 0, 0.341);
+    box-shadow: -3PX 0 10PX rgba(3, 0, 0, 0.472),-5PX 0 15PX rgba(3, 0, 0, 0);
+}
+
+
+.cartas .carta:nth-child(1){
+    margin-left: 20px;
+}
+
+
+
+.cartas .carta:hover{
+transform: rotate(3deg) translateY(-15px);
+margin-right: 120px;
+}
+
+.cartas{
+    display: flex;
+}
+
+.carta .cabeza{
+    height: 280px;
+    flex: 1;
+}
+
+
+
+
+
+
+
+.fecha{
+    font-size: 150%;
+    text-align: center;
+   
+}
+
+
+.titulo{
+    font-size: xx-large;
+    margin: 20px;
+}
+
+
+a{
+    font-size: 200%;
+    color: rgb(251, 239, 61);
+    text-decoration:none;
+    margin-left:20px;
+    font-weight: bold;
+}
+
+a:hover{
+color:rgb(226, 210, 146);
+}
+
+
+
+
+
+

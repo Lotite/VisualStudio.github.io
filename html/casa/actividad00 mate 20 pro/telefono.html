@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="telefono.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+
+
+
+
+
+
+
+
+
+  
+    <div class="oculto-parcialmente"></div>
+  
+  </body>
+
+
+
+
+
+<body>
+    
+    <div class="area">
+        <iframe class="pantalla" onload="cambiarColorH1()" src="pantalla.html" ></iframe>
+        <script>
+            function cambiarColorH1() {
+            const iframe = document.querySelector('iframe');
+            const ifra = iframe.contentDocument.querySelector('html');
+            ifra.style.scrollbarWidth = "none";
+        }
+        </script>
+
+
+    <div class="telefono" id="tel">
+       
+        <div class="notch">
+        </div>
+        <div class="notch2"></div>
+        <div class="notchr nl" id="notchr"></div>
+        
+        <div class="notchr nr" id="notchr"></div>
+
+        <div class="camara"></div>
+        <div class="altavoz"></div>
+
+        <button onclick="bute()" class="encender"></button>
+    </div>
+
+   
+    
+
+
+
+
+    <div class="barra" id="barra"></div>
+
+
+  
+
+</div>
+    <script>
+       var encendido = true;
+       var dedo = document.getElementById("finger");
+        var pan = document.getElementById("pantalla");
+        var fon = document.getElementById("fondo");
+      
+      
+        function dedos(){
+            if(dedo.style.opacity==1){
+                bute();
+            }
+        }
+      
+      
+      
+      
+        function bute(){
+       if(encendido){
+        pan.style.opacity="0";
+        fon.style.opacity="1";
+       }else{
+        pan.style.opacity="1";
+        fon.style.opacity="0";
+       }
+
+       encendido=!encendido
+       }
+
+
+       function pantalla(){
+        
+        if(dedo.style.opacity==0){
+            dedo.style.opacity=1;
+        }
+       }
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

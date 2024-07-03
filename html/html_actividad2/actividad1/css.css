@@ -1,0 +1,40 @@
+p {
+    font-size: 200%;
+    color: red;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+        background-image: url("../fotos/elecciones.jpg");
+        background-repeat: no-repeat;
+    
+        background-position-x: center;
+      }
+      
+
+
+      #uno{
+        background-color: chartreuse;
+        border-top: RED 10px double ;
+        border-left: green 10px double ;
+        border-right: green 10px double ;
+        border-bottom: RED 10px double ;
+        width: 45%;
+        float: left;
+        color:blue;
+        padding: 10px;
+      }
+      #uno h1 {text-align: center;color:red;text-decoration: underline;}
+
+
+      #dos{
+        border: 2px dashed ;
+        width: 45%;
+        float: right;
+        padding: 10px;
+        background-image: url("../fotos/fondo.png");
+      }
+
+
+      

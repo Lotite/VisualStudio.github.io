@@ -1,0 +1,113 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+  nav {
+    background-color: black;
+    color: white;
+    width: 100%;
+  }
+  nav .mobile {
+    display: none;
+  }
+  
+  nav .logo {
+    min-width: 250px;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 20px 25px;
+  }
+  
+  nav a:hover {
+    color: black;
+    background-color: rgb(0, 195, 255);
+  }
+  
+  nav .desktop {
+    display: flex;
+    justify-content: space-between;
+  
+    
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  nav .desktop .primary,
+  nav .desktop .secondary {
+    display: flex;
+    
+  }
+  
+  nav .desktop ,.primary{
+    
+  }
+
+  
+  nav .secondary.mini {
+    display: none;
+  }
+  
+  @media screen and (max-width: 894px) {
+    nav .logo {
+      min-width: 100px;
+    }
+  
+    nav .secondary.full {
+      display: none;
+     
+      
+    }
+  
+    nav .secondary.mini {
+        
+      display: block;
+    }
+  
+    nav .secondary.mini .submenu {
+        display: none;
+        position: absolute;
+        background-color: black;
+       
+      }
+
+
+      nav .secondary.mini:hover  .submenu {
+        display: block;
+        
+      }
+
+
+  }
+  
+  @media screen and (max-width: 516px) {
+   nav .desktop {
+        display: none;
+      }
+
+      .colapse{
+        display: none;
+      }
+
+      nav .mobile{
+        display: block;
+      }
+      nav .mobile .header{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+      }
+
+      nav .mobile .header button{
+        color: white;
+        background-color: black;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+    
+  }

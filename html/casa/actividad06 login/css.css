@@ -1,0 +1,207 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(145, 52, 231);
+    
+}
+
+.from_contenedor{
+    border-radius: 15px;
+    width: 80%;
+    overflow: hidden;
+    height: 90%;
+    background-color: rgb(214, 212, 212);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   & .login_contenedor{
+    width: 500px;
+    margin: 5%;
+
+    & > h2{
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    & > p , & span {
+        text-align: center;
+        
+        
+    }
+   }
+}
+
+
+
+
+.inputs{
+  
+    display: block;
+    width: 200px;
+   
+    & label  {
+        margin-top: 30px;
+        display: block;
+        
+        & span{
+            position: absolute;
+            transform:  translateX(-180px) translateY(2px);
+            width: 120px;
+            transition: 0.3s;
+            color: rgba(0, 0, 0, 0.356);
+            
+            
+        
+        }
+
+        & input:focus + span {
+            transform:  translateY(-20px)  translateX(-190px) ;
+            color:black;
+        }
+
+       
+
+
+        
+        
+    }
+}
+
+
+
+
+.from_contemedor .login_contenedor label > input{
+  margin-left: 10px;
+}
+
+.from_contenedor .login_contenedor .inputs label input{
+    width: 100%;
+    padding: 3px;
+    border: #555 solid 1px;
+    border-radius: 5px;
+
+
+
+
+
+
+    &:focus {
+       
+        border:0;
+        outline: solid 2px rgb(15, 186, 198);
+        border-radius: 5px;
+      }
+}
+
+
+
+.opciones{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+   
+
+    & label{
+        width: 90px;
+        margin-right: 10px;
+       
+    
+    }
+    
+
+
+
+
+
+    & a{
+        color: rgb(0, 200, 255);
+        text-decoration: none;
+        margin-left: 50px;
+        width:150px ;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+
+
+.btn {
+    border: none;
+    padding: 15px 0px;
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+    border-radius:5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: white;
+   
+    
+
+
+    &.enviar{
+        background-color: black;
+
+    }
+
+
+   
+    
+
+    &.google{
+    
+        background-color: red;
+    }
+
+   &.facebook{
+    background-color: rgb(30, 105, 244);
+
+    
+   }
+
+    &.Microsoft{
+        background-color: rgb(89, 199, 232);
+    }
+
+
+    &:hover{
+        background-color: rgb(169, 230, 27);     
+       }
+
+      
+    &:active{
+       background-color: rgb(143, 191, 32);   
+    }
+}
+
+
+
+
+.bienvenido_pantalla{
+    background-color: black;
+    width: 50%;
+    height: 100%;
+
+}
+
+
+
+@media screen and (max-width:900px) {
+    .bienvenido_pantalla{
+        display: none;
+    }
+
+    .from_contenedor{
+        width:95%;
+    }
+    
+}
+
+
+
+
+

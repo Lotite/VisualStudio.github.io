@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>JAVA</title>
+</head>
+<body>
+    <h1>Cuestionario</h1>
+    <div class="cuestionario"></div>
+    <script src="javas.js"></script>
+    <div class='addPregunta' >
+        <input id="pre" type='text' name='pregunta' />
+        <div class='opcion'>
+            <input class='txt' type='text'/> <input class='tf' type='radio' name='pregunta' checked>
+        </div>
+        
+    </div>
+
+    <button onclick="addOpcion()">Añadir respusta</button>
+    <button onclick="enviarDatos()">Enviar</button>
+
+
+</body>
+</html>

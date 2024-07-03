@@ -1,0 +1,58 @@
+
+body{
+
+    margin-top: 200px;
+    
+}
+
+*{
+    display: flex;
+    justify-content: center;
+}
+
+
+.libro{
+    
+    width: 800px;
+    height: 500px;
+    background-color: rgb(136, 86, 68);
+    border:solid rgba(0, 0, 0, 0.312) 10px;
+    border-radius: 5px;
+
+}
+.paginas{
+    width: 780px;
+    height: 496px;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    border: solid 2px rgba(0, 0, 0, 0.767);
+}
+
+
+.pagina{
+    width: 390px;
+    height: 496px;
+    background-color: rgb(255, 255, 255);
+    border: solid 2px rgba(0, 0, 0, 0.767);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.linea{
+    width: 5px;
+    height: 100%;
+    background-color: black;
+}
+
+
+img{
+    width: 190px;
+    height: 190px;
+}
+
+
+.pagina.derecha {
+    transition: 3s;
+    transform: rotatey(0rad);
+}
