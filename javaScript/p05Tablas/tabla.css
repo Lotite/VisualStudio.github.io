@@ -1,0 +1,50 @@
+body , #tablas{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+table , table *{
+    border: solid;
+}
+table{
+    width: 60%;
+    position: relative;
+    margin-bottom: 2vh;
+    border-collapse: collapse;
+    
+}
+tr , th{
+    height: 7vh;
+}
+
+#menuBody , #menutabla{
+    background-color: rgb(242, 242, 242);
+    flex-direction: column;
+    position: fixed;
+    border-radius: 0.5vw;
+    display: none;
+   
+
+}
+
+
+
+#menubody button , #menutabla button{
+font-size: 1.7vw;
+    text-align: start;
+    padding-right: 0;
+    width:15vw;
+    height: 3vw;
+    border: 0;
+    background: none;
+    margin: 3% 0;
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.394);
+    }
+    
+    &:active{
+        background-color: rgba(0, 0, 0, 0.562);
+    }
+}

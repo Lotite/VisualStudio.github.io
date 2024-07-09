@@ -6,6 +6,9 @@ let cardNuemro = [];
 let cardFecha = [];
 let cardPin = [];
 
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
 
 
 
