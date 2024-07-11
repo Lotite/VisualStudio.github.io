@@ -1,4 +1,5 @@
 const tasks = []
+tasks.push({titulo: "hola",realizado:false,id:100})
  let time = 2000;
  let timer = null;
  let ejecutado = null;

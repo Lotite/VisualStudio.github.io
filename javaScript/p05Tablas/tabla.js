@@ -33,7 +33,6 @@ document.getElementById("CrearTabla").addEventListener("click",function(e){
     creadorTabla()
     if(e.button == 0) menuBody.style.display = "none";
 })
-
 document.getElementById("CargarTabla").addEventListener("mousedown",function(e){
     console.log("hola")
     if(e.button == 0) creadorTabla("hola",null,CodificarTabla(tablaSelect))
@@ -84,12 +83,20 @@ function creadorTabla(Titulo,num,filas){
 }
 
 function creadorFilas(tablaId,filas,num){
-    const id = parseInt(Math.random()*100).toFixed(2);
     const tabla = document.querySelector(`.tablas[idtable="${tablaId}"]`)
+    for(let i = 0; i< (filas ? filas.length : 1 );i++){
+        const id = parseInt(Math.random()*100).toFixed(2);
+        const tr =     tabla.appendChild(document.createElement("tr"))
+        tr.setAttribute("filaId",id)
+        var fila = (filas ?  filas[i].length==0 ? null : filas[i]  : null)  ;
+        for(let j = 0; j< ( fila ? fila.length : num? num : getMaxColumn(tablaId));j++){
+            const td = tr.appendChild(document.createElement("td"));
+            td.setAttribute("colspan",fila ? fila[j][0] : 1);
+            td.setAttribute("rowspan",fila ? fila[j][1] : 1);
+        }
+    }
     
-    
-    
-    
+    /*
     var txt = ""
     for(let i = 0; i< (filas ? filas.length : 1 );i++){
         var fila = (filas ?  filas[i].length==0 ? null : filas[i]  : null)  ;
@@ -102,7 +109,7 @@ function creadorFilas(tablaId,filas,num){
     }
     
     tabla.innerHTML += txt;
-    
+    */
     
 }
 
