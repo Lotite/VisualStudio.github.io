@@ -3,13 +3,18 @@ body , #tablas{
     display: flex;
     align-items: center;
     flex-direction: column;
+    }
     
+
+#tablas{
+    width: 60%;
 }
+
 table , table *{
     border: solid;
 }
 table{
-    width: 60%;
+    width: 100%;
     position: relative;
     margin-bottom: 2vh;
     border-collapse: collapse;
