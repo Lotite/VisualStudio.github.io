@@ -1,3 +1,4 @@
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -7,30 +8,31 @@
 </head>
 <body>
     <div id="tablas"></div>
-    <div id="menuBody">
+    <div id="menuBody" class="ventana menu">
         <button  id="CrearTabla">Crear tabla</button>
         <button  id="CargarTabla">Cargar tabla</button>
-        <button  id="CargarTabla">Cargar tablas</button>
+        <button  id="CargarTablas">Cargar tablas</button>
     </div>
-    <div id="menutabla">
+    <div id="menutabla" class="ventana menu">
         <button class="menutabla2" id="AñadirFila">Añadir Fila</button>
-        <button class="menutabla2" id="AñadirAriba">Añadir Fila Ariba</button>
-        <button class="menutabla2" id="AñadirAbajo">Añadir Fila Abajo</button>
-        <button class="menutabla1" id="AñadirCelda">Añadir Columna</button>
+        <button class="menutabla1" id="AñadirAriba">Añadir Fila Ariba</button>
+        <button class="menutabla1" id="AñadirAbajo">Añadir Fila Abajo</button>
+        <button class="menutabla1" id="AñadirColumna">Añadir Columna</button>
         <button class="menutabla1" id="AñadirCelda">Añadir Celda</button>
         <button class="menutabla1" id="EliminarFila" > Eliminar fila</button>
-        <button class="menutabla1" id="EliminarCelda">Eliminar Columna</button>
+        <button class="menutabla1" id="EliminarColumna">Eliminar Columna</button>
         <button class="menutabla1" id="EliminarCelda">Eliminar Celda</button>
         <button class="menutabla2" id="EliminarTabla">Eliminar Tabla</button>
         <button class="menutabla2" id="CodificarTabla">Codificar Tabla</button>
+    </div>
+    <div id="MenuCargar" class="menu1">
+        <span id="cargarTitulo">Cargar Tabla</span>
+        <div id="cerrar"></div>
+        <input type="text"  id="txtCargar">
+        <button id="pegar" class="cargarBoton">Pegar</button>
+        <button id="Cargar" class="cargarBoton">Cargar</button>
         
     </div>
-    <div id="crearTablainfo">
-        <input type="text">
-        <input type="number" id="crearcolumnas">
-        <input type="number" id="crearfilas">
-    </div>
-    
 </body>
 <script src="tabla.js"></script>
 </html>

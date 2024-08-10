@@ -5,6 +5,7 @@ body , #tablas{
     flex-direction: column;
     }
     
+    
 
 #tablas{
     width: 60%;
@@ -18,11 +19,14 @@ table{
     position: relative;
     margin-bottom: 2vh;
     border-collapse: collapse;
+    resize: both;
     
 }
 tr{ 
     display: flexbox;
 }
+
+
 tr , th{
     height: 7vh;
     margin: 0;
@@ -30,7 +34,7 @@ tr , th{
 }
 
 
-#menuBody , #menutabla{
+.menu{
     overflow: auto;
     background-color: rgb(242, 242, 242);
     flex-direction: column;
@@ -38,15 +42,12 @@ tr , th{
     border-radius: 0.5vw;
     display: none;
 }
-#crearTablainfo{
-    display: none;
-}
 
 .tablas .filas td:hover{
     border: red solid 2px;
 }
 
-#menubody button , #menutabla button{
+.menu button{
     font-size: 1.7vw;
     text-align: start;
     padding-right: 0;
@@ -55,6 +56,8 @@ tr , th{
     border: 0;
     background: none;
     margin: 3% 0;
+    
+    
     &:hover{
         background-color: rgba(0, 0, 0, 0.394);
     }
@@ -63,9 +66,18 @@ tr , th{
         background-color: rgba(0, 0, 0, 0.562);
     }
 }
-td{
+td {
     position: relative;
-    padding: 0; 
+    padding: 0.1vw;
+    height: auto;
+    overflow: visible;
+}
+
+input{
+    font-size: 1.5vw;
+    height: 0.1vw;
+    overflow: visible;
+    text-align: center;
 }
 .txt {
     position: relative;
@@ -74,7 +86,82 @@ td{
     height: 100%;
     margin: 0;
     outline: none;
-    text-align: center;
-    
+    overflow: hidden;
+    resize: none;
+}
+textarea{
+    font-size: 1.1vw;
+    height: auto;
+    text-align: start;
 }
 
+
+
+
+#menuCargar{
+    display:none;
+    user-select: none;
+    position: absolute;
+    background-color: rgb(235, 240, 210);
+    width: 32vw;
+    height: 24vw;
+    border-radius: 6px;
+    overflow: hidden;
+    
+    & * {
+        position: absolute;
+        font-size: 2vw;
+    }
+}
+#txtCargar{
+    left: 22%;
+    width: 18vw;
+    height: 4vw;
+    top:28% ;
+
+}
+
+.cargarBoton{
+    width: 8vw;
+    height: 4vw;
+
+}
+
+
+#pegar{
+    top: 60%;
+    left: 10%;
+}
+
+#cargar{
+    top: 60%;
+    right: 10%;
+}
+
+#cerrar{
+    width: 4vw;
+    height: 3vw;
+    right: 0;
+    background-color: rgba(229, 163, 163, 0.616);
+    &:hover{
+        background-color: rgba(255, 0, 0, 0.586);
+    }
+    &:active{
+        background-color: rgba(255, 0, 0, 0.719);
+    }
+}
+#cargarTitulo{
+    background-color: rgba(246, 222, 201, 0.74);
+    width: 100%;
+    height: 2.7vw;
+    text-align: center;
+    align-items: center;
+    padding-top: 0.3vw;
+    cursor: grab;
+    &:active{
+        cursor: grabbing;
+    }
+}
+.menu1{
+    display:none;
+}
