@@ -92,6 +92,7 @@ document.getElementById("CodificarTabla").addEventListener("mousedown",function(
 document.getElementById("tablas").addEventListener("mousedown", function(e) {
     e.stopPropagation();
     selecionarTabla();
+    cerrarVentanas()
     if(e.button==2){
         menuTabla.style.display = 'flex'
         menuTabla.style.left  = e.clientX  
@@ -105,22 +106,13 @@ document.getElementById("tablas").addEventListener("mousedown", function(e) {
                 elemento.style.display = "";
             }
         }
-    }else{
-        const celda = tablaSelect.celda
-        //Marcar fila      tablaSelect.filaid.style.border = "red 3px solid"
-        celda.style.border = "red 3px solid"
-        menuTabla.style.display = 'none'
     }
-    menuBody.style.display="none"
-    
 });
 
 //MenuCargar
 document.getElementById("cerrar").addEventListener("mousedown", function(e){
     e.stopPropagation();
     menuCargar.style.display = "none"});
-    
-    
     
     document.getElementById("cargarTitulo").addEventListener('mousedown', function(e)  {
         moviendose = true;

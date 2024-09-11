@@ -5,7 +5,10 @@ body , #tablas{
     flex-direction: column;
     }
     
-    
+.pagina{
+    height: 1010px;
+    border: 5px solid;
+}
 
 #tablas{
     width: 60%;

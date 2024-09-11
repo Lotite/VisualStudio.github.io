@@ -1,0 +1,47 @@
+body{
+    display: flex;
+    justify-content: center;
+    & *{
+        user-select: none;
+    }
+}
+#pantallaJuego{
+
+    width: 50vw;
+    height: 55vw;
+    max-width: 500px;
+    max-height: 550px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#infoJuego{
+    text-align: center;
+    height: 10%;
+    margin: 0;
+    max-height: 50px;
+}
+#areaJuego{
+    background-color: rgba(0, 0, 0, 0.387);
+    border: 0.2vw solid rgba(0, 0, 0, 0.1);
+    border-radius: 1%;
+    width: 100%;
+    height: 92%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.position{
+    background-color: rgb(249, 249, 249);
+    border-radius: 1%;
+    width: 33%;
+    height:  33%;
+    font-size: 10vmax;
+    display: flex;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
