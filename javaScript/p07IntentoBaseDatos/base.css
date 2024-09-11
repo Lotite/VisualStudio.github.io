@@ -1,0 +1,71 @@
+body{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+#decoracion{
+    background-color: rgb(240, 125, 125);
+    flex: 1;
+}
+#registro{
+    width: 500px;
+    background-color: rgb(142, 142, 200);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    padding: 2%;
+}
+#titulo{
+    color: azure;
+    flex: 0;
+}
+
+.d1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    & > * {
+        width:175px;
+        height: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+
+.d2{
+    width: 400px;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+
+
+#name {
+    position: relative;
+
+}
+#name input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Ajusta el padding para el icono */
+    box-sizing: border-box;
+}
+.material-symbols-outlined{
+    position: absolute;
+    width: 1px;
+}
+.r{
+    text-indent:30px;
+}
+#p1{
+    transform: translateX(-200px) translateY(4px);
+}
+
+#p2{
+    transform: translateX(27px) translateY(4px);
+}
+#m {
+    transform: translateX(-400px) translateY(4px);
+}
