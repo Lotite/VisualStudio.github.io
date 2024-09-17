@@ -6,3 +6,4 @@ alert("Laura" > "laura")  //false
 alert("Laura" < "laura") //true
 alert("123" == 123) // true
 alert("123" === 123) // false
+

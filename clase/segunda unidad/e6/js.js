@@ -1,7 +1,7 @@
-for(let tiempo = [9,0];`${tiempo[0]}.${tiempo[1]}` <= 21;tiempo[1]+=5){
-    if(tiempo[1] >=60){
-        tiempo[0]++;
-        tiempo[1] = 0;
+for(let h = 9, m= 0  ;`${h}.${m}` <= 21;m+=5){
+    if(m >=60){
+        h++;
+        m = 0;
     }
-    document.write(`${tiempo[0]}:${tiempo[1] >= 10 ? tiempo[1] : "0"+tiempo[1]} <br/>`)
+    document.write(`${h >= 10? "" : "0"}${h}:${m >= 10? "" : "0"}${m} <br/>`)
 }
