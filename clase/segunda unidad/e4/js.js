@@ -15,7 +15,7 @@ function getEtapa(edad) {
 
 
 var edad = prompt("Ingrese edad")
-while (!(edad > 0)) //Esto hace que solo acepte dígitos mayores que 0
+while (!(edad >= 0 && edad!="")) //Esto hace que solo acepte dígitos mayores que 0
 {
     var edad = prompt("Error solo se permiten dígitos mayores a 0. Ingrese una edad")
 }
