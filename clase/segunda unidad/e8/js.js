@@ -11,8 +11,6 @@ while (respuesta != respuestaCorrecta) {
             break;
         default: txt = "ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?";
     }
-
-
     respuesta = prompt(txt);
 }
 alert("Acceso permitido.");
