@@ -1,0 +1,10 @@
+{
+    "vscode-edge-devtools.headless": false,
+    "vscode-edge-devtools.showWorkers": false,
+    "vscode-edge-devtools.defaultEntrypoint": "",
+    "vscode-edge-devtools.browserFlavor": "Default",
+    "vscode-edge-devtools.pathMapping": {
+        
+        "/": "${workspaceFolder}"
+    }
+}
