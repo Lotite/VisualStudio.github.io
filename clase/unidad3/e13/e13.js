@@ -3,11 +3,19 @@ let v = 1, h = 1 ;
 let parado=false;
 let interval;
 let crear = document.getElementById("bCrear")
+
+//Boton Crear
 crear.addEventListener("click",()=>{
     a = a.open("","", "width=500,height=200")
-    a.document.write("<h1>Mira Como reboto</h1>")
+    a.moveTo(window.screenX,window.screenY)
+    // la linea de abajo es para darle estilo a la nueva ventana
+    a.document.write("<body style='display: flex;justify-content: center;align-items: center;'><img src='https://img.icons8.com/color/1600/dvd-logo.png' width='200px' height='100px' /></body>")
     interval = setInterval(()=>{moverse()},10)
 })
+
+
+
+//Boton Parar
 let parar = document.getElementById("bParar")
 parar.addEventListener("click",()=>{
     if(parado){
@@ -20,6 +28,8 @@ parar.addEventListener("click",()=>{
     a.focus()
     parado = !parado
 })
+
+//Boton Borrar
 let borrar = document.getElementById("bBorrar")
 borrar.addEventListener("click",()=>{
     a.close()
@@ -27,10 +37,20 @@ borrar.addEventListener("click",()=>{
 
 
 
+
+//Calcular movimiento
 function moverse(){
     let x = a.screenX + 1*v;
     let y = a.screenY + 1*h;
     a.moveTo(x,y)
-    if(x + a.innerWidth+5>=window.innerWidth || x<=0) v=v*-1;
-    if(y + a.innerHeight-10>=window.innerHeight || y<=0) h=h*-1; 
+    //detector de direccion
+
+    if(x + a.innerWidth>=window.innerWidth + window.screenX) v=-1;
+    if(x<=window.screenX) v=1
+
+    
+    if(y + a.innerHeight-20>=window.innerHeight + window.screenY) h=-1
+    if(y<=window.screenY) h =1 
 }
+
+

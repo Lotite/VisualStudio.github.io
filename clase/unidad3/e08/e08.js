@@ -15,6 +15,6 @@ function ejecutar(){
     codigoposta.innerText += text[4];
     apellidos.innerText += text[1]
     email.innerText += text[3]
-    server.innerText += text[3].substring(text[3].indexOf("@")+1,text[3].indexOf("com"))
+    server.innerText += text[3].substring(text[3].indexOf("@")+1)
     telefono.innerText += text[2]
 }
