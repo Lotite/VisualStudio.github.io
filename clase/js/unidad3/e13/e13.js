@@ -1,4 +1,4 @@
-let a = window
+let ventana
 let v = 1, h = 1 ;
 let parado=false;
 let interval;
@@ -6,13 +6,12 @@ let crear = document.getElementById("bCrear")
 
 //Boton Crear
 crear.addEventListener("click",()=>{
-    a = a.open("","", "width=500,height=200")
-    a.moveTo(window.screenX,window.screenY)
+    ventana = window.open("windows","", "width=500,height=200")
+    ventana.moveTo(window.screenX,window.screenY)
     // la linea de abajo es para darle estilo a la nueva ventana
-    a.document.write("<body style='display: flex;justify-content: center;align-items: center;'><img src='https://img.icons8.com/color/1600/dvd-logo.png' width='200px' height='100px' /></body>")
+    ventana.document.write("<body style='display: flex;justify-content: center;align-items: center;'><img src='https://img.icons8.com/color/1600/dvd-logo.png' width='200px' height='100px' /></body>")
     interval = setInterval(()=>{moverse()},10)
 })
-
 
 
 //Boton Parar
@@ -25,14 +24,15 @@ parar.addEventListener("click",()=>{
         parar.innerHTML = "Continuar"
         clearInterval(interval)
     }
-    a.focus()
+    ventana.focus()
     parado = !parado
 })
 
 //Boton Borrar
 let borrar = document.getElementById("bBorrar")
 borrar.addEventListener("click",()=>{
-    a.close()
+    clearInterval(interval)
+    ventana.close()
 })
 
 
@@ -40,16 +40,16 @@ borrar.addEventListener("click",()=>{
 
 //Calcular movimiento
 function moverse(){
-    let x = a.screenX + 1*v;
-    let y = a.screenY + 1*h;
-    a.moveTo(x,y)
+    let x = ventana.screenX + 1*v;
+    let y = ventana.screenY + 1*h;
+    ventana.moveTo(x,y)
     //detector de direccion
 
-    if(x + a.innerWidth>=window.innerWidth + window.screenX) v=-1;
+    if(x + ventana.innerWidth>=window.innerWidth + window.screenX) v=-1;
     if(x<=window.screenX) v=1
 
     
-    if(y + a.innerHeight-20>=window.innerHeight + window.screenY) h=-1
+    if(y + ventana.innerHeight-20>=window.innerHeight + window.screenY) h=-1
     if(y<=window.screenY) h =1 
 }
 
