@@ -3,24 +3,11 @@
         
         {
             "name": "Attach to Edge",
-            "port": 9222,
+            "port": 3306,
             "request": "attach",
             "type": "msedge",
             "webRoot": "${workspaceFolder}"
         },
-        {
-          {
-            "type": "pwa-msedge",
-            "name": "Launch Microsoft Edge in headless mode",
-            "request": "launch",
-            "runtimeArgs": [
-                "--headless",
-                "--remote-debugging-port=9222"
-            ],
-            "url": "file://c:\\Users\\bayil\\OneDrive\\Documentos 1\\importantes\\visual\\clase\\unidad3\\e03\\html.html",
-            "presentation": {
-                "hidden": true
-            }
-        }
+        
     ]
 }

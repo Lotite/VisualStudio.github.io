@@ -3,14 +3,17 @@ let v = 1, h = 1 ;
 let parado=false;
 let interval;
 let crear = document.getElementById("bCrear")
+let numImagen = 1
 
 //Boton Crear
 crear.addEventListener("click",()=>{
+    if(!ventana){
     ventana = window.open("windows","", "width=500,height=200")
     ventana.moveTo(window.screenX,window.screenY)
     // la linea de abajo es para darle estilo a la nueva ventana
-    ventana.document.write("<body style='display: flex;justify-content: center;align-items: center;'><img src='https://img.icons8.com/color/1600/dvd-logo.png' width='200px' height='100px' /></body>")
+    ventana.document.write("<body style='display: flex;justify-content: center;align-items: center;'><img id='img' src='img/dvd1.png' width='200px' height='100px' /></body>")
     interval = setInterval(()=>{moverse()},10)
+    }
 })
 
 
@@ -33,6 +36,7 @@ let borrar = document.getElementById("bBorrar")
 borrar.addEventListener("click",()=>{
     clearInterval(interval)
     ventana.close()
+    ventana=null;
 })
 
 
@@ -45,12 +49,34 @@ function moverse(){
     ventana.moveTo(x,y)
     //detector de direccion
 
-    if(x + ventana.innerWidth>=window.innerWidth + window.screenX) v=-1;
-    if(x<=window.screenX) v=1
-
+    if(x + ventana.innerWidth>=window.innerWidth + window.screenX) {
+        v=-1;
+        cambiarImagen()
+    }
+    if(x<=window.screenX){
+         v=1
+         cambiarImagen();
+    }
     
-    if(y + ventana.innerHeight-20>=window.innerHeight + window.screenY) h=-1
-    if(y<=window.screenY) h =1 
+    if(y + ventana.innerHeight-20>=window.innerHeight + window.screenY) {
+        h=-1
+        cambiarImagen();
+    }
+    if(y<=window.screenY) {
+        h =1
+        cambiarImagen();
+    } 
+    
+}
+
+
+function cambiarImagen(){
+    let num
+    do{
+       num = parseInt(Math.random()*9 +1)
+    }while(num == numImagen)
+        numImagen = num
+    ventana.document.getElementById("img").setAttribute("src",`img/dvd${numImagen}.png`)
 }
 
 

@@ -1,10 +1,11 @@
 print = alert
 let txt = "";
 let patron = /(DOC|025P)([01][0-9][0-9]|2([0-4][0-9]|5[012]))[ABC]/
+
 let input = document.getElementById("input")
 let b = document.getElementById("button")
 b.addEventListener("click",()=>{
-    txt = input.value;
+    txt = input. ;
     if(patron.test(txt)){
         print(getIp()+txt.substring(3,6))
     }else{
