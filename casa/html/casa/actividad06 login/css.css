@@ -4,16 +4,16 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(145, 52, 231);
     
 }
 
 .from_contenedor{
+    max-width: 600px;
     border-radius: 15px;
     width: 80%;
     overflow: hidden;
     height: 90%;
-    background-color: rgb(214, 212, 212);
+    background-color: rgb(231, 168, 247);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,25 +181,10 @@ body{
 
 
 
-.bienvenido_pantalla{
-    background-color: black;
-    width: 50%;
-    height: 100%;
-
-}
 
 
 
-@media screen and (max-width:900px) {
-    .bienvenido_pantalla{
-        display: none;
-    }
 
-    .from_contenedor{
-        width:95%;
-    }
-    
-}
 
 
 

@@ -49,23 +49,27 @@ function moverse(){
     ventana.moveTo(x,y)
     //detector de direccion
 
-    if(x + ventana.innerWidth>=window.innerWidth + window.screenX) {
+    if(x + ventana.innerWidth +10>=window.innerWidth + window.screenX && v==1) {
         v=-1;
+        h =-1
         cambiarImagen()
     }
-    if(x<=window.screenX){
+    if(x<=window.screenX && v==-1){
          v=1
+         h =1
          cambiarImagen();
     }
     
-    if(y + ventana.innerHeight-20>=window.innerHeight + window.screenY) {
-        h=-1
-        cambiarImagen();
-    }
-    if(y<=window.screenY) {
-        h =1
-        cambiarImagen();
-    } 
+    // if(y + ventana.innerHeight>=window.innerHeight + window.screenY && h==1) {
+    //     h=-1
+    //     v =-1
+    //     cambiarImagen();
+    // }
+    // if(y<=window.screenY && h==-1) {
+    //     h =1
+    //     v =1
+    //     cambiarImagen();
+    // } 
     
 }
 
