@@ -82,4 +82,9 @@ document.getElementById("bOrdenar").addEventListener("click", () => {
 
 })
 
+document.getElementById("bLupa").addEventListener("click",()=>{
+    document.getElementById("inputSearch").focus()
+})
+
+
 render();

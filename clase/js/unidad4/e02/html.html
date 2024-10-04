@@ -10,9 +10,12 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
 
-<body class="mt-5">
+<body class="mt-5" style="height: 90vh;">
     <div class="container mx-auto pt-5 pb-2"
-        style="width: 50%; max-width: 600px;border: rgb(236, 224, 224) solid 1px; border-radius: 5px;">
+        style=" position: relative;width: 50%; max-width: 600px; height: 50% ;
+        border: rgb(236, 224, 224) solid 1px; border-radius: 5px;
+        display: flex; flex-direction: column;
+        ">
         <div class="text-center">
             <h3>Detector de DNIs</h3>
         </div>
@@ -31,7 +34,7 @@
                 Generar
             </button>
         </div>
-        <div id="DNIs" class="row mt-2 ms-3 justify-content-start align-items-center g-2"></div>
+        <div id="DNIs" class="row mt-2 ms-3 justify-content-start align-items-center g-2" style="flex-grow: 1; overflow: scroll; scrollbar-width: none;"></div>
     </div>
 
 </body>
