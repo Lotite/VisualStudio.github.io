@@ -63,7 +63,7 @@ function render() {
 }
 
 function añadir(nombre,localidad,cuota){
-    if (nombre != null,localidad != null,cuota != null ){
+    if (nombre != "" && localidad != "" && cuota >0 ){
         clientes.push(new Cliente(nombre,localidad,parseInt(cuota)))
         render()
     }else{
