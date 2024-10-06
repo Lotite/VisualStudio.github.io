@@ -9,8 +9,50 @@ let moverse = false
 
 
 
+////////////funciones
+
+function render() {
+    let viewInfo = document.getElementById("imprimirInfo");
+    let buscador = document.getElementById("inputSearch").value
+    let min = parseInt(document.getElementById("minAño").value);
+    let max = parseInt(document.getElementById("maxAño").value);
+    let filtro = []
+    //Filtra las fechas primero ,si estan vacias no lo hace
+    if (min >= 1900 && max >= 1900 && min <= max) {
+        filtro = discos.filter(disco => disco.año >= min && disco.año <= max)
+    } else {
+        filtro = discos
+    }
+    viewInfo.innerText = "";
+    let imprimir = []
+    //filtrar por posicion o nombre del disco 
+    if (buscador == "") {
+        imprimir = filtro
+    } else {
+        let num = parseInt(buscador);
+        if (num >= 1) {
+            imprimir.push(filtro[num - 1])
+        }
+        else {
+            imprimir = filtro.filter(disco => disco.nombre.toLocaleLowerCase().startsWith(buscador.toLocaleLowerCase()))
+        }
+    }
+    //Imprime el numero total de discos
+    document.getElementById("h3Discos").innerText = `Total discos: ${discos.length}`
+    //Imprime los datos del disco en una tabla
+    imprimir.forEach((disco) => {
+        let txt = `<tr>`;
+        disco.getInfoArray().forEach((info) => {
+            txt += `<td>${info}</td>`;
+        })
+        txt += `</tr>`;
+        viewInfo.innerHTML += txt
+    })
+}
 
 
+
+/////////////////Elemtos y botones
 
 //Actualiza cuando se escribe
 document.getElementById("inputSearch").addEventListener("input", () => { render() })
@@ -60,44 +102,7 @@ document.getElementById("bEliminarF").addEventListener("click", () => {
     render()
 })
 
-function render() {
-    let viewInfo = document.getElementById("imprimirInfo");
-    let buscador = document.getElementById("inputSearch").value
-    let min = parseInt(document.getElementById("minAño").value);
-    let max = parseInt(document.getElementById("maxAño").value);
-    let filtro = []
-    //Filtra las fechas primero si esta vacia no lo hace
-    if (min >= 1900 && max >= 1900 && min <= max) {
-        filtro = discos.filter(disco => disco.año >= min && disco.año <= max)
-    } else {
-        filtro = discos
-    }
-    viewInfo.innerText = "";
-    let imprimir = []
-    //filtrar por posicion o nombre del disco 
-    if (buscador == "") {
-        imprimir = filtro
-    } else {
-        let num = parseInt(buscador);
-        if (num >= 1) {
-            imprimir.push(filtro[num - 1])
-        }
-        else {
-            imprimir = filtro.filter(disco => disco.nombre.toLocaleLowerCase().startsWith(buscador.toLocaleLowerCase()))
-        }
-    }
-    //Imprime el numero total de discos
-    document.getElementById("h3Discos").innerText = `Total discos: ${discos.length}`
-    //Imprime los datos del disco en una tabla
-    imprimir.forEach((disco) => {
-        let txt = `<tr>`;
-        disco.getInfoArray().forEach((info) => {
-            txt += `<td>${info}</td>`;
-        })
-        txt += `</tr>`;
-        viewInfo.innerHTML += txt
-    })
-}
+
 
 
 
@@ -124,7 +129,7 @@ document.getElementById("bLupa").addEventListener("click", () => {
     document.getElementById("inputSearch").focus()
 })
 
-// Mover el menu
+////////////// Mover el menu
 document.getElementById("barraNavegacion").addEventListener("mousedown", (mouse) => {
     if (mouse.button == 0 && !moverse) {
         moverse = true
@@ -158,9 +163,6 @@ document.getElementById("mostrarMenu").addEventListener("click", () => {
     document.getElementById("menu").style.display = "block"
 })
 
-function primeraLetramayuscula(txt) {
-    return txt.charAt(0).toLocaleUpperCase() + txt.slice(1)
-}
 
 
 

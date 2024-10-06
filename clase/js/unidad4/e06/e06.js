@@ -3,9 +3,10 @@ const convocatorias = ["Lotfi,Bayi","Lotfi","Lotfi"];
 
 
 
+///////FUNCIONES
 
-
-
+//Ya no hace falta que mencione lo que hace esta funcion
+////esto imprime de forma inicial todoas las opcipes
 function render(){
     let filas = document.getElementById("filas");
     filas.innerHTML = "";
@@ -13,8 +14,22 @@ function render(){
         filas.innerHTML += imprimirFila(i,convocatorias[i])
     }
     añadirEvento();
-    comprobarListado();
+    comprobarListado(convocatorias);
 }
+
+
+
+
+
+////solo crea y imprime una nueva fila
+function añadirFila(){
+    let filas = document.getElementById("filas");
+    filas.innerHTML += imprimirFila(convocatorias.length)
+    convocatorias.push("")
+    añadirEvento()
+    comprobarListado(convocatorias)
+}
+
 
 // function añadirEventoError(num){
 //     alert(num)
@@ -24,19 +39,9 @@ function render(){
 // }
 
 
-document.getElementById("bAdd").addEventListener("click",()=>{
-    añadirFila()
-})
-
-function añadirFila(){
-    let filas = document.getElementById("filas");
-    filas.innerHTML += imprimirFila(convocatorias.length)
-    convocatorias.push("")
-    añadirEvento()
-    comprobarListado()
-}
-
+//Esto actualiza constantemente los eventos de todos los botones, se que seria mejor solo añadir eventos al nuevi boton pero si lo hago todos los demas pierden sus eventos;
 function añadirEvento(){
+    //Evento para añadir
     document.querySelectorAll(".boton.añadir").forEach((btn)=>{
         let posicion = btn.getAttribute("posicion")
         btn.addEventListener("click",()=>{
@@ -48,22 +53,25 @@ function añadirEvento(){
             convocatorias[posicion]+= (convocatorias[posicion] == "" ? "" : ",") +text;
             lista.innerHTML=convocatorias[posicion];
             input.value="";
-            comprobarListado()
+            comprobarListado(convocatorias)
             }else{
                 alert("No ingresaste ningun nombre")
             }
         })
     })
+    //Evento para eliminar
     document.querySelectorAll(".boton.eliminar").forEach((btn)=>{
         let posicion = btn.getAttribute("posicion");
         btn.addEventListener("click",()=>{
             let fila = document.querySelector('.filas[posicion="'+posicion+'"]');
+            convocatorias.splice(posicion, 1)
+            comprobarListado(convocatorias)
             fila.remove()
         })
     })
 }
 
-
+//Esto devuelve el html que se añadira al documento.
 function imprimirFila(num,texto = ""){
     return `                <div class="filas p-2 border-top border-primary d-flex align-items-center" posicion="${num}">
                     <div class="input-group ">
@@ -77,31 +85,37 @@ function imprimirFila(num,texto = ""){
                 </div>`
 }
 
-
-function comprobarListado(){
-    const listaFinal = [];
-    const lista1 = convocatorias[0].split(",");
-    lista1.forEach((jugador)=>{
+//Verificacion que esta en todas las convocatorias
+function comprobarListado(convocatorias = []){
+    let lista =  convocatorias[0].split(",");//seleciona los de la primera convocatoria ya que son los unicos que tiene la posivilidad que esten en las demas filas
+    let listaFinal = lista.filter((jugador)=>{
         let añadir = true;
-        for (let i = 1; i < convocatorias.length; i++) {
+        for (let i = 1; i < convocatorias.length && añadir; i++) {
             const convocatoria = convocatorias[i].split(",");
             if(!convocatoria.includes(jugador)){
-                añadir=false
-                break;
+                añadir=false //si no esta eb una lista el jugador ; el bucle terminara para obtimizar el filtro
             }
         }
-        if(añadir) listaFinal.push(jugador);
+        return añadir
     })
     let imprimir = document.getElementById("imprimirRow")
     imprimir.innerHTML = "";
     listaFinal.forEach((jugador)=>{
         imprimir.innerHTML+=`<div class="col-3 txt-center">${jugador}</div>`
     })
+
 }
 
 function primeraLetramayuscula(txt) {
     return txt.charAt(0).toLocaleUpperCase() + txt.slice(1)
 }
+
+
+
+//Elementos y botones
+document.getElementById("bAdd").addEventListener("click",()=>{
+    añadirFila()
+})
 
 
 render()
