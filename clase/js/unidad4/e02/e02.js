@@ -19,6 +19,6 @@ function getDNIs() {
 function render(dnis) {
     document.getElementById("DNIs").innerHTML = "";
     dnis.forEach((value) => {
-        document.getElementById("DNIs").innerHTML += `<div class="col-2" ">${value < 100 ? value < 10 ? "00" : "0" : ""}${value}</div>`
+        document.getElementById("DNIs").innerHTML += `<div class="col-2" ">${value.toString().padStart(3,"0")}</div>`
     })
 }

@@ -16,7 +16,7 @@ export class Disco{
     this.prestado = estado; 
   }
 
-  getInfoString(){
+  toString(){
     return `nombre:${this.nombre},grupo:${this.grupo},año:${this.año},tipo:${this.tipo},localizacion:${this.localizacion},presentado:${this.prestado},caratula:${this.caratula}`;
   }
 
