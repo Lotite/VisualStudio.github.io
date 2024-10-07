@@ -1,6 +1,6 @@
 
 ////////////Funciones 
-function primeraLetramayuscula(txt) {
+export function primeraLetramayuscula(txt) {
     return txt.charAt(0).toLocaleUpperCase() + txt.slice(1).toLocaleLowerCase()
 }
 //contar
@@ -30,16 +30,14 @@ export function render(lista,buscador) {
     return imprimir;
 }
 
-export function añadirValor(lista,opcion,texto){
-    if (texto.lenght != 0) {
-        texto = primeraLetramayuscula(texto)
-        if (opcion == 1) {
-            lista.unshift(texto)
+export function añadirValor(lista,opcion,valor){
+        if (opcion == 1 || opcion == "1") {
+            lista.unshift(valor)
         } else {
-            lista.push(texto)
+            lista.push(valor)
         }
         return lista
-    }
+    
 }
 
 
@@ -52,7 +50,7 @@ export function eliminar(lista,opcion){
     }else{
          eliminado = lista.pop();
     }
-    alert("Se a eliminado " + eliminado)
+    alert("Se a eliminado " + eliminado.toString())
     return lista
 }
 
