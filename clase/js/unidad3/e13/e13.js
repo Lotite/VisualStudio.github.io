@@ -44,32 +44,27 @@ borrar.addEventListener("click",()=>{
 
 //Calcular movimiento
 function moverse(){
-    let x = ventana.screenX + 1*v;
-    let y = ventana.screenY + 1*h;
+    let x = ventana.screenX + 1*h;
+    let y = ventana.screenY + 1*v;
     ventana.moveTo(x,y)
     //detector de direccion
 
-    if(x + ventana.innerWidth +10>=window.innerWidth + window.screenX && v==1) {
+    if(x + ventana.innerWidth +10>=window.innerWidth + window.screenX && h==1) {
         v=-1;
         h =-1
         cambiarImagen()
     }
-    if(x<=window.screenX && v==-1){
+    if(x<=window.screenX && h==-1){
          v=1
          h =1
          cambiarImagen();
     }
     
-    // if(y + ventana.innerHeight>=window.innerHeight + window.screenY && h==1) {
-    //     h=-1
-    //     v =-1
-    //     cambiarImagen();
-    // }
-    // if(y<=window.screenY && h==-1) {
-    //     h =1
-    //     v =1
-    //     cambiarImagen();
-    // } 
+    if((y + ventana.innerHeight-3>=window.innerHeight + window.screenY || y<=window.screenY) && v!=0) {
+        v =0
+        cambiarImagen();
+        ventana.moveTo(x,y-h)
+    }
     
 }
 
