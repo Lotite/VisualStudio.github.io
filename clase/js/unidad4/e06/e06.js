@@ -1,5 +1,5 @@
 
-const convocatorias = ["Lotfi,Bayi","Lotfi","Lotfi"];
+const convocatorias = ["Lotfi,Bayi","Lotfi"];
 
 
 
@@ -25,15 +25,16 @@ function render(){
 function añadirFila(){
     let filas = document.getElementById("filas");
     filas.innerHTML += imprimirFila(convocatorias.length)
+    //añadirEventoError(convocatorias.length)
     convocatorias.push("")
     añadirEvento()
+   
     comprobarListado(convocatorias)
 }
 
 
 // function añadirEventoError(num){
-//     alert(num)
-//     document.querySelector('.btn[posicion="'+num+'"').addEventListener("click",()=>{
+//     document.querySelector('.boton.eliminar[posicion="'+num+'"').addEventListener("click",()=>{
 //         alert(num)
 //     })
 // }
