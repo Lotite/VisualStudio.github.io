@@ -1,3 +1,9 @@
 #contenedor{
     width: 700px;
 }
+
+.col{
+    height: 300px;
+    overflow: auto;
+    scrollbar-width: none;
+}
