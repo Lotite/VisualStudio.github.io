@@ -10,6 +10,7 @@ let moverse = false
 
 
 
+
 ////////////funciones
 
 function render() {
@@ -96,7 +97,7 @@ document.getElementById("bEliminarF").addEventListener("click", () => {
 
 document.getElementById("bOrdenar").addEventListener("click", () => {
     let opcion = document.getElementById("opcionOr").value
-    discos = lista.Ordenar(discos,opcion)
+    discos = lista.Ordenar(discos,opcion,2)
     render()
 
 })

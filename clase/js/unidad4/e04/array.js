@@ -50,18 +50,24 @@ export function eliminar(lista,opcion){
     }else{
          eliminado = lista.pop();
     }
-    alert("Se a eliminado " + eliminado.toString())
+    alert("Se a eliminado " + eliminado.imprimir())
     return lista
 }
 
 
-export function Ordenar(lista,opcion){
+export function Ordenar(lista,opcion,tipo){
     switch (opcion) {
         case "1":
             lista.reverse()
             break;
         case "2":
-            lista.sort()
+            if(tipo==1){
+                lista.sort()
+            }else{
+                lista.sort( (obj1,obj2)=>{ 
+                    return Object.values(obj1)[0]<Object.values(obj2)[0] ? -1 : 1;
+                } )
+            }
             break;
         case "3":
             lista.sort( () => { return 0.5 - Math.random() });

@@ -9,16 +9,15 @@ function getDNIs() {
         for (let i = 1; i <= 999; i++) {
             if (i % 23 == num) dnis.push(i);
         }
-    }else{
+    } else {
         alert("No se permite ese caracter")
     }
     render(dnis);
 }
-
 //Imprime los resultados en la pantalla;
 function render(dnis) {
     document.getElementById("DNIs").innerHTML = "";
     dnis.forEach((value) => {
-        document.getElementById("DNIs").innerHTML += `<div class="col-2" ">${value.toString().padStart(3,"0")}</div>`
+        document.getElementById("DNIs").innerHTML += `<div class="col-2" ">${value.toString().padStart(3, "0")}</div>`
     })
 }
