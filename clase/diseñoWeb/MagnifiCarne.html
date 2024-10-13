@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Trabajo lotfi</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--Iconos-->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <!--Estilo propio-->
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+    <header>
+
+        <body>
+            <nav> <!--Navegador-->
+                <div id="contenedorNav"><!--Logo de la web-->
+                        <img id="imgLogo" class="logo" src="logo.svg" alt="" width="50px" style="margin: 0;"/>
+                        <span class="texRosa">Mundo Platillo</span>
+                    <div id="underNav" > <!--Buscador y redes sociales-->
+                        <div class="input-group" style="width: 200px;">
+                            <input type="text" class="form-control" placeholder="Busca aquí">
+                            <i class=" input-group-text bi bi-search"></i>
+    
+                        </div>
+                        <!--Icones redes sociales-->
+                        <a class="bi bi-facebook"></a>
+                        <a class="bi bi-instagram"></a>
+                        <a class="bi bi-twitter"></a>    
+                    </div>
+                </div>
+                <ul id="enlaces"> <!--selecion del navegador-->
+                    <li class="bg-rosa"><a href="./MagnifiCarne.html">Recetas</a></li>
+                    <li><a href="#">Autensilios</a></li>
+                    <li><a href="./Teuchi.html">Cocineros</a></li>
+                    <li><a href="#">Escuela</a></li>
+                </ul>
+            </nav>
+    </header>
+    <main>
+        <h1 class="texRosa" >La mejor receta de la semana</h1> <!--Titulo-->
+        <div class="row carta mx-auto my-4" ><!--Tarjeta-->
+            <picture class="col"><!--Fotos-->
+                <source class="imagen"  media="(min-width: 600px)" srcset="mag2.png">
+                <img  class="imagen"  src="mag1.png" alt="Descripción de la imagen">
+            </picture>
+            <div class="col container">
+                <h3>La Magnifi-Carne</h3><!--Subtitulo-->
+                <p class="description"><!--Texto-->
+                    La Magnifi-Carne. Esta hamburguesa no es solo un platillo, es una leyenda que aparece cada 100 años,
+                    creada por el maestro chef Ajay Maldonaldo en el famoso Em Grill 'Up Truck.
+
+                    La Magnifi-Carne es mucho más que una simple hamburguesa; es una obra maestra gastronómica que
+                    combina ingredientes de la más alta calidad y técnicas culinarias excepcionales. Cada bocado es una
+                    explosión de sabores que deleitará tus sentidos y te transportará a un mundo de placer culinario sin
+                    igual.
+                </p>
+                <div class="input-group botones-derecha"> <!--Botones de reacion-->
+                    <button class="btn" ><img src="like.svg" alt="like"></button>
+                    <button class="btn" ><img src="dislike.svg" alt="dislike"></button>
+                </div>
+            </div>
+        </div>
+        <div class="botones"><!--Botones para cambiar de pagina-->
+            <button class="boton" >Anterior</button>
+            <button class="boton" >Siguiente</button>
+        </div>
+    </main>
+    <footer class="container row my-5" >
+        <div class="col" id="Polica"> <!--Politica de la web-->
+            <div><img class="logo" src="logo.svg" alt="" width="50px"><span class="texRosa"">Mundo Platillo</span></div>
+            <p><a href="#">Politica de privacidad</a><a href="#">Terminos y servicios</a></p>
+            <a href="#">© 2024 Your Website. All rights reserved.</a>
+
+        </div>
+
+        <div id="formulario" class="col m-0 p-0"><!--Formulario de sugerencias-->
+            <form method="post">
+                <textarea name="platillo" id="textAreaPlatillo" placeholder="Suguerencias"></textarea>
+                <br>
+                <input type="email" name="correo" placeholder="correo" style="margin-right: 40px;">
+                <input type="submit" value="Enviar" class="btn btn-light border border-darck">
+            </form>
+        </div>
+    </footer>
+
+</body>
+
+
+</html>
