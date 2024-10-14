@@ -13,22 +13,38 @@
 </head>
 
 <body>
-    <div id="pantalla" class="container p-4 mx-auto row bg-primary border border-2 border-dark  rounded">
+    <div id="pantalla" class="container pe-3 py-4 mx-auto row bg-primary border border-2 border-dark  rounded">
         <div class="col-6">
             <div id="menuCrear" class="border border-dark p-3 rounded">
                 <label for="inputCalle" class="form-label">Nombre de la calle</label>
-            <input type="text" class="form-control" id="inputCalle" placeholder="Calle" >
-            <label for="inputCalle" class="form-label">Numero de la casa</label>
-            <input type="text" class="form-control" id="inputNumero" placeholder="Numero" >
-            <label for="inputCalle" class="form-label">Codigo postal de la casa</label>
-            <input type="text" class="form-control" id="inputCP" placeholder="Codigo postal" >
+                <input type="text" class="form-control" id="inputCalle" placeholder="Calle">
+                <label for="inputCalle" class="form-label">Numero de la casa</label>
+                <input type="text" class="form-control" id="inputNumero" placeholder="Numero">
+                <label for="inputCalle" class="form-label">Codigo postal de la casa</label>
+                <input type="text" class="form-control" id="inputCP" placeholder="Codigo postal">
             </div>
-            <div id="menuInfo" class="border border-dark my-4  rounded">
+            <div id="menuInfo" class="border border-bottom border-dark mt-5  rounded">
+                <div class="pisos border-bottom border-dark ">
+                    <p class="piso"><span>Piso 1</span><button class="btn">Añadir</button></p>
+                    <label>Puerta1: <input type="text" id="piso1" value="Sin dueño" > <button class="btn">Eliminar</button></label>
+                    <label>Puerta2: <input type="text" id="piso1" value="Sin dueño" > <button class="btn">Eliminar</button></label>
+                </div>
+                <div class="pisos border-bottom border-dark ">
+                    <p class="piso"><span>Piso 1</span><button class="btn">Añadir</button></p>
+                    <label>Puerta1: <input type="text" id="piso1" value="Sin dueño" > <button class="btn">Eliminar</button></label>
+                    <label>Puerta2: <input type="text" id="piso1" value="Sin dueño" > <button class="btn">Eliminar</button></label>
+                </div>
+                <div class="pisos border-bottom border-dark ">
+                    <p class="piso"><span>Piso 1</span><button class="btn">Añadir</button></p>
+                    <label>Puerta1: <input type="text" id="piso1" value="Sin dueño" > <button class="btn">Eliminar</button></label>
+                    <label>Puerta2: <input type="text" id="piso1" value="Sin dueño" > <button class="btn">Eliminar</button></label>
+                </div>
                 
             </div>
         </div>
-        <div class="col-6">
-    </div>
+        <div class="col-6 border border-dark rounded">
+
+        </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
