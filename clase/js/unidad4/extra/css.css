@@ -1,0 +1,11 @@
+#pantalla{
+    margin-top: 5%;
+    width: 800px;
+    height: 500px;
+    background-color: red;
+}
+
+
+#menuInfo{
+    height: 40%;
+}

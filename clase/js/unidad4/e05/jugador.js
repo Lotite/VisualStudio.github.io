@@ -15,10 +15,6 @@ class Jugador{
 
 }
 
-
-
-
-
 let jugador = new Jugador()
 
 function entrenar(){
