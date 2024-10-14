@@ -10,8 +10,6 @@ export function mostrarNumero(lista,texto){
 
 
 export function render(lista,buscador) {
-    //let viewPaises = document.getElementById("pantallaPaises");
-    //let buscador = document.getElementById("inputSearch").value
     let imprimir = []
     if (buscador == "") {
         //si la entrada esta vacia no filtrara la busqueda
@@ -50,18 +48,24 @@ export function eliminar(lista,opcion){
     }else{
          eliminado = lista.pop();
     }
-    alert("Se a eliminado " + eliminado.toString())
+    alert("Se a eliminado " + eliminado.imprimir())
     return lista
 }
 
 
-export function Ordenar(lista,opcion){
+export function Ordenar(lista,opcion,tipo){
     switch (opcion) {
         case "1":
             lista.reverse()
             break;
         case "2":
-            lista.sort()
+            if(tipo==1){
+                lista.sort()
+            }else{
+                lista.sort( (obj1,obj2)=>{ 
+                    return Object.values(obj1)[0]<Object.values(obj2)[0] ? -1 : 1;
+                } )
+            }
             break;
         case "3":
             lista.sort( () => { return 0.5 - Math.random() });

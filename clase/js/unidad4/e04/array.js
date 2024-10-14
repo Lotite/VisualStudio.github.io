@@ -10,8 +10,6 @@ export function mostrarNumero(lista,texto){
 
 
 export function render(lista,buscador) {
-    //let viewPaises = document.getElementById("pantallaPaises");
-    //let buscador = document.getElementById("inputSearch").value
     let imprimir = []
     if (buscador == "") {
         //si la entrada esta vacia no filtrara la busqueda

@@ -40,7 +40,7 @@ document.getElementById("bEliminarF").addEventListener("click", () => {
 
 document.getElementById("bOrdenar").addEventListener("click", () => {
     let opcion = document.getElementById("opcionOr").value
-    paises = lista.Ordenar(paises,opcion)
+    paises = lista.Ordenar(paises,opcion,1)
     render()
 
 })
