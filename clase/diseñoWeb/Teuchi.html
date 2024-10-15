@@ -19,8 +19,8 @@
     <header>
 
         <body>
-            <nav>
-                <div id="contenedorNav">
+
+                <div id="contenedorNav" class="mx-auto">
                         <img id="imgLogo" class="logo" src="logo.svg" alt="" width="50px" style="margin: 0;"/>
                         <span class="texRosa">Mundo Platillo</span>
                     <div id="underNav">
@@ -34,6 +34,7 @@
                         <a class="bi bi-twitter"></a>    
                     </div>
                 </div>
+                <nav>
                 <ul id="enlaces">
                     <li><a href="./MagnifiCarne.html">Recetas</a></li>
                     <li><a href="#">Autensilios</a></li>
@@ -42,10 +43,10 @@
                 </ul>
             </nav>
     </header>
-    <main>
+    <main class="mx-auto">
         <h1 class="texRosa" >Cocinero de la semana</h1>
-        <div class="row carta mx-auto my-4" >
-            <picture class="col">
+        <div class="row carta mx-auto my-5" >
+            <picture class="col ps-3">
                 <source class="imagen"  media="(min-width: 600px)" srcset="cocinero2.jpg">
                 <img  class="imagen"  src="cocinero1.webp" alt="Descripción de la imagen">
             </picture>
@@ -65,15 +66,15 @@
             <button class="boton" href="">Siguiente</button>
         </div>
     </main>
-    <footer class="container row my-5" >
-        <div class="col" id="Polica">
+    <footer class="row my-5" style="margin-left: 20%;" >
+        <div  class="col mb-3 " id="Polica">
             <div><img class="logo" src="logo.svg" alt="" width="50px"><span class="texRosa"">Mundo Platillo</span></div>
-            <p><a href="#">Politica de privacidad</a><a href="#">Terminos y servicios</a></p>
+            <p ><a href="#">Politica de privacidad</a><a href="#">Terminos y servicios</a></p>
             <a href="#">© 2024 Your Website. All rights reserved.</a>
 
         </div>
 
-        <div id="formulario" class="col m-0 p-0">
+        <div id="formulario" class="col m-0 p-0 mx-auto">
             <form method="post">
                 <textarea name="platillo" id="textAreaPlatillo" placeholder="Sugerencias"></textarea>
                 <br>

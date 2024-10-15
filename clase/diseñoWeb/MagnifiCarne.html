@@ -19,36 +19,36 @@
     <header>
 
         <body>
-            <nav> <!--Navegador-->
-                <div id="contenedorNav"><!--Logo de la web-->
-                        <img id="imgLogo" class="logo" src="logo.svg" alt="" width="50px" style="margin: 0;"/>
-                        <span class="texRosa">Mundo Platillo</span>
-                    <div id="underNav" > <!--Buscador y redes sociales-->
-                        <div class="input-group" style="width: 200px;">
-                            <input type="text" class="form-control" placeholder="Busca aquí">
-                            <i class=" input-group-text bi bi-search"></i>
-    
-                        </div>
+
+            <div id="contenedorNav" class="mx-auto"><!--Logo de la web-->
+                <img id="imgLogo" class="logo" src="logo.svg" alt="" width="50px" style="margin: 0;" />
+                <span class="texRosa">Mundo Platillo</span>
+                <div id="underNav"> <!--Buscador y redes sociales-->
+                    <div class="input-group" style="width: 200px;">
+                        <input type="text" class="form-control" placeholder="Busca aquí">
+                        <i class=" input-group-text bi bi-search"></i>
+                    </div>
+                    <nav> <!--Navegador-->
                         <!--Icones redes sociales-->
                         <a class="bi bi-facebook"></a>
                         <a class="bi bi-instagram"></a>
-                        <a class="bi bi-twitter"></a>    
-                    </div>
+                        <a class="bi bi-twitter"></a>
                 </div>
-                <ul id="enlaces"> <!--selecion del navegador-->
-                    <li class="bg-rosa"><a href="./MagnifiCarne.html">Recetas</a></li>
-                    <li><a href="#">Autensilios</a></li>
-                    <li><a href="./Teuchi.html">Cocineros</a></li>
-                    <li><a href="#">Escuela</a></li>
-                </ul>
+            </div>
+            <ul id="enlaces"> <!--selecion del navegador-->
+                <li class="bg-rosa"><a href="./MagnifiCarne.html">Recetas</a></li>
+                <li><a href="#">Autensilios</a></li>
+                <li><a href="./Teuchi.html">Cocineros</a></li>
+                <li><a href="#">Escuela</a></li>
+            </ul>
             </nav>
     </header>
-    <main>
-        <h1 class="texRosa" >La mejor receta de la semana</h1> <!--Titulo-->
-        <div class="row carta mx-auto my-4" ><!--Tarjeta-->
+    <main class="mx-auto">
+        <h1 class="texRosa">La mejor receta de la semana</h1> <!--Titulo-->
+        <div class="row carta mx-auto my-4"><!--Tarjeta-->
             <picture class="col"><!--Fotos-->
-                <source class="imagen"  media="(min-width: 600px)" srcset="mag2.png">
-                <img  class="imagen"  src="mag1.png" alt="Descripción de la imagen">
+                <source class="imagen" media="(min-width: 600px)" srcset="mag2.png">
+                <img class="imagen" src="mag1.png" alt="Descripción de la imagen">
             </picture>
             <div class="col container">
                 <h3>La Magnifi-Carne</h3><!--Subtitulo-->
@@ -62,27 +62,27 @@
                     igual.
                 </p>
                 <div class="input-group botones-derecha"> <!--Botones de reacion-->
-                    <button class="btn" ><img src="like.svg" alt="like"></button>
-                    <button class="btn" ><img src="dislike.svg" alt="dislike"></button>
+                    <button class="btn"><img src="like.svg" alt="like"></button>
+                    <button class="btn"><img src="dislike.svg" alt="dislike"></button>
                 </div>
             </div>
         </div>
         <div class="botones"><!--Botones para cambiar de pagina-->
-            <button class="boton" >Anterior</button>
-            <button class="boton" >Siguiente</button>
+            <button class="boton">Anterior</button>
+            <button class="boton">Siguiente</button>
         </div>
     </main>
-    <footer class="container row my-5" >
-        <div class="col" id="Polica"> <!--Politica de la web-->
+    <footer class="row my-5" style="margin-left: 20%;" >
+        <div  class="col mb-3 " id="Polica">
             <div><img class="logo" src="logo.svg" alt="" width="50px"><span class="texRosa"">Mundo Platillo</span></div>
-            <p><a href="#">Politica de privacidad</a><a href="#">Terminos y servicios</a></p>
+            <p ><a href="#">Politica de privacidad</a><a href="#">Terminos y servicios</a></p>
             <a href="#">© 2024 Your Website. All rights reserved.</a>
 
         </div>
 
-        <div id="formulario" class="col m-0 p-0"><!--Formulario de sugerencias-->
+        <div id="formulario" class="col m-0 p-0 mx-auto">
             <form method="post">
-                <textarea name="platillo" id="textAreaPlatillo" placeholder="Suguerencias"></textarea>
+                <textarea name="platillo" id="textAreaPlatillo" placeholder="Sugerencias"></textarea>
                 <br>
                 <input type="email" name="correo" placeholder="correo" style="margin-right: 40px;">
                 <input type="submit" value="Enviar" class="btn btn-light border border-darck">
