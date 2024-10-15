@@ -6,7 +6,7 @@ const convocatorias = ["Lotfi,Bayi","Lotfi"];
 ///////FUNCIONES
 
 //Ya no hace falta que mencione lo que hace esta funcion
-////esto imprime de forma inicial todoas las opcipes
+////esto imprime de forma inicial todas las opcioes
 function render(){
     let filas = document.getElementById("filas");
     filas.innerHTML = "";
@@ -40,7 +40,9 @@ function añadirFila(){
 // }
 
 
-//Esto actualiza constantemente los eventos de todos los botones, se que seria mejor solo añadir eventos al nuevi boton pero si lo hago todos los demas pierden sus eventos;
+//Esto actualiza constantemente los eventos de todos los botones,
+//se que seria mejor solo añadir eventos al nuevo boton pero 
+//si lo hago todos los demas pierden sus eventos;
 function añadirEvento(){
     //Evento para añadir
     document.querySelectorAll(".boton.añadir").forEach((btn)=>{
@@ -87,17 +89,16 @@ function imprimirFila(num,texto = ""){
 }
 
 //Verificacion que esta en todas las convocatorias
-function comprobarListado(convocatorias = []){
+function comprobarListado(convocatorias){
     let lista =  convocatorias[0].split(",");//seleciona los de la primera convocatoria ya que son los unicos que tiene la posivilidad que esten en las demas filas
     let listaFinal = lista.filter((jugador)=>{
-        let añadir = true;
-        for (let i = 1; i < convocatorias.length && añadir; i++) {
+        for (let i = 1; i < convocatorias.length ; i++) {
             const convocatoria = convocatorias[i].split(",");
             if(!convocatoria.includes(jugador)){
-                añadir=false //si no esta eb una lista el jugador ; el bucle terminara para obtimizar el filtro
+                return false //si no esta en una lista el jugador ; el bucle terminara para optimizar el filtro
             }
         }
-        return añadir
+        return true
     })
     let imprimir = document.getElementById("imprimirRow")
     imprimir.innerHTML = "";
