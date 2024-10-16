@@ -1,8 +1,13 @@
 body{
     background-color: rgb(246, 213, 213);
+
+}
+main , footer,#contenedorNav{
+    max-width: 1000px;
 }
 #contenedorNav{
     margin: 20px;
+    
 }
 #imgLogo{
     margin-right: 20%;
@@ -21,6 +26,12 @@ body{
     background-color: rgb(255, 186, 245);
     & li{
         padding: 7px 10px;
+        &:hover{
+            background-color: rgba(137, 43, 226, 0.247);
+        }
+        &:active{
+            background-color: rgba(139, 139, 139, 0.116);
+        }
     }
     & a{
         text-decoration: none;
@@ -36,6 +47,7 @@ h1{
 }
 .carta{
     width: 80%;
+    min-width: 500px;
     border: solid rgba(27, 9, 23, 0.379) 2px;
     background-color: rgba(245, 183, 253, 0.92);
     border-radius: 10px;
@@ -73,7 +85,7 @@ form{
     & a{
         text-decoration: none;
         color: rgb(121, 121, 121);
-        margin-inline: 30px;
+        margin-inline: 10px;
     }
 }
 .boton{
@@ -101,4 +113,7 @@ form{
 .botones-derecha *{
     float: right;
     color: b;
+}
+footer{
+    margin-left: 20%;
 }
