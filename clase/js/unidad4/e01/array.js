@@ -9,7 +9,7 @@ export function mostrarNumero(lista,texto){
 }
 
 
-export function render(lista,buscador) {
+export function render(lista,buscador,filtro,alerta) {
     let imprimir = []
     if (buscador == "") {
         //si la entrada esta vacia no filtrara la busqueda
@@ -22,7 +22,8 @@ export function render(lista,buscador) {
         }
         else{
             //si es un String buscara los paises que su nombre empiecen con ese String
-            imprimir = lista.filter(dato => dato.toLocaleLowerCase().startsWith(buscador.toLocaleLowerCase()))
+            imprimir = lista.filter(valor => filtro(valor,buscador))
+            alerta(buscador)
         }
     }
     return imprimir;

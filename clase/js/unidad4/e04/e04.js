@@ -18,17 +18,15 @@ function render() {
     let buscador = document.getElementById("inputSearch").value
     let min = parseInt(document.getElementById("minAño").value);
     let max = parseInt(document.getElementById("maxAño").value);
-    let filtro = []
+    let filtroVar = []
     //Filtra las fechas primero ,si estan vacias no lo hace
     if (min >= 1900 && max >= 1900 && min <= max) {
-        filtro = discos.filter(disco => disco.año >= min && disco.año <= max)
+        filtroVar = discos.filter(disco => disco.año >= min && disco.año <= max)
     } else {
-        filtro = discos
+        filtroVar = discos
     }
     viewInfo.innerText = "";
-    let resultado = new Set(filtro.map(disco => disco.nombre))//crea un set con los nombres 
-     resultado = lista.render(Array.from(resultado),buscador);//aqui lo envia como un array para pasar ek filtro del buscador
-    let imprimir = filtro.filter(disco =>  resultado.includes(disco.nombre))//aqui crea un array con los nombre que pasaron el filtro
+    let imprimir = lista.render(filtroVar,buscador,filtro,alerta)
     //Imprime el numero total de discos
     document.getElementById("h3Discos").innerText = lista.mostrarNumero(imprimir,"Total discos:")
     //Imprime los datos del disco en una tabla
@@ -109,6 +107,14 @@ function ordenar(valor1,valor2){
     return a
 }
 
+
+
+function filtro(disco,buscador){
+    return disco.nombre.toLocaleLowerCase().startsWith(buscador.toLocaleLowerCase())
+}
+function alerta(buscador){
+    if(discos.some(disco => disco.nombre == buscador))   alert("La posicion del disco es " + discos.indexOf(discos.find(disco => disco.nombre == buscador)))
+}
 
 
 

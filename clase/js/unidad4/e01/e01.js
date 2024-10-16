@@ -61,13 +61,17 @@ function render(){
     let titulo = document.getElementById("h3Paises")
     titulo.innerText= lista.mostrarNumero(paises,"Total paises:");
     viewInfo.innerText = "";
-    let imprimir = lista.render(paises,buscador)
+    let imprimir = lista.render(paises,buscador,filtro,alerta)
     imprimir.forEach(pais => {
         viewInfo.innerHTML += `<div class="col-4 text-center ";">${pais}</div>`;
     });
 }
 
-
-
+function filtro(pais,buscador){
+    return pais.toLocaleLowerCase().startsWith(buscador.toLocaleLowerCase())
+}
+function alerta(buscador){
+    if(paises.includes(buscador)) "La posicion del pais es" + alert(paises.indexOf(buscador))
+}
 
 render();
