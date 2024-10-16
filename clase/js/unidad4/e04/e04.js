@@ -81,26 +81,37 @@ document.getElementById("bAdd").addEventListener("click", () => {
 
 
 document.getElementById("bEliminarP").addEventListener("click", () => {
-    discos = lista.eliminar(discos,1)
+    discos = lista.eliminar(discos,1,imprimir)
     render()
 })
 
 document.getElementById("bEliminarF").addEventListener("click", () => {
-    discos = lista.eliminar(discos,2)
+    discos = lista.eliminar(discos,2,imprimir)
     render()
 })
 
-
+function imprimir(disco){
+    alert("Se a eliminado " + disco.imprimir())
+}
 
 
 
 
 document.getElementById("bOrdenar").addEventListener("click", () => {
     let opcion = document.getElementById("opcionOr").value
-    discos = lista.Ordenar(discos,opcion,2)
+    discos = lista.ordenar(discos,opcion,ordenar)
     render()
 
 })
+
+function ordenar(valor1,valor2){
+    let a = valor1.nombre < valor2.nombre ? 1 : -1;
+    return a
+}
+
+
+
+
 /////////////////Bonus de la tarea
 document.getElementById("bLupa").addEventListener("click", () => {
     document.getElementById("inputSearch").focus()

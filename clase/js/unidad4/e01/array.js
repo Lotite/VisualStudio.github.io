@@ -41,32 +41,26 @@ export function añadirValor(lista,opcion,valor){
 
 
 
-export function eliminar(lista,opcion){
+export function eliminar(lista,opcion,imprimir){
     let eliminado="";
     if(opcion==1){
          eliminado = lista.shift();
     }else{
          eliminado = lista.pop();
     }
-    alert("Se a eliminado " + eliminado.imprimir())
+    imprimir(eliminado)
     return lista
 }
 
 
-export function Ordenar(lista,opcion,tipo){
+export function ordenar(lista,opcion,ordenar){
     switch (opcion) {
         case "1":
             lista.reverse()
             break;
-        case "2":
-            if(tipo==1){
-                lista.sort()
-            }else{
-                lista.sort( (obj1,obj2)=>{ 
-                    return Object.values(obj1)[0]<Object.values(obj2)[0] ? -1 : 1;
-                } )
-            }
-            break;
+            case "2":
+                lista.sort(ordenar)
+                break;
         case "3":
             lista.sort( () => { return 0.5 - Math.random() });
             break;

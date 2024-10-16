@@ -27,23 +27,33 @@ document.getElementById("bAdd").addEventListener("click", () => {
 
 //Elimina el Primero
 document.getElementById("bEliminarP").addEventListener("click", () => {
-    paises = lista.eliminar(paises,1)
+    paises = lista.eliminar(paises,1,imprimir)
     render()
 })
 
 
 //Elimina el ultimo
 document.getElementById("bEliminarF").addEventListener("click", () => {
-    paises = lista.eliminar(paises,2)
+    paises = lista.eliminar(paises,2,imprimir)
     render()
 })
+
+function imprimir(pais){
+    alert("Se a eliminado " + pais)
+}
+
 
 document.getElementById("bOrdenar").addEventListener("click", () => {
     let opcion = document.getElementById("opcionOr").value
-    paises = lista.Ordenar(paises,opcion,1)
+    paises = lista.ordenar(paises,opcion,ordenar)
     render()
 
 })
+
+function ordenar(pais1,pais2){
+    return pais1<pais2 ? 1:-1;
+}
+
 
 function render(){
     let viewInfo = document.getElementById("pantallaPaises");
