@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #boton {
+            display: none;
+        }
+
+        .contenedor {
+            background-color: aqua;
+            padding: 10px;
+        }
+
+        #boton+.desplegable {
+            max-height: 0;
+            overflow: auto;
+            scrollbar-width: none;
+            transition: all 0.3s ease-out;
+        }
+
+        #boton:checked+.desplegable {
+            display: "";
+            max-height: 100px;
+            background-color: red;
+
+        }
+
+        details {
+            overflow: auto;
+            transition: max-height 0.3s ease-out;
+            scrollbar-width: none;
+        }
+
+        details[open] {
+            max-height: 100px;
+        }
+
+        details:not([open]) {
+            max-height: 14px;
+            scrollbar-width: none;
+        }
+
+        summary::after {
+            content: "▼";
+            position: absolute;
+            right: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        summary {
+            position: sticky;
+            top: 0;
+            list-style: none;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <label for="boton">
+            <h1>Hola</h1>
+        </label>
+        <input id="boton" type="checkbox" name="" id="">
+        <div class="desplegable">
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+            adios <br>
+        </div>
+    </div>
+
+    <details id="h" .class="contenedor2">
+        <summary>Hola</summary>
+        <div>
+            adios<br>
+            adios<br>
+            adios<br>
+            adios<br>
+            adios<br>
+            adios<br>
+            adios<br>
+            adios<br>
+            adios<br>
+            adios<br>
+            adios<br>
+        </div>
+    </details>
+    
+</body>
+
+</html>
