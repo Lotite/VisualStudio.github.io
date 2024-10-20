@@ -15,7 +15,7 @@ html{
 }
 
 .edificios{
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
   background-color: #212121ef;
   color: white;
@@ -65,6 +65,41 @@ html{
   flex-wrap: wrap;
 }
 
+.bg-exito{
+  background-color: rgb(130, 182, 52);
+}
+
+.bg-error{
+  background-color: rgb(255, 48, 48);
+}
+
+#notificacion{
+  height: 80px;
+  margin-inline: auto;
+  width: 400px;
+  color: white;
+  display: flex;
+  align-items: center;
+  & #img1{
+    width: 40px;
+    margin-left:15px ;
+  }
+  & span{
+    flex-grow: 1;
+    text-align: center;
+  }
+  & #img2{
+    background-color: rgba(0, 0, 0, 0.245);
+    &:hover{
+      background-color:rgba(0, 0, 0, 0.518) ;
+    }
+    float: right;
+    height: 100%;
+    width: 40px;
+  }
+
+  
+}
 .puertas{
   padding-inline: 10px;
   margin:5px;
@@ -72,8 +107,12 @@ html{
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.397);
   background-color: rgba(24, 92, 240, 0.349);
-  width: 120px;
+  width: 160px;
+  min-width: 130px;
   flex-basis: 120px;
+  & button{
+    float: right;
+  }
 }
 
 .puertas:hover{
@@ -106,8 +145,8 @@ html{
   background-color: rgba(69, 111, 250, 0.986);
   border: solid 2px rgba(0, 39, 75, 0.272);
   border-radius: 4px;
-  height: 30px;
-  font-size: 130%;
+  height: auto;
+  font-size: 100%;
   color: white;
 }
 
