@@ -76,7 +76,8 @@ html{
 #notificacion{
   height: 80px;
   margin-inline: auto;
-  width: 400px;
+  max-width: 400px;
+  min-width: 200px;
   color: white;
   display: flex;
   align-items: center;
