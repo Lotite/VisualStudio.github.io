@@ -1,0 +1,9 @@
+document.querySelectorAll(".extendedor").forEach(extendedor=>{
+    extendedor.addEventListener("click",()=>{
+        if(extendedor.getAttribute("colapse")==="true"){
+            extendedor.setAttribute("colapse","false")
+        }else{
+            extendedor.setAttribute("colapse","true")
+        }
+    })
+})
