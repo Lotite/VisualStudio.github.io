@@ -34,7 +34,8 @@ export class Edificio{
         this.numero = numero;
         this.cp = cp
         this.plantas = []
-        this.mensaje =  `construido nuevo edificio en calle: ${this.calle}, nº: ${this.numero}, CP: ${this.cp}.` 
+        this.mensaje =  `construido nuevo edificio en calle: ${this.imprimeCalle()}, nº: ${this.imprimeNumero()}, CP: ${this.imprimeCodigoPostal()}.` 
+        
     }
     imprimirMensaje(){
         return(this.mensaje)

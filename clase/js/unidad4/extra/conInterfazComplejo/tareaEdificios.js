@@ -1,4 +1,4 @@
-import * as funEdificios from "../edificios.js";
+import { Edificio } from "../edificios.js"
 import * as estilo from "./estilo.js"
 /**
  * Trabajando con objetos Javascript:
@@ -44,9 +44,9 @@ import * as estilo from "./estilo.js"
 
 
 
-const edificioA = new funEdificios.Edificio("Garcia Prieto", "58", "15706");
-const edificioB = new funEdificios.Edificio("Camino Caneiro", "29", "32004");
-const edificioC = new funEdificios.Edificio("San Clemente", "s/n", "15705");
+const edificioA = new Edificio("Garcia Prieto", "58", "15706");
+const edificioB = new Edificio("Camino Caneiro", "29", "32004");
+const edificioC = new Edificio("San Clemente", "s/n", "15705");
 
 edificioA.agregarPlantasYPuertas(1, 2);
 edificioA.agregarPropietario("Jose Antonio Lopez", 1, 1);
@@ -86,32 +86,32 @@ function renderEventos() {
          let numEdificio = parseInt(menu.closest('.edificios').getAttribute("numero"))
          let numsPlantas = parseInt(menu.querySelector(".inputPlantas").value)
          let numsPuertas = parseInt(menu.querySelector(".inputPuertas").value)
-         if(!numsPlantas  || !numsPuertas){
-            estilo.notificacion("error","Por favor, rellena todos los campos")
-         }else{
-         edificios[numEdificio].agregarPlantasYPuertas(numsPlantas, numsPuertas)
-         render()
+         if (!numsPlantas || !numsPuertas) {
+            estilo.notificacion("error", "Por favor, rellena todos los campos")
+         } else {
+            edificios[numEdificio].agregarPlantasYPuertas(numsPlantas, numsPuertas)
+            render()
          }
       })
    })
-   document.querySelectorAll(".addPuertas").forEach(menu=>{
-      menu.querySelector(".boton").addEventListener("click",()=>{
+   document.querySelectorAll(".addPuertas").forEach(menu => {
+      menu.querySelector(".boton").addEventListener("click", () => {
          let input = menu.querySelector("input").value
          let numEdificio = parseInt(menu.closest('.edificios').getAttribute("numero"))
          let numPlanta = parseInt(menu.closest('.plantas').getAttribute("numero"))
-         edificios[numEdificio].agregarPuerta(numPlanta,input)
+         edificios[numEdificio].agregarPuerta(numPlanta, input)
          render()
       })
    })
 
-   document.querySelectorAll(".puertas").forEach(puerta=>{
+   document.querySelectorAll(".puertas").forEach(puerta => {
       let input = puerta.querySelector("input")
-      input.addEventListener("blur",()=>{
+      input.addEventListener("blur", () => {
          let numEdificio = parseInt(puerta.closest('.edificios').getAttribute("numero"))
          let numPlanta = parseInt(puerta.closest('.plantas').getAttribute("numero"))
          let numPuerta = parseInt(puerta.getAttribute("numero"))
-         edificios[numEdificio].agregarPropietario(input.value,numPlanta,numPuerta)
-         estilo.notificacion("exito",edificios[numEdificio].mensaje)
+         edificios[numEdificio].agregarPropietario(input.value, numPlanta, numPuerta)
+         estilo.notificacion("exito", edificios[numEdificio].mensaje)
       })
    })
 
@@ -127,13 +127,13 @@ document.getElementById("bCrearEdificio").addEventListener("click", () => {
    const numero = document.getElementById("inputAddNumero").value.trim();
    const cp = document.getElementById("inputAddCP").value.trim();
    if (!calle || !numero || !cp) {
-      estilo.notificacion("error","Por favor, rellena todos los campos")
-   }else{
-   let edificio = new funEdificios.Edificio(calle, numero, cp)
-   edificios.push(edificio)
-   estilo.notificacion("exito",edificio.mensaje)
-   estilo.render()
-   render()
+      estilo.notificacion("error", "Por favor, rellena todos los campos")
+   } else {
+      let edificio = new Edificio(calle, numero, cp)
+      edificios.push(edificio)
+      estilo.notificacion("exito", edificio.mensaje)
+      estilo.render()
+      render()
    }
 });
 
