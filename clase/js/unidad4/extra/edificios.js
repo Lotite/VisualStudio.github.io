@@ -34,9 +34,11 @@ export class Edificio{
         this.numero = numero;
         this.cp = cp
         this.plantas = []
-        console.log(`construido nuevo edificio en calle: ${this.calle}, nº: ${this.numero}, CP: ${this.cp}.`)
+        this.mensaje =  `construido nuevo edificio en calle: ${this.calle}, nº: ${this.numero}, CP: ${this.cp}.` 
     }
-
+    imprimirMensaje(){
+        return(this.mensaje)
+    }
     modificarNumero(numero){
         this.numero = numero;
     }
@@ -76,7 +78,7 @@ export class Edificio{
         let text = "La error en al introducir el numero de la puerta o el piso"
         if(planta<this.plantas.length && puerta<this.plantas[planta].length){
             this.plantas[planta][puerta] = nombre;
-            alert(`${nombre} es ahora el propietario de la puerta ${puerta + 1} de la planta ${planta + 1}.`)
+            this.mensaje =  `${nombre} es ahora el propietario de la puerta ${puerta + 1} de la planta ${planta + 1}.`
         }
     }
 

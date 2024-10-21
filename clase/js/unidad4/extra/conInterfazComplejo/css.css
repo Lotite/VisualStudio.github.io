@@ -79,7 +79,7 @@ html{
   max-width: 400px;
   min-width: 200px;
   color: white;
-  display: flex;
+  display: none;
   align-items: center;
   & #img1{
     width: 40px;

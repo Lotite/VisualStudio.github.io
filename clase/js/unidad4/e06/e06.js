@@ -33,11 +33,6 @@ function añadirFila(){
 }
 
 
-// function añadirEventoError(num){
-//     document.querySelector('.boton.eliminar[posicion="'+num+'"').addEventListener("click",()=>{
-//         alert(num)
-//     })
-// }
 
 
 //Esto actualiza constantemente los eventos de todos los botones,
@@ -88,7 +83,7 @@ function imprimirFila(num,texto = ""){
                 </div>`
 }
 
-//Verificacion que esta en todas las convocatorias
+///////////////Verificacion que esta en todas las convocatorias
 function comprobarListado(convocatorias){
     let lista =  convocatorias[0].split(",");//seleciona los de la primera convocatoria ya que son los unicos que tiene la posivilidad que esten en las demas filas
     let listaFinal = lista.filter((jugador)=>{

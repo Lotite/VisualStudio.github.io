@@ -63,3 +63,21 @@ export function crearEdificio(num,text){
             </div>`
 }
 
+
+document.getElementById("img2").addEventListener("click",()=>{
+    document.getElementById("notificacion").style.display = "none"
+})
+
+export function notificacion(tipo,mensaje){
+    let notificacion = document.getElementById("notificacion")
+    if(tipo=="exito"){
+        document.getElementById("img1").setAttribute("src","exito.svg")
+        notificacion.style.backgroundColor = "rgb(130, 182, 52)"
+        notificacion.querySelector("span").innerHTML = `<b>Exito <br> ${mensaje}</b>`
+    }else{
+        document.getElementById("img1").setAttribute("src","alerta.svg")
+        notificacion.style.backgroundColor = "rgb(255, 48, 48)"
+        notificacion.querySelector("span").innerHTML = `<b>Error <br> ${mensaje}</b>`
+    }
+    notificacion.style.display = "flex";
+}
