@@ -21,15 +21,14 @@ htmlSalida += `<p>${edificioA.imprimirMensaje()}</p>`;
 edificioA.agregarPropietario('Antonio Pereira', 1, 1);
 htmlSalida += `<p>${edificioA.imprimirMensaje()}</p>`;
 
-
-
 edificioA.agregarPlantasYPuertas(1, 3);
 htmlSalida += `<p>Agregamos 1 planta más al edificio A...</p>`;
 
 htmlSalida += `<p>Agregamos 1 propietario más al edificio A planta 3, puerta 2...</p>`;
 edificioA.agregarPropietario('Pedro Meijide', 2, 1);
 htmlSalida += `<p>${edificioA.imprimirMensaje()}</p>`;
-
+htmlSalida += `<h3>Listado de propietarios del edificio ${edificioA.imprimirDatos()}</h3>`
+htmlSalida += edificioA.imprimePlantas();
 
 
 // Edificio B

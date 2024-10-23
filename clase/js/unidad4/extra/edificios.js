@@ -63,6 +63,7 @@ export class Edificio{
     }
 
 
+
     agregarPlantasYPuertas(numplantas, puertas){
         for (let i = 0; i < numplantas; i++) {
             let planta = [];
@@ -83,9 +84,21 @@ export class Edificio{
         }
     }
 
-
+    imprimePlantas(){
+        let text = "";
+        this.plantas.forEach((planta,numPlanta)=>{
+            planta.forEach((puerta,numPuerta)=>{
+                text += `<p>Propietario del piso ${numPuerta} de la planta ${numPlanta}: ${puerta}.</p>`
+            })
+        })
+        return text;
+    }
 
        //extra
+    imprimirDatos(){
+        return this.imprimeCalle() +" " + this.imprimeNumero() + " " + this.imprimeCodigoPostal();
+    }
+
     agregarPuerta(planta,propietario="Sin propietario"){
         if(planta < this.plantas.length ) this.plantas[planta].push(propietario)
     }
