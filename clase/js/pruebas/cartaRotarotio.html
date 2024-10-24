@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta</title>
+    <style>
+        .carta,
+        .cart {
+            margin-top: 50px;
+            margin-left: 60px;
+            width: 300px;
+            height: 400px;
+            border: 1px solid black;
+            background-image: url("https://th.bing.com/th/id/OIP.GwaA3IjbOmndERcaI5Pl4gAAAA?rs=1&pid=ImgDetMain");
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        .cart {
+
+            transition: all 500ms linear, background-image 0ms linear;
+        }
+
+        .carta[lado="reverso"] {
+            animation: rotacionHorario 1s forwards linear;
+        }
+
+        .carta[lado="cara"] {
+            animation: rotacionAntiHorario 1s forwards linear;
+        }
+
+
+        @keyframes rotacionHorario {
+            0% {
+                transform: perspective(700px) rotateY(0deg);
+            }
+
+            50% {
+                transform: perspective(700px) rotateY(90deg);
+                background-image: url("https://th.bing.com/th/id/OIP.GwaA3IjbOmndERcaI5Pl4gAAAA?rs=1&pid=ImgDetMain");
+            }
+
+            51% {
+                transform: perspective(700px) rotateY(91deg);
+                background-image: url("https://th.bing.com/th/id/OIP.fWTX2g8JrLnaGg1yaBCVxAAAAA?rs=1&pid=ImgDetMain");
+            }
+
+            100% {
+                transform: perspective(700px) rotateY(180deg);
+                background-image: url("https://th.bing.com/th/id/OIP.fWTX2g8JrLnaGg1yaBCVxAAAAA?rs=1&pid=ImgDetMain");
+            }
+
+        }
+
+        @keyframes rotacionAntiHorario {
+            0% {
+                transform: perspective(700px) rotateY(180deg);
+                background-image: url("https://th.bing.com/th/id/OIP.fWTX2g8JrLnaGg1yaBCVxAAAAA?rs=1&pid=ImgDetMain");
+            }
+
+            50% {
+                transform: perspective(700px) rotateY(270deg);
+                background-image: url("https://th.bing.com/th/id/OIP.fWTX2g8JrLnaGg1yaBCVxAAAAA?rs=1&pid=ImgDetMain");
+            }
+
+            51% {
+                transform: perspective(700px) rotateY(271deg);
+                background-image: url("https://th.bing.com/th/id/OIP.GwaA3IjbOmndERcaI5Pl4gAAAA?rs=1&pid=ImgDetMain");
+            }
+
+            100% {
+                transform: perspective(700px) rotateY(360deg);
+                background-image: url("https://th.bing.com/th/id/OIP.GwaA3IjbOmndERcaI5Pl4gAAAA?rs=1&pid=ImgDetMain");
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS</h1>
+    <div class="carta">
+
+    </div>
+    <h1>JAVA</h1>
+    <div class="cart" lado="cara">
+
+    </div>
+
+
+
+
+</body>
+
+
+<script>
+    document.querySelector(".carta").addEventListener("click", function () {
+        if (this.getAttribute("lado") == "reverso") {
+            this.setAttribute("lado", "cara");
+        } else {
+            this.setAttribute("lado", "reverso");
+        }
+    })
+
+    document.querySelector(".cart").addEventListener("click", function () {
+        if (this.getAttribute("lado") == "cara") {
+            rotarHorario(this);
+            this.setAttribute("lado", "reverso");
+        } else {
+            rotarAntiHorario(this);
+            this.setAttribute("lado", "cara");
+        }
+    }
+    )
+
+    function rotarHorario(elemento) {
+        elemento.style.transform = "perspective(700px) rotateY(90deg)"
+        setTimeout(() => {
+            elemento.style.backgroundImage = "url(https://th.bing.com/th/id/OIP.fWTX2g8JrLnaGg1yaBCVxAAAAA?rs=1&pid=ImgDetMain)"
+            elemento.style.transform = "perspective(700px) rotateY(180deg)"
+        }, 400)
+
+    }
+
+    function rotarAntiHorario(elemento) {
+        elemento.style.transform = "perspective(700px) rotateY(270deg)"
+        setTimeout(() => {
+            elemento.style.backgroundImage = "url(https://th.bing.com/th/id/OIP.GwaA3IjbOmndERcaI5Pl4gAAAA?rs=1&pid=ImgDetMain)"
+            elemento.style.transform = "perspective(700px) rotateY(360deg)"
+            elemento.style.transition = "all 0ms linear"
+            elemento.style.transform = "rotateY(0deg)"
+            elemento.style.transition = "all 400ms linear,background-image 0ms linear"
+        }, 400)
+
+
+
+    }
+
+
+
+</script>
+
+</html>

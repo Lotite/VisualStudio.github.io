@@ -26,9 +26,9 @@ function render() {
         filtroVar = discos
     }
     viewInfo.innerText = "";
-    let imprimir = lista.render(filtroVar,buscador,filtro,alerta)
+    let imprimir = lista.render(filtroVar, buscador, filtro, alerta)
     //Imprime el numero total de discos
-    document.getElementById("h3Discos").innerText = lista.mostrarNumero(imprimir,"Total discos:")
+    document.getElementById("h3Discos").innerText = lista.mostrarNumero(imprimir, "Total discos:")
     //Imprime los datos del disco en una tabla
     imprimir.forEach((disco) => {
         let txt = `<tr>`;
@@ -40,18 +40,18 @@ function render() {
     })
 }
 
-function ordenar(valor1,valor2){
+function ordenar(valor1, valor2) {
     let a = valor1.nombre < valor2.nombre ? 1 : -1;
     return a
 }
 
 
 
-function filtro(disco,buscador){
+function filtro(disco, buscador) {
     return disco.nombre.toLocaleLowerCase().startsWith(buscador.toLocaleLowerCase())
 }
-function alerta(buscador){
-    if(discos.some(disco => disco.nombre == buscador))   alert("La posicion del disco es " + discos.indexOf(discos.find(disco => disco.nombre == buscador)))
+function alerta(buscador) {
+    if (discos.some(disco => disco.nombre == buscador)) alert("La posicion del disco es " + discos.indexOf(discos.find(disco => disco.nombre == buscador)))
 }
 
 
@@ -72,59 +72,74 @@ document.getElementById("bAdd").addEventListener("click", () => {
     let tipo = document.getElementById("addTipo")
     let año = document.getElementById("addAño")
     let localizacion = document.getElementById("addLocalizacion")
-    let caratula = document.getElementById("addCaratula")
-    let prestado = document.getElementById("addPrestado".value)
+    let caratula = document.getElementById("addCaratula").value
+    let prestado = document.getElementById("addPrestado").value
     let opcion = document.getElementById("addOpcion").value
-
     if (comprobar(nombre, grupo, año, tipo, localizacion, caratula)) {
         //insetar valores
         nombre = lista.primeraLetramayuscula(nombre.value)
         grupo = lista.primeraLetramayuscula(grupo.value)
-        let newDisco = new Disco(nombre, grupo, año.value, tipo.value, localizacion.value === ""? 0: parseInt(localizacion.value), prestado.value == "1", caratula.value ==="" ? "imagen.png" : caratula)
-        discos = lista.añadirValor(discos,opcion,newDisco)
+        let newDisco = new Disco(nombre, grupo, año.value, tipo.value, localizacion.value === "" ? 0 : parseInt(localizacion.value), prestado == "1", caratula === "" ? "imagen.png" : caratula)
+        discos = lista.añadirValor(discos, opcion, newDisco)
     }
     render()
 })
 
 
 
-function comprobar(nombre,grupo,año,tipo,localizacion,caratula){
+function comprobar(nombre, grupo, año, tipo, localizacion) {
     let resultado = true;
     if (nombre.value === "") {
         resultado = false;
         error(nombre, "No puede estar vacío");
-      } else if (nombre.value.length > 20) {
+    } else if (nombre.value.length > 20) {
         resultado = false;
         error(nombre, "El máximo de caracteres son 20");
-      }
-      
-    if(grupo.value==="" || grupo.value.length > 20){
-        resultado = false;
-        error(grupo)
+    } else {
+        corregir(nombre);
     }
-    if(!["rock","pop","punk","indie"].includes(tipo.value)){
+
+
+
+    if (grupo.value === "") {
         resultado = false;
-        error(tipo)
-    }
-    if(año.value.length != 4){
+        error(grupo,"No puede estar vacío")
+    }else if(grupo.value.length > 20){
         resultado = false;
-        error(año)
+        error(grupo,"El máximo de caracteres son 20")
+    }else{
+        corregir(grupo);
     }
-    if(!parseInt(localizacion.value) && localizacion.value!="" ){
+    
+    if (!["rock", "pop", "punk", "indie"].includes(tipo.value)) {
         resultado = false;
-        error(localizacion)
+        error(tipo,"No es una opcion valida")
+    }else{
+        corregir(tipo);
     }
-    if(caratula.value===""){
-        resultado = false
-        error(caratula)
+    if (año.value.length != 4) {
+        resultado = false;
+        error(año,"El año debe tener 4 digitos")
+    }else{
+        corregir(año);
+    }
+    if (!parseInt(localizacion.value) && localizacion.value != "") {
+        resultado = false;
+        error(localizacion,"Debe ser un numero")
+    }else{
+        corregir(localizacion);
     }
     return resultado;
 }
 
-function error(elemto,texto){
+function error(elemto, texto) {
     elemto.nextElementSibling.innerText = texto;
-    elemto.setAttribute("error","")
+    elemto.setAttribute("error", "")
 
+}
+
+function corregir(elemto) {
+    elemto.removeAttribute("error")
 }
 
 
@@ -134,16 +149,16 @@ function error(elemto,texto){
 
 
 document.getElementById("bEliminarP").addEventListener("click", () => {
-    discos = lista.eliminar(discos,1,imprimir)
+    discos = lista.eliminar(discos, 1, imprimir)
     render()
 })
 
 document.getElementById("bEliminarF").addEventListener("click", () => {
-    discos = lista.eliminar(discos,2,imprimir)
+    discos = lista.eliminar(discos, 2, imprimir)
     render()
 })
 
-function imprimir(disco){
+function imprimir(disco) {
     alert("Se a eliminado " + disco.imprimir())
 }
 
@@ -152,7 +167,7 @@ function imprimir(disco){
 
 document.getElementById("bOrdenar").addEventListener("click", () => {
     let opcion = document.getElementById("opcionOr").value
-    discos = lista.ordenar(discos,opcion,ordenar)
+    discos = lista.ordenar(discos, opcion, ordenar)
     render()
 
 })

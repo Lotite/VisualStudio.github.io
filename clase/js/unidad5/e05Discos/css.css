@@ -1,15 +1,16 @@
 body{
     overflow: hidden;
 }
-input[error]{
+*[error]{
     border: 2px solid red;
 }
 .text-error{
     display: none;
     color: red;
 }
-input[error] ~ .text-error{
+*[error] ~ .text-error{
     display: block;
+    font-size: 50%;
 }
 
 
