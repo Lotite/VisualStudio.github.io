@@ -1,4 +1,4 @@
-function rotar(carta = document.getElementById(),imagen){
+export function rotar(carta,imagen){
     if(carta.getAttribute("carta")=="espalda"){
         carta.setAttribute("carta","frente")
         rotacion(carta,imagen,0,180,180)
@@ -16,7 +16,7 @@ function rotacion(carta, imagen,inicio,medio,final) {
             carta.style.backgroundImage = `url(${imagen})`
             carta.style.transform =`perspective(700px) rotateY(${medio}deg)`
             carta.style.transition = "all 0ms linear"
-            carta.style.transform = `rotateY(${final}deg)`
+            carta.style.transform = `rotateY(${final}deg)`;
             carta.style.transition = "all 400ms linear,background-image 0ms linear"
         }, 400)
 }
