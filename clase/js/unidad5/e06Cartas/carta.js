@@ -1,4 +1,16 @@
 let seleccionado = null
+
+function getCookeis(){
+    let objCookeis = {};
+    let cookies = document.cookie.replaceAll(" ","").split(";");
+    cookies.forEach(cookei=>{
+        let [key,value] = cookei.split("=");
+        objCookeis[key] = value;
+    })
+    return objCookeis;
+}
+
+
 class Carta {
     #num;
     #carta;
@@ -13,9 +25,8 @@ class Carta {
 
 
     #crearCarta() {
-        let tr = document.createElement("td")
-        tr.innerHTML = `<div  class="carta"></div>`
-        return tr;
+        let td = document.createElement("td")
+        return td;
     }
 
     imprimir() {
@@ -50,11 +61,11 @@ class Carta {
 
 
     #rotacion(imagen, inicio, medio, final) {
-        let carta = this.#carta.firstChild;
+        let carta = this.#carta;
         carta.style.transform = `perspective(700px) rotateY(${inicio + 90}deg)`
         setTimeout(() => {
             carta.style.transition = "all 300ms linear,background-image 0ms ease-in-out"
-            carta.style.backgroundImage = `url(${imagen})`
+            carta.querySelector
             carta.style.transform = `perspective(700px) rotateY(${medio}deg)`
             carta.style.transform = `rotateY(${final}deg)`;
             carta.style.transition = "all 300ms linear,background-image 0ms ease-in-out"
@@ -66,7 +77,7 @@ class Carta {
         if (seleccionado) {
             this.#selecTemporal = seleccionado;
             seleccionado = false;
-            if (this.esIgual()) {
+            if (this.#esIgual()) {
                 this.#eliminarEvento();
                 this.#selecTemporal.#eliminarEvento();
             } else {
@@ -84,24 +95,38 @@ class Carta {
 
 
 
-    esIgual() {
+    #esIgual() {
         return this.#num === this.#selecTemporal.#num && this.#carta !== this.#selecTemporal.#carta;
     }
-
-
-
-
-
 }
 
 
-[1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].sort(() => { return Math.random() > 0.5 ? 1 : -1 }).forEach((num, index) => {
-    if (index % 4 == 0 && index != 12) {
-        document.querySelector("table").append(document.createElement("tr"))
-    }
-    document.querySelector("table").lastChild.append((new Carta(num)).imprimir())
 
-})
+let carta1 = new Carta(1);
+
+let cookies = getCookeis();
+if(true/**cookies.nombre*/){
+    [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].sort(() => { return Math.random() > 0.5 ? 1 : -1 }).forEach((num, index) => {
+        if (index % 4 == 0 && index != 12) {
+            document.querySelector("table").append(document.createElement("tr"))
+        }
+        document.querySelector("table").lastChild.append((new Carta(num)).imprimir())
+    })
+}else{
+    document.body.innerHTML= `
+        <div class="mx-auto" style="width:500px;margin-top:50px">
+            <h3 class="text-center">Ingresa tu nombre</h3>
+            <input type="text" placeholder="Tu nombre" >
+            <button class="btn btn-light btn-outline-primary btn-lg">Jugar</button>
+        </div>
+    `
+    document.querySelector("button").addEventListener("click",()=>{
+        document.cookie = `nombre=${document.querySelector("input").value}`
+        location.reload();
+    })
+}
+
+
 // document.querySelector("table").append((new Carta(1)).imprimir())
 // document.querySelector("table").append((new Carta(1)).imprimir())
 
