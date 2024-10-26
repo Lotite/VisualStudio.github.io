@@ -1,4 +1,17 @@
 let seleccionado = null
+let parejas = 0;
+
+function render(){
+    document.querySelector("h3").innerText = `Parejas encontrados: ${parejas}`
+    if(parejas>=6){
+        document.getElementById("notificacion").style.backgroundColor = "rgb(72, 143, 27)"
+        document.getElementById("notificacion").style.transform = "translateY(20px)"
+        document.querySelector("button").addEventListener("click",()=>{
+            location.reload();
+        })
+    }
+}
+
 
 function getCookeis(){
     let objCookeis = {};
@@ -9,7 +22,9 @@ function getCookeis(){
     })
     return objCookeis;
 }
-
+function setCookeis(key,value){
+    document.cookie = `${key}=${value}`
+}
 
 class Carta {
     #num;
@@ -25,8 +40,9 @@ class Carta {
 
 
     #crearCarta() {
-        let td = document.createElement("td")
-        return td;
+        let tr = document.createElement("td")
+        tr.innerHTML = `<div class="carta"></div>`
+        return tr;
     }
 
     imprimir() {
@@ -61,11 +77,11 @@ class Carta {
 
 
     #rotacion(imagen, inicio, medio, final) {
-        let carta = this.#carta;
+        let carta = this.#carta.firstChild;
         carta.style.transform = `perspective(700px) rotateY(${inicio + 90}deg)`
         setTimeout(() => {
             carta.style.transition = "all 300ms linear,background-image 0ms ease-in-out"
-            carta.querySelector
+            carta.style.backgroundImage = `url(${imagen})`
             carta.style.transform = `perspective(700px) rotateY(${medio}deg)`
             carta.style.transform = `rotateY(${final}deg)`;
             carta.style.transition = "all 300ms linear,background-image 0ms ease-in-out"
@@ -80,6 +96,8 @@ class Carta {
             if (this.#esIgual()) {
                 this.#eliminarEvento();
                 this.#selecTemporal.#eliminarEvento();
+                parejas++;
+                render()
             } else {
                 setTimeout(() => {
                     this.#rotar()
@@ -101,17 +119,18 @@ class Carta {
 }
 
 
-
-let carta1 = new Carta(1);
-
 let cookies = getCookeis();
-if(true/**cookies.nombre*/){
+if(cookies.nombre){
     [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].sort(() => { return Math.random() > 0.5 ? 1 : -1 }).forEach((num, index) => {
         if (index % 4 == 0 && index != 12) {
             document.querySelector("table").append(document.createElement("tr"))
         }
         document.querySelector("table").lastChild.append((new Carta(num)).imprimir())
+        
     })
+    setCookeis("visitas",cookies.visitas-(-1))
+    document.querySelector("h2").innerHTML = `Bienvenido ${cookies.nombre}`
+    document.querySelector("p").innerText = `Has visitado esta pagina ${cookies.visitas} veces`
 }else{
     document.body.innerHTML= `
         <div class="mx-auto" style="width:500px;margin-top:50px">
@@ -120,6 +139,7 @@ if(true/**cookies.nombre*/){
             <button class="btn btn-light btn-outline-primary btn-lg">Jugar</button>
         </div>
     `
+    setCookeis("visitas",0)
     document.querySelector("button").addEventListener("click",()=>{
         document.cookie = `nombre=${document.querySelector("input").value}`
         location.reload();
