@@ -1,12 +1,9 @@
 function validarFormulario() {
-    let esValido = true;
-
     // Validar fecha
     const fecha = document.getElementById('fechaCreacion')
     if (!esFechaValida(fecha.value)) {
         fecha.style.border = '2px solid red';
         document.getElementById('fechaError').textContent = 'Fecha inválida.';
-        esValido = false;
     } else {
         document.getElementById('fechaError').textContent = '';
     }
@@ -17,7 +14,6 @@ function validarFormulario() {
     if (!empleadoRegex.test(empleado.value)) {
         document.getElementById('empleadoError').textContent = 'Formato de empleado inválido. Use XX$1234.';
         empleado.style.border = '2px solid red';
-        esValido = false;
     } else {
         document.getElementById('empleadoError').textContent = '';
         empleado.style.border = '';
@@ -28,7 +24,6 @@ function validarFormulario() {
     const destinatario = document.getElementById('destinatario');
     if (!destinatarioRegex.test(destinatario.value)) {
         document.getElementById('destinatarioError').textContent = 'Formato de destinatario inválido. Use XX_Ciudad:1234.';
-        esValido = false;
         destinatario.style.border = '2px solid red';
     } else {
         document.getElementById('destinatarioError').textContent = '';
@@ -39,7 +34,6 @@ function validarFormulario() {
     const peso = document.getElementById('peso');
     if (peso.value < 100 || peso.value > 5000) {
         document.getElementById('pesoError').textContent = 'El peso debe estar entre 100 y 5000 gramos.';
-        esValido = false;
         peso.style.border = '2px solid red';
     } else {
         document.getElementById('pesoError').textContent = '';
@@ -51,14 +45,11 @@ function validarFormulario() {
     const cuenta = document.getElementById('cuenta');
     if (!cuentaRegex.test(cuenta.value)) {
         document.getElementById('cuentaError').textContent = 'Formato de cuenta inválido. Use ESXX XXXX XXXX XXXX XXXX XXXX.';
-        esValido = false;
         cuenta.style.border = '2px solid red';
     } else {
         document.getElementById('cuentaError').textContent = '';
         cuenta.style.border = '';
     }
-
-    return esValido;
 }
 
 function esFechaValida(stringFecha) {
