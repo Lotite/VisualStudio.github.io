@@ -13,16 +13,16 @@ function render(){
 }
 
 
-function getCookeis(){
-    let objCookeis = {};
-    let cookies = document.cookie.replaceAll(" ","").split(";");
-    cookies.forEach(cookei=>{
-        let [key,value] = cookei.split("=");
-        objCookeis[key] = value;
+function getCookies(){
+    const objCookies = {};
+    const cookies = document.cookie.replaceAll(" ","").split(";");
+    cookies.forEach(cookie=>{
+        const [key,value] = cookie.split("=");
+        objCookies[key] = value;
     })
-    return objCookeis;
+    return objCookies;
 }
-function setCookeis(key,value){
+function setCookies(key,value){
     document.cookie = `${key}=${value}`
 }
 
@@ -40,7 +40,7 @@ class Carta {
 
 
     #crearCarta() {
-        let tr = document.createElement("td")
+        const tr = document.createElement("td")
         tr.innerHTML = `<div class="carta"></div>`
         return tr;
     }
@@ -77,7 +77,7 @@ class Carta {
 
 
     #rotacion(imagen, inicio, medio, final) {
-        let carta = this.#carta.firstChild;
+        const carta = this.#carta.firstChild;
         carta.style.transform = `perspective(700px) rotateY(${inicio + 90}deg)`
         setTimeout(() => {
             carta.style.transition = "all 300ms linear,background-image 0ms ease-in-out"
@@ -118,8 +118,8 @@ class Carta {
     }
 }
 
-
-let cookies = getCookeis();
+//COdigo de creacion
+const cookies = getCookies();
 if(cookies.nombre){
     [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].sort(() => { return Math.random() > 0.5 ? 1 : -1 }).forEach((num, index) => {
         if (index % 4 == 0 && index != 12) {
@@ -128,7 +128,7 @@ if(cookies.nombre){
         document.querySelector("table").lastChild.append((new Carta(num)).imprimir())
         
     })
-    setCookeis("visitas",cookies.visitas-(-1))
+    setCookies("visitas",cookies.visitas-(-1))
     document.querySelector("h2").innerHTML = `Bienvenido ${cookies.nombre}`
     document.querySelector("p").innerText = `Has visitado esta pagina ${cookies.visitas} veces`
 }else{
@@ -139,7 +139,7 @@ if(cookies.nombre){
             <button class="btn btn-light btn-outline-primary btn-lg">Jugar</button>
         </div>
     `
-    setCookeis("visitas",0)
+    setCookies("visitas",1)
     document.querySelector("button").addEventListener("click",()=>{
         document.cookie = `nombre=${document.querySelector("input").value}`
         location.reload();
