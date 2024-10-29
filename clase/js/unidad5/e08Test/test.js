@@ -15,7 +15,7 @@ function imprimirPreguntas(){
         let elemento = document.createElement('div');
         elemento.classList.add('pregunta');
         elemento.innerHTML = `<h3><li>${pregunta.pregunta}</li></h3>
-        ${imprimirOpciones(pregunta.opciones.sort(() => Math.random() > 0.5 ? 1 : -1),index)}
+        ${imprimirOpciones(pregunta.opciones.sort(() => Math.random() - 0.5 <=0 ? 1 : -1),index)}
         `;
         formulario.appendChild(elemento);
         respuestas_Correctas.push(pregunta.respuesta);
