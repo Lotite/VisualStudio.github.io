@@ -3,11 +3,11 @@ let numCorrectas = 0;
 
 
 let preguntas = [
-    {pregunta: "Como me llamo" , respuesta : "lotfi" , opciones: ["lotfi","bayi","lotf","lott"]},
-    {pregunta: "Apellido" , respuesta : "bayi" , opciones:  ["lotfi","bayi","lotf","lott"]},
-    {pregunta: "Edad" , respuesta : "20" , opciones:  ["20","21","22","22"]},
+    {pregunta: "¿Cuál es el mamífero más grande del mundo?", respuesta: "Ballena azul", opciones: ["Elefante africano", "Ballena azul", "Oso polar"]},
+    {pregunta: "¿Qué animal es conocido por su capacidad de cambiar de color?", respuesta: "Camaleón", opciones: ["Camaleón", "León", "Delfín"]},
+    {pregunta: "¿Cuál de estos animales es un ave?", respuesta: "Pingüino", opciones: ["Tiburón", "Pingüino", "Murciélago"]},
+    {pregunta: "¿Qué animal es famoso por su larga migración anual?", respuesta: "Mariposa monarca", opciones: ["Tortuga marina", "Mariposa monarca", "Canguro"]}
 ].sort(() => Math.random() - 0.5);
-
 
 function imprimirPreguntas(){
     let formulario = document.querySelector("ol")
@@ -15,13 +15,11 @@ function imprimirPreguntas(){
         let elemento = document.createElement('div');
         elemento.classList.add('pregunta');
         elemento.innerHTML = `<h3><li>${pregunta.pregunta}</li></h3>
-        ${imprimirOpciones(pregunta.opciones.sort(() => Math.random() - 0.5),index)}
+        ${imprimirOpciones(pregunta.opciones.sort(() => Math.random() > 0.5 ? 1 : -1),index)}
         `;
         formulario.appendChild(elemento);
         respuestas_Correctas.push(pregunta.respuesta);
     })
-    formulario.innerHTML += `<button onclick="comprobar()">Comprobar</button>`
-
 }
 
 
@@ -29,8 +27,10 @@ function imprimirOpciones(opciones = [],num){
     let text = ""
 
     opciones.forEach((opcion,index) => {
-        text += `<input type="radio" id="i${(num+1)+""+(index+1)}" name="pregunta${num + 1}" value="${opcion}">`
-        text += `<label for="i${num+""+(index+1)}">${"abcd".charAt(index) + ") "}${opcion}</label><br>`
+        text += `<label> 
+        <input type="radio" id="i${(num+1)+""+(index+1)}" name="pregunta${num + 1}" value="${opcion}"> 
+        <span>${"abcd".charAt(index) + ") "}${opcion}<span>
+        </label><br>`
     });
     return text;
 }
@@ -40,7 +40,7 @@ imprimirPreguntas();
 
 
 function limpiar(){
-    document.querySelectorAll('h3,input + label').forEach((respuesta) => {
+    document.querySelectorAll('h3[style*="color: red"],span[style*="color: red"]').forEach((respuesta) => {
         respuesta.style.color = "black";
     });
 }
@@ -54,24 +54,25 @@ function comprobar(){
         let elemento = pregunta.querySelector('input[type="radio"]:checked')
         return elemento ? elemento.value : "vacio";
     });
-    alert(respuestas)
     respuestas.forEach((respuesta, index) => {
         if (respuesta === respuestas_Correctas[index]) {
             numCorrectas++;
         }else{
             let  elemento = document.querySelectorAll(".pregunta")[index]
             if(respuesta!="vacio"){
-                elemento.querySelector('input[type="radio"]:checked + label').style.color = "red";
+                elemento.querySelector('input:checked + span').style.color = "red";
             }else{
                 elemento.querySelector('h3').style.color = "red";
             }
         }
     });
-    alert(`Has acertado ${numCorrectas} preguntas`);
+    document.getElementById("correctas").textContent = `Has acertado ${numCorrectas} preguntas`
     if(respuestas.some(respuesta=> respuesta=="vacio")){
-        alert("No has respondido todas las preguntas");
+        document.getElementById("error").textContent = "No has respondido todas las preguntas"
+    }else{
+        document.getElementById("error").textContent = ""
     }
 }
 
 
-//document.getElementById("comprobar").addEventListener("click",comprobar)
+document.querySelector("button").addEventListener("click",comprobar)
