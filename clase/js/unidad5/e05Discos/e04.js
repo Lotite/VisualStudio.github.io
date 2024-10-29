@@ -117,7 +117,7 @@ function comprobar(nombre, grupo, año, tipo, localizacion) {
     }else{
         corregir(tipo);
     }
-    if (año.value.length != 4) {
+    if (isNaN(parseInt(año.value)) ||  año.value.length != 4) {
         resultado = false;
         error(año,"El año debe tener 4 digitos")
     }else{

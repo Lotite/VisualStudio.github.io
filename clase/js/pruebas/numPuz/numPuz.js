@@ -68,7 +68,7 @@ class Puz {
     #setPosicion(posicion = this.#getPosicion(this.#num)) {
         let x = posicion % 4;
         let y = Math.floor(posicion / 4);
-        this.#puz.style.transform = `translate(${x * 101.5}%, ${y * 101.5}%)`;
+        this.#puz.style.transform = `translate(${x * 102}%, ${y * 102}%)`;
     }
 
     #getPosicion(num) {
