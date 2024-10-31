@@ -1,6 +1,7 @@
 let numPuz = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].sort(() => Math.random() - 0.5);
 numPuz.push(0)
-let objsPuz = []
+const objsPuz = []
+
 
 function render() {
     let temArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0]
@@ -11,12 +12,16 @@ function render() {
 class Puz {
     #num;
     #puz;
-    constructor(num) {
+    #tablero
+    #lado
+    constructor(num,tablero,lado) {
         this.#num = num;
+        this.#lado = lado;
         this.#puz = this.#crearPuz();
         this.#setPosicion();
         this.#puz.addEventListener("click", () => this.#mover());
-        return this;
+        this.#tablero = tablero;
+        this.#tablero.push(this);
     }
 
     imprimir() {
@@ -52,22 +57,22 @@ class Puz {
     moverOtro(posnum, pos0, diferencia) {
         if (posnum != pos0 + diferencia && posnum != pos0 - diferencia) {
             let temPuz = pos0 - posnum > 0 ? posnum + diferencia : posnum - diferencia
-            objsPuz.find(puz => puz.#num == numPuz[temPuz]).#mover(temPuz)
+            this.#tablero.find(puz => puz.#num == numPuz[temPuz]).#mover(temPuz)
         }
     }
 
     #estanMismaLineaX() {
-        return Math.floor(this.#getPosicion(this.#num) / 4) == Math.floor(this.#getPosicion(0) / 4)
+        return Math.floor(this.#getPosicion(this.#num) / this.#lado) == Math.floor(this.#getPosicion(0) / 4)
     }
 
     #estanMismaLineaY() {
-        return this.#getPosicion(this.#num) % 4 == this.#getPosicion(0) % 4
+        return this.#getPosicion(this.#num) % this.#lado == this.#getPosicion(0) % 4
     }
 
 
     #setPosicion(posicion = this.#getPosicion(this.#num)) {
-        let x = posicion % 4;
-        let y = Math.floor(posicion / 4);
+        let x = posicion % this.#lado;
+        let y = Math.floor(posicion / this.#lado);
         this.#puz.style.transform = `translate(${x * 102}%, ${y * 102}%)`;
     }
 
@@ -77,15 +82,61 @@ class Puz {
     }
 }
 
-numPuz.forEach(num => {
-    if (num == 0) { return }
-    const Tempuz = new Puz(num)
-    document.getElementById("contenedor").appendChild(Tempuz.imprimir());
-    objsPuz.push(Tempuz);
 
+class tablero{
+    #num
+    #tablero
+    #objsPuz = []
+    constructor(num){
+        this.#num = num;
+        this.#tablero = document.createElement("div")
+        this.#tablero.classList.add("contenedor")
+        this.#crearPiezas()
+        return this.#tablero;
+    }
+    #crearPiezas(){
+        const nums = this.#range(1,this.#num**2)
+        nums.push(0)
+        alert(nums)
+        nums.forEach(num => {
+            if (num == 0) { return }
+            const Tempuz = new Puz(num,this.#objsPuz,this.#num)
+            this.#tablero.appendChild(Tempuz.imprimir());
+        })
+        return this.#tablero;
+        
+    }
+
+
+    #range(num1 , num2){
+        const nums = []
+        for (let i = num1; i < num2; i++) {
+            nums.push(i)
+        }
+        return nums.sort(() => Math.random() - 0.5);
+}
+
+
+}
+
+// numPuz.forEach(num => {
+//     if (num == 0) { return }
+//     const Tempuz = new Puz(num)
+//     document.getElementById("contenedor").appendChild(Tempuz.imprimir());
+//     objsPuz.push(Tempuz);
+
+// })
+document.getElementById("personalizar").addEventListener("keydown",(e)=>{
+    if(!/[0-9]/.test(e.key) && e.key != "Backspace"){
+        e.preventDefault()
+    }
 })
 
+document.querySelector("body").appendChild(new tablero(2))
 
-document.querySelector("#contenedor").addEventListener("click", () => {
-    render()
-})
+
+
+
+// document.querySelector("#contenedor").addEventListener("click", () => {
+//     render()
+// })
