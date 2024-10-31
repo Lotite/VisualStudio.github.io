@@ -1,27 +1,16 @@
-let numPuz = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].sort(() => Math.random() - 0.5);
-numPuz.push(0)
-const objsPuz = []
-
-
-function render() {
-    let temArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0]
-    if (temArray.every((valor, pos) => valor === numPuz[pos])) {
-        setTimeout(() => { alert("Ganaste") }, 500)
-    }
-}
 class Puz {
     #num;
     #puz;
     #tablero
     #lado
-    constructor(num,tablero,lado) {
+    constructor(num, tablero = { elemento: "", posiciones: [], puzzles: [] }, lado) {
+        this.#tablero = tablero;
         this.#num = num;
         this.#lado = lado;
         this.#puz = this.#crearPuz();
         this.#setPosicion();
         this.#puz.addEventListener("click", () => this.#mover());
-        this.#tablero = tablero;
-        this.#tablero.push(this);
+        this.#tablero.puzzles.push(this);
     }
 
     imprimir() {
@@ -30,6 +19,9 @@ class Puz {
 
     #crearPuz() {
         const elemento = document.createElement("div")
+        elemento.style.width = `calc(100/${this.#lado}*1% - 2px)`;
+        elemento.style.height = `calc(100/${this.#lado}*1% - 2px)`;
+        elemento.style.fontSize = `calc(400% - ${this.#lado} * 10%)`;
         elemento.classList.add("num")
         elemento.textContent = this.#num
         return elemento;
@@ -39,16 +31,16 @@ class Puz {
         let pos0 = this.#getPosicion(0);
         let mover;
         if (this.#estanMismaLineaX()) {
-            mover = !this.moverOtro(posnum, pos0,1);
+            mover = !this.moverOtro(posnum, pos0, 1);
         } else if (this.#estanMismaLineaY()) {
-            mover = !this.moverOtro(posnum, pos0,4);
+            mover = !this.moverOtro(posnum, pos0, this.#lado);
         }
 
 
         if (mover) {
             pos0 = this.#getPosicion(0);
-            numPuz[pos0] = numPuz[posnum];
-            numPuz[posnum] = 0;
+            this.#tablero.posiciones[pos0] = this.#tablero.posiciones[posnum];
+            this.#tablero.posiciones[posnum] = 0;
             this.#setPosicion();
         }
     }
@@ -57,86 +49,117 @@ class Puz {
     moverOtro(posnum, pos0, diferencia) {
         if (posnum != pos0 + diferencia && posnum != pos0 - diferencia) {
             let temPuz = pos0 - posnum > 0 ? posnum + diferencia : posnum - diferencia
-            this.#tablero.find(puz => puz.#num == numPuz[temPuz]).#mover(temPuz)
+            this.#tablero.puzzles.find(puz => puz.#num == this.#tablero.posiciones[temPuz]).#mover(temPuz)
         }
     }
 
     #estanMismaLineaX() {
-        return Math.floor(this.#getPosicion(this.#num) / this.#lado) == Math.floor(this.#getPosicion(0) / 4)
+        return Math.floor(this.#getPosicion(this.#num) / this.#lado) == Math.floor(this.#getPosicion(0) / this.#lado)
     }
 
     #estanMismaLineaY() {
-        return this.#getPosicion(this.#num) % this.#lado == this.#getPosicion(0) % 4
+        return this.#getPosicion(this.#num) % this.#lado == this.#getPosicion(0) % this.#lado
     }
 
 
     #setPosicion(posicion = this.#getPosicion(this.#num)) {
         let x = posicion % this.#lado;
         let y = Math.floor(posicion / this.#lado);
-        this.#puz.style.transform = `translate(${x * 102}%, ${y * 102}%)`;
+        this.#puz.style.transform = `translate(calc(${x * 100}%  +  ${2 * x + 1}px), calc(${y * 100}%  + ${2 * y + 1}px) )`;
     }
 
     #getPosicion(num) {
-        let posicion = numPuz.indexOf(num);
-        return posicion;
+        return this.#tablero.posiciones.indexOf(num);
     }
 }
 
 
-class tablero{
+class Tablero {
     #num
     #tablero
-    #objsPuz = []
-    constructor(num){
+    #ordenado
+    constructor(num) {
+        this.#tablero = { elemento: "null", posiciones: [], puzzles: [] }
         this.#num = num;
-        this.#tablero = document.createElement("div")
-        this.#tablero.classList.add("contenedor")
+        this.#tablero.elemento = document.createElement("div")
+        this.#tablero.elemento.classList.add("contenedor")
         this.#crearPiezas()
-        return this.#tablero;
+        return this.#tablero.elemento;
     }
-    #crearPiezas(){
-        const nums = this.#range(1,this.#num**2)
-        nums.push(0)
-        alert(nums)
-        nums.forEach(num => {
+    #crearPiezas() {
+        this.#tablero.posiciones = this.#range(1, this.#num ** 2)
+        this.#tablero.posiciones.forEach(num => {
             if (num == 0) { return }
-            const Tempuz = new Puz(num,this.#objsPuz,this.#num)
-            this.#tablero.appendChild(Tempuz.imprimir());
+            const Tempuz = new Puz(num, this.#tablero, this.#num)
+
+            this.#tablero.puzzles.push(Tempuz)
+            this.#tablero.elemento.appendChild(Tempuz.imprimir());
         })
+        this.#tablero.elemento.addEventListener("click", () => this.#verificarVictoria())
         return this.#tablero;
-        
     }
 
 
-    #range(num1 , num2){
-        const nums = []
+    #verificarVictoria() {
+        if (!this.#tablero.posiciones.some((puz, index) => puz != this.#ordenado[index])) setTimeout(() => alert("Victoria"), 700)
+    }
+
+
+    #range(num1, num2) {
+        let nums = []
         for (let i = num1; i < num2; i++) {
             nums.push(i)
         }
-        return nums.sort(() => Math.random() - 0.5);
-}
+        let temnums = []
+        do {
+            this.#ordenado = nums.slice()
+             temnums = nums.slice().sort(() => Math.random() - 0.5)
+        } while (!this.#esSolucionable(temnums))
+        nums = temnums;
+        this.#ordenado.push(0)
+        return nums;
+    }
+
+    #esSolucionable(puzzle){
+        puzzle.push(0)
+            let inversions = 0
+            for (let i = 0; i < puzzle.length; i++) {
+              if (puzzle[i] === 0) continue
+              for (let j = i + 1; j < puzzle.length; j++) {
+                if (puzzle[j] !== 0 && puzzle[i] > puzzle[j]) {
+                  inversions++
+                }
+              }
+            }
+            return inversions % 2 === 0  
+    }
 
 
 }
 
-// numPuz.forEach(num => {
-//     if (num == 0) { return }
-//     const Tempuz = new Puz(num)
-//     document.getElementById("contenedor").appendChild(Tempuz.imprimir());
-//     objsPuz.push(Tempuz);
 
-// })
-document.getElementById("personalizar").addEventListener("keydown",(e)=>{
-    if(!/[0-9]/.test(e.key) && e.key != "Backspace"){
+document.getElementById("personalizar").addEventListener("keydown", (e) => {
+    if (!/[0-9]/.test(e.key) && e.key != "Backspace") {
         e.preventDefault()
     }
 })
 
-document.querySelector("body").appendChild(new tablero(2))
+document.querySelectorAll(".btn-chose").forEach((btn,index)=>{
+    btn.addEventListener("click",()=>crearTablero(index+3))
+})
+
+document.querySelector("#jugar").addEventListener("click",()=>crearTablero())
+
+
+function crearTablero(num) {
+    if (!num) num = parseInt(document.querySelector("#personalizar").value)
+    if(num>=3 && num<=10){
+    document.querySelector("#menu").style.display="none"
+    document.querySelector("body").appendChild(new Tablero(num))
+    }else{
+        alert("Error: Numero de piezas no permitodo")
+    }
+}
 
 
 
-
-// document.querySelector("#contenedor").addEventListener("click", () => {
-//     render()
-// })
