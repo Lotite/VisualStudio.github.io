@@ -4,7 +4,9 @@ document.getElementById("enviar").addEventListener("click",(e)=>{
     const correo = document.getElementById("email")
     const contraseña = document.getElementById("password")
     const r_contraseña = document.getElementById("r-password");
-     verificar(nombre,/^[A-Za-z]+(\s[A-Za-z]+)*$/,"!Error Ingresa solo el nombre y el apellido")
+     if(verificar(nombre,/^[A-Za-z]+(\s[A-Za-z]+)*$/,"!Error Ingresa solo el nombre y el apellido")){
+        localStorage.setItem("nombre",nombre.value)
+     }
      verificar(correo,/^[a-zA-Z]+@[a-z]+.[a-z]+$/, "!Error Ingresa un correo valido")
      verificarContraseña(contraseña,r_contraseña)
 
@@ -26,19 +28,21 @@ function verificarContraseña(pass,r_pass){
         }else{
             r_pass.style.border = "1px solid green"
             r_pass.nextElementSibling.innerHTML = ""
+            return true;
         }
     }
-
-
+    return false;
 }
 
 function verificar(elemento = document.querySelector(),expresion,mensaje){
     if(!expresion.test(elemento.value)){
         elemento.style.border = "1px solid red"
         elemento.nextElementSibling.innerHTML = mensaje;
+        return false;
      }else{
          elemento.style.border = "1px solid green"
          elemento.nextElementSibling.innerHTML = "";
+         return true;
      }
 }
 
@@ -47,6 +51,7 @@ document.querySelectorAll(".visible").forEach((boton,index)=>{
     boton.addEventListener("click",()=>{
         let input = document.querySelectorAll(".pass")[index]
         input.focus()
+        let length = input.value.length
         let img = document.querySelectorAll(".visible img")[index]
         if(input.type === "password"){
             input.type = "text"
@@ -55,5 +60,15 @@ document.querySelectorAll(".visible").forEach((boton,index)=>{
             input.type = "password"
             img.src = "ojoVisiblew.svg"
         }
+         //input = document.querySelectorAll(".pass")[index]
+         //input.setSelectionRange(length, length)
+        setTimeout(()=>{input.setSelectionRange(length, length);},0)
     })
 })
+
+
+let nombre = localStorage.getItem("nombre")
+
+if(nombre){
+    document.querySelector("#name").value = nombre
+}

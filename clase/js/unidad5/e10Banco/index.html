@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Banco</title>
+</head>
+<body>
+    <form>
+        <h2>Accede a tu Área Clientes</h2>
+        <p>Elige tu documento</p>
+        <label><div class="radio"><input type="radio" name="documento" id="dni" value="dni" checked></div><div class="documento">DNI o Tarjeta de residencia</div></label>
+        <label><div class="radio"><input type="radio" name="documento" id="pasaport" value="pasaport" ></div><div class="documento">Pasaporte</div></label>
+        <p>Numero de documento</p>
+        <input type="text" id="documento" id="numId" placeholder="DNI o Tarjeta de residencia">
+        <p>Fecha de nacimiento</p>
+        <div class="form-group">
+            <input type="text" placeholder="DD">
+            <div class="linea"></div>
+            <input type="text" placeholder="MM">
+            <div class="linea"></div>
+            <input type="text" placeholder="AAAA">
+        </div>
+        <label> <input type="checkbox" name="recordar" id="recordar"> Recordar <span id="icono1">?</span></label>
+        <button type="submit">Entrar</button>
+        <p><span class="flecha">></span><span class="link">Acceder con DNI electronico</span></p>
+        <p><span class="flecha">></span><span class="link">Mas información sobre seguridad</span></p>
+    </form>
+</body>
+</html>
