@@ -1,29 +1,38 @@
 <!doctype html>
 <html lang="es">
-    <head>
-        <title>NumPuz</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />        <link rel="stylesheet" href="numEstilo.css" />
-        <script src="numPuz.js" defer></script>
-    </head>
 
-    <body>
-        <div id="menu">
-            <h1>NumPuz</h1>
+<head>
+    <title>NumPuz</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="numEstilo.css" />
+    <script src="numPuz.js" defer></script>
+</head>
+
+<body>
+    <div id="menu">
+        <h1>NumPuz</h1>
+        <label>
             <h4>Seleciona la dificultad</h4>
-            <button class="btn-chose">3*3</button>
-            <button class="btn-chose">4*4</button>
-            <button class="btn-chose">5*5</button>
-            <div class="group">
-                <label for="personalizar"><h4>Personalizado</h4></label>
-                <input  id="personalizar" placeholder="Tamaño" type="text" id="lado">
-                <button id="jugar">Jugar</button>
-            </div>
-        </div>
-    </body>
-    
+            <p id="pDificultad"><span>Facil</span><span>Dificil</span></p>
+            <input type="range" id="dificultad" min="3" max="10" value="3">
+        </label>
+        <h3>Tamaño del puzzle <span id="tamaño">3x3</span></h3>
+        <button id="jugar">Comenzar el juego</button>
+    </div>
+    <div id="juego">
+        <h1>Numpuz</h1> 
+        <div id="info">Tiempo <span id="tiempo1">00:00</span><button id="reordenar"><img src="reintentar.svg"></button></div>
+    </div>
+    <div id="victoria">
+        <h1>Ganaste 👏😁👍 !!!</h1>
+        <p><strong>A que fue facil?</strong></p>
+        <p><strong>Numero de movimientos:</strong><span id="numMovimientos">0</span></p>
+        <p><strong>Tiempo:</strong><span id="tiempo2">00:00</span></p>
+        <button id="reiniciar"> Jugar de nuevo</button>
+
+    </div>
+</body>
+
 </html>

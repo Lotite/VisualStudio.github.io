@@ -38,6 +38,7 @@ class Puz {
 
 
         if (mover) {
+            this.#tablero.moviminetos++;
             pos0 = this.#getPosicion(0);
             this.#tablero.posiciones[pos0] = this.#tablero.posiciones[posnum];
             this.#tablero.posiciones[posnum] = 0;
@@ -78,8 +79,14 @@ class Tablero {
     #num
     #tablero
     #ordenado
+    #tiempo = 0;
+    #cronometro = setInterval(()=>{
+        this.#tiempo++
+        document.querySelector("#tiempo1").textContent = this.#imprimirTiempo()
+    },1000)
+    #funcion = this.#verificarVictoria.bind(this)
     constructor(num) {
-        this.#tablero = { elemento: "null", posiciones: [], puzzles: [] }
+        this.#tablero = { elemento: "null", posiciones: [], puzzles: [],moviminetos : 0 }
         this.#num = num;
         this.#tablero.elemento = document.createElement("div")
         this.#tablero.elemento.classList.add("contenedor")
@@ -87,23 +94,30 @@ class Tablero {
         return this.#tablero.elemento;
     }
     #crearPiezas() {
-        this.#tablero.posiciones = this.#range(1, this.#num ** 2)
+        this.#tablero.posiciones = this.#range(1, this.#num ** 2);
         this.#tablero.posiciones.forEach(num => {
-            if (num == 0) { return }
-            const Tempuz = new Puz(num, this.#tablero, this.#num)
-
-            this.#tablero.puzzles.push(Tempuz)
+            if (num == 0) { return; }
+            const Tempuz = new Puz(num, this.#tablero, this.#num);
+    
+            this.#tablero.puzzles.push(Tempuz);
             this.#tablero.elemento.appendChild(Tempuz.imprimir());
-        })
-        this.#tablero.elemento.addEventListener("click", () => this.#verificarVictoria())
+        });
+        this.#tablero.elemento.addEventListener("click", this.#funcion);
         return this.#tablero;
     }
-
-
+    
     #verificarVictoria() {
-        if (!this.#tablero.posiciones.some((puz, index) => puz != this.#ordenado[index])) setTimeout(() => alert("Victoria"), 700)
+        if (!this.#tablero.posiciones.some((puz, index) => puz != this.#ordenado[index])) {
+            this.#tablero.elemento.removeEventListener("click", this.#funcion);
+            document.querySelector("#numMovimientos").textContent = " " + this.#tablero.moviminetos;
+            document.querySelector("#tiempo2").textContent = " " + this.#imprimirTiempo();
+            clearTimeout(this.#cronometro)
+            setTimeout(() => {
+                document.querySelector("#victoria").style.display = "block";
+            }, 700);
+        }
     }
-
+    
 
     #range(num1, num2) {
         let nums = []
@@ -134,32 +148,40 @@ class Tablero {
             return inversions % 2 === 0  
     }
 
+    #imprimirTiempo(){
+        let minutos = (parseInt(this.#tiempo / 60)).toString().padStart(2,"0");
+        let segundos = (this.#tiempo % 60).toString().padStart(2,"0");
+        return minutos + ":" + segundos;
+    }
+
 
 }
 
 
-document.getElementById("personalizar").addEventListener("keydown", (e) => {
-    if (!/[0-9]/.test(e.key) && e.key != "Backspace") {
-        e.preventDefault()
-    }
-})
 
-document.querySelectorAll(".btn-chose").forEach((btn,index)=>{
-    btn.addEventListener("click",()=>crearTablero(index+3))
-})
 
+
+document.querySelector("#dificultad").addEventListener("input",(e)=>{
+    let tamaño = e.target.value;
+    document.querySelector("#tamaño").textContent = tamaño + "x" + tamaño;
+})
 document.querySelector("#jugar").addEventListener("click",()=>crearTablero())
+document.querySelector("#reordenar").addEventListener("click",()=>recargar())
+document.querySelector("#reiniciar").addEventListener("click",()=>location.reload())
 
-
-function crearTablero(num) {
-    if (!num) num = parseInt(document.querySelector("#personalizar").value)
+function crearTablero() {
+    let num = parseInt(document.querySelector("#dificultad").value)
     if(num>=3 && num<=10){
     document.querySelector("#menu").style.display="none"
-    document.querySelector("body").appendChild(new Tablero(num))
+    document.querySelector("#juego").style.display="block"
+    document.querySelector("#juego").appendChild(new Tablero(num))
     }else{
         alert("Error: Numero de piezas no permitodo")
     }
 }
 
-
+function recargar(){
+    document.querySelector(".contenedor").remove()
+    crearTablero()
+}
 

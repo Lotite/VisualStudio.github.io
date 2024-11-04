@@ -1,15 +1,20 @@
-html,body{
-    background:linear-gradient(to right, #fef3c7,#fde68a) no-repeat;
+html,
+body {
+    user-select: none;
+    background: linear-gradient(to right, #fef3c7, #fde68a) no-repeat;
     height: 98vh;
     overflow: hidden;
 }
-h1{
+
+h1 {
     margin: 0;
     text-align: center;
     color: #d26403;
-    
+
 }
-#menu{
+
+#menu,
+#victoria {
     margin-top: calc(50vh - 200px);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: white;
@@ -21,12 +26,52 @@ h1{
 
 }
 
-h4{
+#victoria {
+    display: none;
+    position: absolute;
+    bottom: calc(50vh - 118px);
+    left: calc(50vw - 200px);
+    z-index: 10;
+}
+
+p {
+    color: #d3a12e;
+    margin-block: 30px;
+
+    &+button {
+
+        background-color: #ffb700;
+        color: white;
+        height: 50px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+}
+
+h4 {
     margin-top: 30px;
     color: #c9900a;
 }
+h3{
+    text-align: center;
+    color: dificultad#ad811a;;
+}
 
-input{
+#pDificultad {
+    margin: 0;
+    & :last-child {
+        float: right;
+    }
+}
+
+#dificultad {
+    width: 100%;
+}
+
+
+input {
     width: 200px;
     height: 30px;
     border-radius: 4px;
@@ -35,24 +80,47 @@ input{
     text-indent: 10px;
     margin-right: 3px;
 }
-#jugar{
-    width:80px;
-    height: 33px;
+
+#jugar {
+    width: 95%;
+    margin-inline: 2.5%;
+    height: 43px;
     border: none;
     background-color: #ffb60b;
-    border-radius: 5px;
+    border-radius: 15px;
     color: white;
     cursor: pointer;
-    
-    &:hover{
+
+    &:hover {
         background-color: #dda31d;
     }
-    &:active{
+
+    &:active {
         background-color: #c59b38;
     }
 }
 
-.btn-chose{
+#juego button {
+    background: none;
+    border: none;
+    float: right;
+
+    & img {
+        right: 10%;
+        filter: invert(25%) sepia(450%) saturate(1000%) hue-rotate(2deg);
+        width: 50px;
+        cursor: pointer;
+    }
+}
+
+#juego {
+    width: 70vh;
+    display: none;
+    margin-inline: auto;
+
+}
+
+.btn-chose {
     cursor: pointer;
     width: 30%;
     margin: 2px;
@@ -60,15 +128,17 @@ input{
     background-color: white;
     border-radius: 5px;
     height: 40px;
-    &:hover{
+
+    &:hover {
         background-color: rgb(235, 235, 235);
     }
-    &:active{
+
+    &:active {
         background-color: rgb(216, 216, 216);
     }
 }
 
-.contenedor{
+.contenedor {
     width: 70vh;
     height: 70vh;
     position: relative;
@@ -80,19 +150,18 @@ input{
     overflow: hidden;
 }
 
-.num{
+.num {
     cursor: default;
     position: absolute;
-    user-select: none;
-    box-shadow: inset 0px 1px 10px 1px ;
+    box-shadow: inset 0px 1px 10px 1px;
     border-radius: 2px;
     box-sizing: border-box;
     background-color: rgb(247, 183, 109);
     color: rgb(120, 75, 19);
     text-align: center;
-    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     transition: all 0.2s ease-in-out;
 }
-
-

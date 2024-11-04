@@ -6,5 +6,6 @@
     "vscode-edge-devtools.pathMapping": {
         
         "/": "${workspaceFolder}"
-    }
+    },
+    "livePreview.hostIP": "192.168.1.171"
 }
