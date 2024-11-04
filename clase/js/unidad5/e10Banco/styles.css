@@ -17,7 +17,9 @@ h2 {
     text-align: center;
     color: rgb(65, 63, 63);
 }
+  
 input:not([type="radio"]) {
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
     height: 30px;
     border: solid 1px rgba(0, 0, 0, 0.466);
     border-radius: 3px;
@@ -41,7 +43,7 @@ input[type="radio"] {
     width: 9px;
     height: 9px;
     border-radius: 50%;
-
+    background: none;
     &:checked {
         background-color: rgb(255, 111, 0);
     }
@@ -53,6 +55,7 @@ input[type="radio"] {
     height: 15px;
     padding: 0;
     margin: 0;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(0, 0, 0, 0.575);
     border-radius: 50%;
 }
@@ -68,12 +71,15 @@ p {
 
 
 .form-group {
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
     display: flex;
     height: 33px;
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.466);
     border-radius: 3px;
     & input {
+        background: none ;
+        box-shadow: none;
         width: 31%;
         margin-inline: 3px;
         border: none;
@@ -88,6 +94,7 @@ p {
     }
 }
 
+  
 input[type="checkbox"] {
     appearance: none;
     width: 15px;
