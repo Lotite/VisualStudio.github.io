@@ -10,7 +10,7 @@ const funcion = (e)=>{
 
 
 document.querySelector("button").addEventListener("mouseover", funcion)
-document.querySelector("button").addEventListener("mousedown", funcion)
+document.querySelector("button").addEventListener("mousedown", funcion , false)
 
 
 
