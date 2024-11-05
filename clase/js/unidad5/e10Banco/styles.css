@@ -7,7 +7,7 @@ body{
     flex-direction: column;
     margin-top: 100px;
     width: 300px;
-    height: 480px;
+    height: 500px;
     background-color: white;
     padding: 30px;
     margin-inline: auto;
@@ -132,6 +132,7 @@ input[type="checkbox"] {
 button{
     height: 30px;
     border: none;
+    margin-block:10px;
     background-color: rgb(255, 111, 0);
     color: white;
     border-radius: 6px;

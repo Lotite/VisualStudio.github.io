@@ -14,19 +14,27 @@ class Cliente {
     }
 
 
-    verificarDatosContraseña(contraseña) {
-        if (this.contraseña === contraseña) {
-            return true;
+    verificarDatosContraseña() {
+        let contraseña = getContraseña();
+        let contador = 0;
+        contraseña.split().forEach((char,index)=>{
+            if(char != this.contraseña[index] && char!= "+"){
+                return  false;
+            }else if(char == this.contraseña[index]){
+                contador++;
+            }
+        })
+        if(contador < 3){
+            return  false;
         }
-        return false;
+        return true;
     }
 }
 //Variables globales
-let cliente1 = new Cliente("48113807S", "dni", new Date("2003-11-28"), "holaMundo");
+let cliente1 = new Cliente("48113807S", "dni", new Date("2003-11-28"), "123456");
 let cliente2 = new Cliente("12345678Z", "dni", new Date("2003-11-28"));
-
 let clientes = [cliente1, cliente2];
-
+let clienteSelect = new Cliente("", "", new Date());
 inicializarElementos();
 
 
@@ -40,7 +48,7 @@ document.querySelector("#pasaport").addEventListener("click", () => {
     document.querySelector("#documento").placeholder = "Número de pasaporte"
 }
 )
-document.querySelector("button").addEventListener("click", (e) => {
+document.querySelectorAll("button")[0].addEventListener("click", (e) => {
     e.preventDefault();
     let documento = document.querySelector("#documento").value;
     let tipo = document.querySelector("input[name='tipo']:checked").value;
@@ -54,6 +62,14 @@ document.querySelector("button").addEventListener("click", (e) => {
     }
 });
 
+document.querySelectorAll("button")[1].addEventListener("click", () => {
+    if(clienteSelect.verificarDatosContraseña()){
+        alert("Bienvenido");
+    }else{
+        alert("Contraseña incorrecta");
+    }
+})
+
 
 //Funciones
 function fechaConversor() {
@@ -63,7 +79,9 @@ function fechaConversor() {
     return new Date(`${año}-${mes}-${dia}`);
 }
 function encontrarCliente(cliente) {
-    return clientes.find((c) => c.verificarDatos(cliente));
+    let cliente1 =  clientes.find((c) => c.verificarDatos(cliente));
+    clienteSelect = cliente1;
+    return cliente1
 }
 
 
@@ -88,9 +106,17 @@ function inicializarElementos() {
 
 
 function escribir(caracter) {
-    let key = Array.from(document.querySelectorAll(".num")).find((num) => num.innerHTML === "");
+   let key = Array.from(document.querySelectorAll(".num")).find((num,index) => num.innerHTML === "");
     if (key) {
         key.innerHTML = caracter;
     }
+}
+
+function getContraseña() {
+    let contraseña = "";
+    document.querySelectorAll(".num").forEach((num) => {
+        contraseña += /[0-9]/.test(num.innerHTML) ? num.innerHTML : "*";
+    });
+    return contraseña;
 }
 
