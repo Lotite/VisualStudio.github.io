@@ -7,32 +7,28 @@ class Cliente {
     }
 
     verificarDatos(cliente) {
-        if (this.documento === cliente.documento && this.tipo === cliente.tipo && this.fecha.toString() === cliente.fecha.toString()) {
+        if (this.documento == cliente.documento && this.tipo == cliente.tipo && this.fecha.toString() == cliente.fecha.toString()) {
             return true;
         }
         return false;
     }
 
+    getContraseña() {
+        let contraseña = "";
+        document.querySelectorAll(".num").forEach((num, index) => {
+            contraseña += /[0-9]/.test(num.innerHTML) ? num.innerHTML : this.contraseña[index];
+        });
+        return contraseña;
+    }
+
 
     verificarDatosContraseña() {
-        let contraseña = getContraseña();
-        let contador = 0;
-        contraseña.split().forEach((char,index)=>{
-            if(char != this.contraseña[index] && char!= "+"){
-                return  false;
-            }else if(char == this.contraseña[index]){
-                contador++;
-            }
-        })
-        if(contador < 3){
-            return  false;
-        }
-        return true;
+        return this.contraseña === this.getContraseña();
     }
 }
 //Variables globales
 let cliente1 = new Cliente("48113807S", "dni", new Date("2003-11-28"), "123456");
-let cliente2 = new Cliente("12345678Z", "dni", new Date("2003-11-28"));
+let cliente2 = new Cliente("12345678A", "dni", new Date("2003-11-28"),"123456");
 let clientes = [cliente1, cliente2];
 let clienteSelect = new Cliente("", "", new Date());
 inicializarElementos();
@@ -57,15 +53,16 @@ document.querySelectorAll("button")[0].addEventListener("click", (e) => {
     if (encontrarCliente(cliente)) {
         document.querySelector('#clave').style.display = "flex"
         document.querySelector('form').style.display = "none"
+        if (document.querySelector("#recordar").checked) localStorage.setItem("cliente", JSON.stringify(cliente))
     } else {
         alert("El cliente no existe");
     }
 });
 
 document.querySelectorAll("button")[1].addEventListener("click", () => {
-    if(clienteSelect.verificarDatosContraseña()){
+    if (clienteSelect.verificarDatosContraseña()) {
         alert("Bienvenido");
-    }else{
+    } else {
         alert("Contraseña incorrecta");
     }
 })
@@ -79,7 +76,7 @@ function fechaConversor() {
     return new Date(`${año}-${mes}-${dia}`);
 }
 function encontrarCliente(cliente) {
-    let cliente1 =  clientes.find((c) => c.verificarDatos(cliente));
+    let cliente1 = clientes.find((c) => c.verificarDatos(cliente));
     clienteSelect = cliente1;
     return cliente1
 }
@@ -93,9 +90,10 @@ function inicializarElementos() {
     for (let i = 0; i < 6; i++) {
         document.querySelector("#pin").innerHTML += nums.includes(i) ? `<div class="num"></div>` : `<div class="num"><div class="block"></div></div>`
     }
-    let nums2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].sort(() => Math.random() - 0.5 ? 1 : -1)
+    let nums2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    nums2.sort(() => Math.random() - 0.5 > 0 ? 1 : -1)
     nums2.forEach((num, index) => {
-        document.querySelector("#teclado").innerHTML += `<div class="key ${![1, 5, 6, 10].includes(num + 1) ? "sinBordes" : ""}">${num}</div>`
+        document.querySelector("#teclado").innerHTML += `<div class="key ${![1, 5, 6, 10].includes(index + 1) ? "sinBordes" : ""}">${num}</div>`
     })
     document.querySelectorAll(".key").forEach((key) => {
         key.addEventListener("click", () => {
@@ -106,17 +104,18 @@ function inicializarElementos() {
 
 
 function escribir(caracter) {
-   let key = Array.from(document.querySelectorAll(".num")).find((num,index) => num.innerHTML === "");
+    let key = Array.from(document.querySelectorAll(".num")).find((num, index) => num.innerHTML === "");
     if (key) {
         key.innerHTML = caracter;
     }
 }
 
-function getContraseña() {
-    let contraseña = "";
-    document.querySelectorAll(".num").forEach((num) => {
-        contraseña += /[0-9]/.test(num.innerHTML) ? num.innerHTML : "*";
-    });
-    return contraseña;
-}
 
+let cliente = JSON.parse(localStorage.getItem("cliente"));
+if (cliente) {
+    let fecha = new Date(cliente.fecha);
+    document.querySelector("#documento").value = cliente.documento
+    document.querySelector("#dia").value = fecha.getDate()
+    document.querySelector("#mes").value = fecha.getMonth() +1
+    document.querySelector("#año").value = fecha.getFullYear()
+}

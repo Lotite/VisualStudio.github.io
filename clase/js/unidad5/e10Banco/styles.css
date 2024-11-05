@@ -170,6 +170,9 @@ button{
     &:nth-child(n+2) {
         border-left: 0px;
     }
+    color: orangered;
+    font-size: 200%;
+    cursor: pointer;
     & .block{
         width: 30%;
         height: 30%;
