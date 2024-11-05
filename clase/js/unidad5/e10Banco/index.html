@@ -4,28 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="main.js" defer></script>
     <title>Banco</title>
 </head>
 <body>
-    <form>
+    <form class="conteiner">
         <h2>Accede a tu Área Clientes</h2>
         <p>Elige tu documento</p>
-        <label><div class="radio"><input type="radio" name="documento" id="dni" value="dni" checked></div><div class="documento">DNI o Tarjeta de residencia</div></label>
-        <label><div class="radio"><input type="radio" name="documento" id="pasaport" value="pasaport" ></div><div class="documento">Pasaporte</div></label>
+        <label><div class="radio"><input type="radio" name="tipo" id="dni" value="dni" checked></div><div class="documento">DNI o Tarjeta de residencia</div></label>
+        <label><div class="radio"><input type="radio" name="tipo" id="pasaport" value="pasaport" ></div><div class="documento">Pasaporte</div></label>
         <p>Numero de documento</p>
-        <input type="text" id="documento" id="numId" placeholder="DNI o Tarjeta de residencia">
+        <input type="text" id="documento" placeholder="DNI o Tarjeta de residencia">
         <p>Fecha de nacimiento</p>
         <div class="form-group">
-            <input type="text" placeholder="DD">
+            <input type="text" id="dia" placeholder="DD">
             <div class="linea"></div>
-            <input type="text" placeholder="MM">
+            <input type="text" id="mes" placeholder="MM">
             <div class="linea"></div>
-            <input type="text" placeholder="AAAA">
+            <input type="text" id="año" placeholder="AAAA">
         </div>
-        <label> <input type="checkbox" name="recordar" id="recordar"> Recordar <span id="icono1">?</span></label>
+        <label> <input type="checkbox" name="recordar" id="recordar"> Recordar <span class="icono1">?</span></label>
         <button type="submit">Entrar</button>
         <p><span class="flecha">></span><span class="link">Acceder con DNI electronico</span></p>
         <p><span class="flecha">></span><span class="link">Mas información sobre seguridad</span></p>
     </form>
+    <div id="clave" class="conteiner oculto"> 
+        <h2>Clave de seguridad</h2>
+        <div class="flex">
+            <p>Completa las posiciones que faltan de tu clave de seguridad:<span class="icono1">?</span></p>
+        </div>
+        <div id="pin">
+
+        </div>
+    <div id="teclado">
+    </div>
+    <p><span class="flecha">></span><span class="link">No recurdo mi clave</span></p>
+    <p><span class="flecha">></span><span class="link">Mas información sobre seguridad</span></p>
+</div>
 </body>
 </html>

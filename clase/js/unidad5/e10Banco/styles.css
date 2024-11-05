@@ -1,16 +1,24 @@
 body{
     background-color: rgb(204, 217, 229);
 }
-form {
+
+.conteiner {
+    display: flex;
+    flex-direction: column;
     margin-top: 100px;
     width: 300px;
+    height: 480px;
     background-color: white;
     padding: 30px;
     margin-inline: auto;
     border: 1px solid rgba(0, 0, 0, 0.447);
     border-radius: 7px;
-    display: flex;
-    flex-direction: column;
+
+
+}
+
+.oculto {
+    display: none;
 }
 
 h2 {
@@ -26,7 +34,7 @@ input:not([type="radio"]) {
     text-indent: 10px;
 }
 
-label{
+label , .flex{
     display: flex;
     align-items: center;
     margin-block: 10px;
@@ -74,16 +82,17 @@ p {
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
     display: flex;
     height: 33px;
+    padding-block: 1px;
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.466);
     border-radius: 3px;
     & input {
         background: none ;
         box-shadow: none;
-        width: 31%;
-        margin-inline: 3px;
+        width: 33%;
         border: none;
-        outline: none;
+
+        
     }
 
     & .linea {
@@ -104,8 +113,12 @@ input[type="checkbox"] {
         background-size:150% 150% ;
     }
 }
-#icono1{
-    margin: 4px;
+
+
+.icono1{
+    display: inline-block;
+    left: 30%;
+    margin: 3px;
     border: 1px solid rgb(255, 136, 0);
     width: 10px;
     height: 10px;
@@ -113,6 +126,7 @@ input[type="checkbox"] {
     font-size: 60%;
     text-align: center;
     color: rgb(255, 138, 71);
+   cursor: pointer;
 }
 
 button{
@@ -121,6 +135,7 @@ button{
     background-color: rgb(255, 111, 0);
     color: white;
     border-radius: 6px;
+    font-size: 120%;
 }
 
 .flecha{
@@ -132,4 +147,99 @@ button{
 .link{
     width: max-content;
     border-bottom: rgba(0, 0, 0, 0.319) 1px solid;
+}
+
+#pin{
+    height: 46PX;
+    display: flex;
+    margin-block: 10px;
+}
+.num{
+    width: 16%;
+    border: 1px solid rgba(0, 0, 0, 0.543);
+    &:first-child{
+        border-radius: 5px 0px 0px 5px;
+    }
+    &:last-child{
+        border-radius: 0px 5px 5px 0px;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:nth-child(n+2) {
+        border-left: 0px;
+    }
+    & .block{
+        width: 30%;
+        height: 30%;
+        background-color: rgb(195, 181, 181);
+        border-radius: 3px;
+    }
+    & input{
+        width: 70%;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        box-shadow: none;
+        outline: none;
+    }
+    &:has(input:focus){
+        background-color: rgba(229, 228, 228, 0.491);;
+    }
+}
+
+
+#teclado{
+    height: 92px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline: 1px;
+}
+
+.selected{
+    background-color: rgba(229, 228, 228, 0.491);
+}
+
+
+.key{
+    width: 19.42%;
+    height: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.543);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: orangered;
+    font-size: 200%;
+    &:nth-child(1){
+        border-radius: 5px 0px 0px 0px;
+    }
+
+    &:nth-child(5){
+        border-radius: 0px 5px 0px 0px;
+        border-left: 0px;
+    }
+
+    &:nth-child(6){
+        border-radius: 0px 0px 0px 5px;
+    }
+
+    &:nth-child(10){
+        border-radius: 0px 0px 5px 0px;
+        border-left: 0px;
+    }
+    &:nth-child(n+6){
+        border-top: none;
+    }
+
+    &:hover{
+        background-color: rgba(229, 228, 228, 0.491);
+    }
+    &:active{
+        background-color: rgba(216, 216, 216, 1);
+    }
+}
+
+.sinBordes{
+    border-radius: 0px;
+    border-left: 0px;
 }

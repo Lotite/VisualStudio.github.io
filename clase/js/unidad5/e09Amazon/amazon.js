@@ -7,7 +7,9 @@ document.getElementById("enviar").addEventListener("click",(e)=>{
      if(verificar(nombre,/^[A-Za-z]+(\s[A-Za-z]+)*$/,"!Error Ingresa solo el nombre y el apellido")){
         localStorage.setItem("nombre",nombre.value)
      }
-     verificar(correo,/^[a-zA-Z]+@[a-z]+.[a-z]+$/, "!Error Ingresa un correo valido")
+     if(verificar(correo,/^[a-zA-Z]+@[a-z]+.[a-z]+$/, "!Error Ingresa un correo valido")){
+        localStorage.setItem("correo",correo.value)
+     }
      verificarContraseña(contraseña,r_contraseña)
 
     
@@ -68,7 +70,13 @@ document.querySelectorAll(".visible").forEach((boton,index)=>{
 
 
 let nombre = localStorage.getItem("nombre")
+let correo = localStorage.getItem("correo")
+
+
 
 if(nombre){
     document.querySelector("#name").value = nombre
+}
+if(correo){
+    document.querySelector("#email").value = correo
 }
