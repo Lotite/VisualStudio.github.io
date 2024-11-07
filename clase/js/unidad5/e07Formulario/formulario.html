@@ -8,7 +8,7 @@
     <script src="formulario.js" defer></script>
 </head>
 <body>
-    <div class="container">
+    <form class="container">
         <h2>Formulario de Envíos</h2>
             <div class="form-group">
                 <label for="fechaCreacion">Fecha de creación:</label>
@@ -32,10 +32,10 @@
             </div>
             <div class="form-group">
                 <label for="cuenta">Número de cuenta:</label>
-                <input type="text" id="cuenta" name="cuenta" placeholder="ESXX XXXX XXXX XXXX XXXX XXXX">
+                <input type="text" id="cuenta" name="cuenta" placeholder="ESXX XX XXXX XXXX XXXX XXXX">
                 <div id="cuentaError" class="error"></div>
             </div>
-            <input type="submit" value="Enviar">
-    </div>
+            <button type="submit">Enviar</button>
+    </form>
 </body>
 </html>

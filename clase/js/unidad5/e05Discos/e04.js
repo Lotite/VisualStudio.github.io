@@ -65,7 +65,8 @@ document.getElementById("maxAño").addEventListener("input", () => { render() })
 
 
 
-document.getElementById("bAdd").addEventListener("click", () => {
+document.getElementById("bAdd").addEventListener("click", (e) => {
+    e.preventDefault()
     //Obtener valores
     let nombre = document.getElementById("addNombre")
     let grupo = document.getElementById("addGrupo")
@@ -85,31 +86,23 @@ document.getElementById("bAdd").addEventListener("click", () => {
     render()
 })
 
-
+function verificar(elemento){
+    if (elemento.value === "") {
+        error(elemento, "No puede estar vacío");
+        return  false;
+    } else if (elemento.value.length > 20) {
+        error(elemento, "El máximo de caracteres son 20");
+        return false;
+    } else {
+        corregir(elemento);
+    }
+    return true;
+}
 
 function comprobar(nombre, grupo, año, tipo, localizacion) {
     let resultado = true;
-    if (nombre.value === "") {
-        resultado = false;
-        error(nombre, "No puede estar vacío");
-    } else if (nombre.value.length > 20) {
-        resultado = false;
-        error(nombre, "El máximo de caracteres son 20");
-    } else {
-        corregir(nombre);
-    }
-
-
-
-    if (grupo.value === "") {
-        resultado = false;
-        error(grupo,"No puede estar vacío")
-    }else if(grupo.value.length > 20){
-        resultado = false;
-        error(grupo,"El máximo de caracteres son 20")
-    }else{
-        corregir(grupo);
-    }
+    resultado = resultado && verificar(nombre);
+    resultado = resultado && verificar(grupo);
     
     if (!["rock", "pop", "punk", "indie"].includes(tipo.value)) {
         resultado = false;
