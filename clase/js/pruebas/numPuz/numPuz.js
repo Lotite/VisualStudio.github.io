@@ -75,6 +75,9 @@ class Puz {
 }
 
 
+
+
+
 class Tablero {
     #num
     #tablero
