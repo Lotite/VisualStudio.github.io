@@ -30,7 +30,8 @@ const figuras = {
     T : {forma : [[0,1,0],[1,1,1]],color : "red"}
 }
 let figuraActuall = newFigura()
-let bloques = []
+const bloques = []
+const globalLineas = []
 let mover = setInterval(bajar,500)
 
 //Funciones
@@ -84,7 +85,7 @@ function detectarColision(figura1, figura2) {
     const { left: x1, top: y1, width: w1, height: h1 } = figura1.getBoundingClientRect();
     const { left: x2, top: y2, width: w2, height: h2 } = figura2.getBoundingClientRect();
 
-    return (x1 +1 < x2 + w2 && x1 + w1 -1 > x2 && y1 < y2 + h2 && y1 + h1 > y2);
+    return (x1 +1 < x2 + w2 && x1 + w1 -1 > x2 && y1 +1 < y2 + h2 && y1 + h1 -1 > y2);
 }
 
 
@@ -110,7 +111,7 @@ function bajar(){
     figuraActuall.posicion.y += 30
     figuraActuall.elemento.style.top = `${figuraActuall.posicion.y}px`
     if( figuraActuall.posicion.y + figuraActuall.elemento.getBoundingClientRect().height > 600 || comprobarColisiones()){
-        figuraActuall.posicion.y -= 30
+        figuraActuall.posicion.y -= 31
         figuraActuall.elemento.style.top = `${figuraActuall.posicion.y}px`
         colocar()
         figuraActuall = newFigura()
@@ -131,12 +132,40 @@ function colocar(){
         bloque.style.top = `${y}px`
         padre.append(bloque)
         bloques.push(bloque)
+        const fila = y/30
+        const columna = x/30
+        if(!globalLineas[fila]) {
+            globalLineas[fila] = []
+        }
+        globalLineas[fila].push(bloque)
     })
+    verificarLienas()
     figuraActuall.elemento.remove()
 }
 
 
+function verificarLienas(){
+    globalLineas.forEach((linea,index)=>{
+        if( linea && linea.length >= 10){
+            linea.forEach(bloque=>{
+                bloques.slice(index,bloques.indexOf(bloque),1)
+                bloque.remove()
+            })
+            globalLineas.splice(index,1)
+            gravedad(index)
+        }
+    })
+}
 
+function gravedad(num){
+    for(var i=num;i>=0;i--){
+       if(bloques[i])  bloques[i].style.top = `${parseInt(bloques[i].style.top) + 30}px`
+    }
+    for(var i = num;i>=0;i--){
+        globalLineas[i] = globalLineas[i-1]
+    }
+
+}
 
 
 

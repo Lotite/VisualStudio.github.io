@@ -101,9 +101,8 @@ function verificar(elemento){
 
 function comprobar(nombre, grupo, año, tipo, localizacion) {
     let resultado = true;
-    resultado = resultado && verificar(nombre);
-    resultado = resultado && verificar(grupo);
-    
+    resultado = verificar(nombre) && resultado;
+    resultado = verificar(grupo) && resultado;
     if (!["rock", "pop", "punk", "indie"].includes(tipo.value)) {
         resultado = false;
         error(tipo,"No es una opcion valida")

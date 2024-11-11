@@ -135,7 +135,6 @@ if(cookies.nombre){
         }
         //Aqui crearemos un objeto carta que despues de añadir todos los eventos necesarios para añadirlo a la fila
         document.querySelector("table").lastChild.append((new Carta(num)).imprimir())
-    
     })
     //Aqui sumamos al contador de visitas uno cuando se carga la pagina
     setCookies("visitas",parseInt(cookies.visitas)+1)
