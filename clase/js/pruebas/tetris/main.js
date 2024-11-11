@@ -77,17 +77,7 @@ function rotar(elemento = figuraActuall.elemento,forma = figuraActuall.figura.fo
 }
 
 function rotarInversa(elemento = figuraActuall.elemento,forma = figuraActuall.figura.forma){
-    const nuevaForma = []
-    const filas = forma.length
-    const columnas = forma[0].length
-    for(let i = 0 ; i< columnas ; i++){
-        nuevaForma[i] = []
-        for(let j = 0 ; j< filas ; j++){
-            nuevaForma[i][j] = forma[j][i]
-        }
-    }
-    figuraActuall.figura.forma = nuevaForma
-    addBloques(figuraActuall.elemento,nuevaForma)
+    for(let i=0;i<3;i++) rotar()
 }
 
 function detectarColision(figura1, figura2) {
