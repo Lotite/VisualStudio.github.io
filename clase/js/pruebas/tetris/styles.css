@@ -247,6 +247,7 @@ footer{
         margin-inline: auto;
         border-radius: 5px;
     }
+  
     
     
     #casillas {
@@ -272,6 +273,7 @@ footer{
         flex-grow: 0;
         height: max-content;
     }
+    
     #info{
         display: none;
     }

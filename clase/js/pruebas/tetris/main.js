@@ -1,25 +1,5 @@
-// document.querySelector("main").addEventListener("mousemove",(e)=>{
-//     let text = document.querySelector("#puntuaje")
-//     let ob = e.target.getBoundingClientRect()
-//     let x = e.clientX - ob.left
-//     let y = e.clientY - ob.top
-//     text.innerHTML = `x = ${x} y = ${y}`
-
-// })
-
-/*
-
-    <div class="figura">
-        <div class="bloque" id="b1"></div>
-        <div class="bloque" id="b2"></div>
-        <div class="bloque" id="b3"></div>
-        <div class="bloque" id="b4"></div>
-    </div>
-
-
-*/
-
 //Variables
+    //Estos son las figuras que tendra el juego
 const figuras = {
     I: { forma: [[1, 1, 1, 1]], color: "red" },
     O: { forma: [[1, 1], [1, 1]], color: "red" },
@@ -36,8 +16,8 @@ let mover = setInterval(bajar, 500)
 
 //Funciones
 function newFigura() {
-    //const figura = figuras["IOLJZST".charAt(Math.floor(Math.random() * 7))]
-    const figura = figuras.I
+    const figura = figuras["IOLJZST".charAt(Math.floor(Math.random() * 7))]
+    //const figura = figuras.I
     const elemento = document.createElement("div")
     elemento.classList.add("figura")
     addBloques(elemento, figura.forma)
@@ -53,14 +33,17 @@ function addBloques(elemento = figuraActuall.elemento, forma = figuraActuall.fig
             if (celda) {
                 const bloque = document.createElement("div")
                 bloque.classList.add("bloque")
-                bloque.style.left = `${x * 30}px`
-                bloque.style.top = `${y * 30}px`
+                bloque.style.left = `${x * 100 / forma[0].length}%`
+                bloque.style.top = `${y * 100 / forma.length}%`
+                bloque.style.width = `${100 / forma[0].length}%`
+                bloque.style.height = `${100 / forma.length}%`
                 elemento.appendChild(bloque)
             }
         })
     })
-    elemento.style.width = `${forma[0].length * 30}px`
-    elemento.style.height = `${forma.length * 30}px`
+    elemento.style.width = `${forma[0].length * 10}%`
+    elemento.style.height = `${forma.length * 5}%`
+    elemento.style.backgroundColor = "blue"
 
 }
 
@@ -109,11 +92,14 @@ function compobarSalidaPantalla() {
 }
 
 function bajar() {
-    figuraActuall.posicion.y += 30
-    figuraActuall.elemento.style.top = `${figuraActuall.posicion.y}px`
-    if (figuraActuall.posicion.y + figuraActuall.elemento.getBoundingClientRect().height > 600 || comprobarColisiones()) {
-        figuraActuall.posicion.y -= 31
-        figuraActuall.elemento.style.top = `${figuraActuall.posicion.y}px`
+    figuraActuall.posicion.y += 5
+    const h = figuraActuall.elemento.getBoundingClientRect().height.toFixed(0);
+    const h2 = document.querySelector("main").getBoundingClientRect().height.toFixed(0);
+    const fh = (h / h2 * 20).toFixed(0) * 5
+    figuraActuall.elemento.style.top = `${figuraActuall.posicion.y}%`
+    if ((figuraActuall.posicion.y + fh) > 100 || comprobarColisiones()) {
+        figuraActuall.posicion.y -= 5
+        figuraActuall.elemento.style.top = `${figuraActuall.posicion.y}%`
         colocar()
         figuraActuall = newFigura()
     }
@@ -125,21 +111,24 @@ function colocar() {
     const padre = document.querySelector("main")
     const px = padre.getBoundingClientRect().x
     const py = padre.getBoundingClientRect().y
+    const ph = padre.getBoundingClientRect().height
+    const pw = padre.getBoundingClientRect().width
 
     figuraActuall.elemento.querySelectorAll(".bloque").forEach(bloque => {
         let poss = bloque.getBoundingClientRect()
         let x = poss.x - px
         let y = poss.y - py
-        bloque.style.left = `${x}px`
-        bloque.style.top = `${y}px`
+        bloque.style.width = "10%"
+        bloque.style.height = "5%"
+        bloque.style.left = `${(x / pw * 100).toFixed(0)}%`
+        bloque.style.top = `${(y / ph * 100).toFixed(0)}%`
         padre.append(bloque)
         bloques.push(bloque)
-        const fila = y / 30
-        const columna = x / 30
-        if (!globalLineas[parseInt(19 - fila)]) {
-            globalLineas[parseInt(19 - fila)] = []
+        const fila = 19 - (y / ph * 20).toFixed(0);
+        if (!globalLineas[parseInt(fila)]) {
+            globalLineas[parseInt(fila)] = []
         }
-        globalLineas[parseInt(19 - fila)].push(bloque)
+        globalLineas[parseInt(fila)].push(bloque)
     })
     verificarLienas()
     figuraActuall.elemento.remove()
@@ -147,19 +136,6 @@ function colocar() {
 
 
 function verificarLienas() {
-    //     globalLineas.forEach((linea, index) => {
-    //         if (linea.length >= 10) {
-    //             linea.forEach(bloque => {
-    //                 bloques.splice(bloques.indexOf(bloque), 1)
-    //                 bloque.remove()
-    //             })
-    //             gravedad(index)
-    //             globalLineas.splice(index, 1)
-    //         }
-    //     })
-    // }
-
-
     for (let i = 0; i < globalLineas.length; i++) {
         const linea = globalLineas[i]
         if (linea && linea.length >= 10) {
@@ -167,27 +143,21 @@ function verificarLienas() {
                 bloques.splice(bloques.indexOf(bloque), 1)
                 bloque.remove()
             })
-            gravedad(i)
             globalLineas.splice(i, 1)
+            gravedad(i)
             i--
         }
     }
 
 }
-
-function gravedad(num) {
-    //bloques =  bloques.filter(bloque=>bloque!=null)
-    //
-    for (let i = globalLineas.length - 1; i >= num; i--) {
-        const linea = globalLineas[i]
+function gravedad(i) {
+    globalLineas.forEach((linea,index) => {
+        if(index>=i)
         linea.forEach(bloque => {
-            bloque.style.top = `${parseInt(bloque.style.top.replace("px", "")) + 30}px`
+            bloque.style.top = `${parseInt(bloque.style.top.replace("%", "")) + 5}%`
         })
-    }
-
+    })
 }
-
-
 
 
 //Eventos
@@ -202,23 +172,24 @@ addEventListener("keyup", (e) => {
 
     switch (e.key) {
         case "ArrowLeft":
-            figuraActuall.posicion.x -= 30
-            figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}px`
+            figuraActuall.posicion.x -= 10
+            figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}%`
             if (compobarSalidaPantalla() || comprobarColisiones()) {
-                figuraActuall.posicion.x += 30
+                figuraActuall.posicion.x += 10
 
             }
-            figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}px`
+            figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}%`
             break;
         case "ArrowRight":
-            figuraActuall.posicion.x += 30
-            figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}px`
+            figuraActuall.posicion.x += 10
+            figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}%`
             if (compobarSalidaPantalla() || comprobarColisiones()) {
-                figuraActuall.posicion.x -= 30
-                figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}px`
+                figuraActuall.posicion.x -= 10
+                figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}%`
             }
             break;
         case "ArrowDown":
+            clearInterval(mover)
             bajar()
             break;
         case " ":
@@ -228,10 +199,10 @@ addEventListener("keyup", (e) => {
         case "ArrowUp":
             rotar()
             //clearInterval(mover)
-            if (comprobarColisiones() || compobarSalidaPantalla()) {
+
+            if (comprobarColisiones() || compobarSalidaPantalla())
                 rotarInversa()
-            }
-           // mover = setInterval(bajar, 500)
+            // mover = setInterval(bajar, 500)
             break;
     }
 })
