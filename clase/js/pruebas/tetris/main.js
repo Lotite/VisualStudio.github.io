@@ -227,11 +227,11 @@ addEventListener("keyup", (e) => {
             break;
         case "ArrowUp":
             rotar()
-            clearInterval(mover)
+            //clearInterval(mover)
             if (comprobarColisiones() || compobarSalidaPantalla()) {
                 rotarInversa()
             }
-            mover = setInterval(bajar, 500)
+           // mover = setInterval(bajar, 500)
             break;
     }
 })
