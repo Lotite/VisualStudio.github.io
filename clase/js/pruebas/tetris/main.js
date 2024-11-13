@@ -75,10 +75,10 @@ function rotar(elemento = figuraActuall.elemento, forma = figuraActuall.figura.f
         }
     }
     figuraActuall.figura.forma = nuevaForma
-    addBloques(figuraActuall.elemento, nuevaForma)
+    addBloques(elemento, nuevaForma)
 }
 
-function rotarInversa(elemento = figuraActuall.elemento, forma = figuraActuall.figura.forma) {
+function rotarInversa() {
     for (let i = 0; i < 3; i++) rotar()
 }
 
