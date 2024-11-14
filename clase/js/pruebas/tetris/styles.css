@@ -44,9 +44,9 @@ main {
 }
 
 .figura{
-  
-    left: 0px;
-    top: 0px;
+    
+    left: 40%;
+    top: 0;
     position: absolute;
     
     
@@ -126,13 +126,34 @@ section{
 }
 
 .almacen{
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     background-color: rgb(94, 89, 117);
     border: 1px solid rgba(0, 0, 0, 0.495);
     border-radius: 10px;
     margin-bottom: 5px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .figura{
+        position: sticky !important;
+        
+    }
+
+    & .bloques{
+        border-radius: none !important;
+        box-shadow: none !important;
+    }
+
 }
+
+
+
+
+
+
 
 #botones{
     flex-grow: 1;

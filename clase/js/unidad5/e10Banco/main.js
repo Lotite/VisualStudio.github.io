@@ -7,10 +7,7 @@ class Cliente {
     }
 
     verificarDatos(cliente) {
-        if (this.documento == cliente.documento && this.tipo == cliente.tipo && this.fecha.toString() == cliente.fecha.toString()) {
-            return true;
-        }
-        return false;
+        return this.documento == cliente.documento && this.tipo == cliente.tipo && this.fecha.toString() == cliente.fecha.toString();
     }
 
     getContraseña() {
@@ -26,11 +23,14 @@ class Cliente {
         return this.contraseña === this.getContraseña();
     }
 }
+
+
+
 //Variables globales
 let cliente1 = new Cliente("48113807S", "dni", new Date("2003-11-28"), "123456");
-let cliente2 = new Cliente("12345678A", "dni", new Date("2003-11-28"),"123456");
+let cliente2 = new Cliente("12345678A", "dni", new Date("2003-11-28"), "123456");
 let clientes = [cliente1, cliente2];
-let clienteSelect = new Cliente("", "", new Date());
+let clienteSelect;
 inicializarElementos();
 
 
@@ -44,6 +44,7 @@ document.querySelector("#pasaport").addEventListener("click", () => {
     document.querySelector("#documento").placeholder = "Número de pasaporte"
 }
 )
+////////////////////////////Boton
 document.querySelectorAll("button")[0].addEventListener("click", (e) => {
     e.preventDefault();
     let documento = document.querySelector("#documento").value;
@@ -75,6 +76,7 @@ function fechaConversor() {
     let año = document.querySelector("#año").value;
     return new Date(`${año}-${mes}-${dia}`);
 }
+
 function encontrarCliente(cliente) {
     let cliente1 = clientes.find((c) => c.verificarDatos(cliente));
     clienteSelect = cliente1;
@@ -104,7 +106,7 @@ function inicializarElementos() {
 
 
 function escribir(caracter) {
-    let key = Array.from(document.querySelectorAll(".num")).find((num, index) => num.innerHTML === "");
+    let key = Array.from(document.querySelectorAll(".num")).find((num) => num.innerHTML === "");
     if (key) {
         key.innerHTML = caracter;
     }
@@ -116,6 +118,6 @@ if (cliente) {
     let fecha = new Date(cliente.fecha);
     document.querySelector("#documento").value = cliente.documento
     document.querySelector("#dia").value = fecha.getDate()
-    document.querySelector("#mes").value = fecha.getMonth() +1
+    document.querySelector("#mes").value = fecha.getMonth() + 1
     document.querySelector("#año").value = fecha.getFullYear()
 }

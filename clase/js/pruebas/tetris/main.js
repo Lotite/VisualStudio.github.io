@@ -1,32 +1,35 @@
 //Variables
-    //Estos son las figuras que tendra el juego
+//Estos son las figuras que tendra el juego
 const figuras = {
     I: { forma: [[1, 1, 1, 1]], color: "#33ffe0" },
     O: { forma: [[1, 1], [1, 1]], color: "#33ff3f" },
     L: { forma: [[0, 0, 1], [1, 1, 1]], color: "#33fff3" },
     J: { forma: [[1, 0, 0], [1, 1, 1]], color: "#ff33e9" },
     Z: { forma: [[1, 1, 0], [0, 1, 1]], color: "#ff3377" },
-    S: { forma: [[1, 1, 0], [0, 1, 1]], color: "#4cff33" },
+    S: { forma: [[0, 1, 1], [1, 1, 0]], color: "#4cff33" },
     T: { forma: [[0, 1, 0], [1, 1, 1]], color: "#ff3333" }
 }
 let figuraActuall = newFigura()
+let memoria ;
 const bloques = []
 const globalLineas = []
 let mover = setInterval(bajar, 500)
 
 //Funciones
-function newFigura() {
-    const figura = figuras["IOLJZST".charAt((Math.random() * 7).toFixed(0))]
+function newFigura(ajustar = true , posicion = { x: 40, y: 0 }) {
+    const figura = figuras["IOLJZST".charAt((Math.random() * 6).toFixed(0))]
     //const figura = figuras.I
     const elemento = document.createElement("div")
+    elemento.style.left = `${posicion.x}%`
+    elemento.style.top = `${posicion.y}%`
     elemento.classList.add("figura")
-    addBloques(elemento, figura)
+    addBloques(elemento, figura, ajustar)
     document.querySelector("main").appendChild(elemento)
-    return { elemento: elemento, figura: figura, posicion: { x: 0, y: 0 } }
+    return { elemento: elemento, figura: figura, posicion: posicion }
 }
 
 
-function addBloques(elemento = figuraActuall.elemento, figura = figuraActuall.figura) {
+function addBloques(elemento = figuraActuall.elemento, figura = figuraActuall.figura, ajustar = true) {
     elemento.innerHTML = ""
     const forma = figura.forma
     forma.forEach((fila, y) => {
@@ -36,19 +39,30 @@ function addBloques(elemento = figuraActuall.elemento, figura = figuraActuall.fi
                 bloque.classList.add("bloque")
                 bloque.style.left = `${x * 100 / forma[0].length}%`
                 bloque.style.top = `${y * 100 / forma.length}%`
-                bloque.style.width = `${100 / forma[0].length}%`
-                bloque.style.height = `${100 / forma.length}%`
+                if (ajustar) {
+                    bloque.style.width = `${100 / forma[0].length}%`
+                    bloque.style.height = `${100 / forma.length}%`
+                } else {
+                    bloque.style.width = `17px`
+                    bloque.style.height = `17px`
+                }
                 bloque.style.backgroundColor = figura.color
                 elemento.appendChild(bloque)
             }
         })
     })
-    elemento.style.width = `${forma[0].length * 10}%`
-    elemento.style.height = `${forma.length * 5}%`
+    if (ajustar) {
+        elemento.style.width = `${forma[0].length * 10}%`
+        elemento.style.height = `${forma.length * 5}%`
+    } else {
+        elemento.style.width = `${forma[0].length * 17}px`
+        elemento.style.height = `${forma.length * 17}px`
+    }
 
 }
 
-function rotar(elemento = figuraActuall.elemento, forma = figuraActuall.figura.forma) {
+function rotar(elemento = figuraActuall.elemento, figura = figuraActuall.figura) {
+    let forma = figura.forma
     const nuevaForma = []
     const filas = forma.length
     const columnas = forma[0].length
@@ -59,7 +73,7 @@ function rotar(elemento = figuraActuall.elemento, forma = figuraActuall.figura.f
         }
     }
     figuraActuall.figura.forma = nuevaForma
-    addBloques(elemento,{"forma": nuevaForma})
+    addBloques(elemento, { "forma": nuevaForma, "color": figura.color })
 }
 
 function rotarInversa() {
@@ -93,7 +107,7 @@ function compobarSalidaPantalla() {
 }
 
 function bajar() {
-    if(!mover) return;
+    if (!mover) return;
     figuraActuall.posicion.y += 5
     const h = figuraActuall.elemento.getBoundingClientRect().height.toFixed(0);
     const h2 = document.querySelector("main").getBoundingClientRect().height.toFixed(0);
@@ -153,37 +167,75 @@ function verificarLienas() {
 
 }
 function gravedad(i) {
-    globalLineas.forEach((linea,index) => {
-        if(index>=i)
-        linea.forEach(bloque => {
-            bloque.style.top = `${parseInt(bloque.style.top.replace("%", "")) + 5}%`
-        })
+    globalLineas.forEach((linea, index) => {
+        if (index >= i)
+            linea.forEach(bloque => {
+                bloque.style.top = `${parseInt(bloque.style.top.replace("%", "")) + 5}%`
+            })
     })
 }
 
 
-function moverHorizaontal(valor){
-    if(!mover) return;
+function moverHorizaontal(valor) {
+    if (!mover) return;
     figuraActuall.posicion.x += valor
-            figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}%`
-            if (compobarSalidaPantalla() || comprobarColisiones()) {
-                figuraActuall.posicion.x -= valor
-                figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}%`
-            }
+    figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}%`
+    if (compobarSalidaPantalla() || comprobarColisiones()) {
+        figuraActuall.posicion.x -= valor
+        figuraActuall.elemento.style.left = `${figuraActuall.posicion.x}%`
+    }
+}
+
+function pausa() {
+    if (mover) {
+        clearInterval(mover)
+        mover = false;
+    }
+    else mover = setInterval(bajar, 500)
+}
+
+function cambiar(contenedor,figura){
+    let memoriaTem = figuraActuall
+    figura.posicion = figuraActuall.posicion
+    figuraActuall = figura
+    document.querySelector("main").appendChild(figura.elemento)
+    contenedor.appendChild(memoriaTem.elemento)
+}
+
+function guardar(){
+    memoria = figuraActuall
+    document.querySelector("#memoria").appendChild(memoria.elemento)
+    figuraActuall = newFigura()
 }
 
 //Eventos
 
 document.querySelector("#rotar").addEventListener("click", () => {
-    figuraActuall.figura.forma = rotar()
-    addBloques()
+    rotar()
+})
+document.querySelector("#bajar").addEventListener("click", () => {
+    bajar()
+})
+
+document.querySelector("#derecha").addEventListener("click", () => {
+    moverHorizaontal(10)
+})
+document.querySelector("#izquierda").addEventListener("click", () => {
+    moverHorizaontal(-10)
+})
+
+document.querySelector("#pausa").addEventListener("click", () => {
+    pausa()
+})
+
+document.querySelector("#guardar").addEventListener("click",()=>{   
+    guardar()
 })
 
 
 
-
 addEventListener("keyup", (e) => {
-        
+
     switch (e.key) {
         case "ArrowLeft":
             moverHorizaontal(-10)
@@ -195,11 +247,7 @@ addEventListener("keyup", (e) => {
             bajar()
             break;
         case " ":
-            if(mover) {
-                clearInterval(mover)
-                mover = false;
-            }
-            else mover = setInterval(bajar, 500)
+            pausa()
             break;
         case "ArrowUp":
             rotar()
