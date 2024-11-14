@@ -102,6 +102,26 @@ section{
     height: 465px;
 }
 
+
+#barra{
+    width: 80%;
+    height: 20%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+#linea{
+    height: 100%;
+    width: 0%;
+    background-color: rgb(173, 72, 255);
+    transition: all 0.5s ease-in-out;
+}
+
+
+
+
 .caja , .caja2{
     width: 45%;
     height: 100px;
@@ -138,8 +158,9 @@ section{
     align-items: center;
 
     & .figura{
+        justify-self: center !important;
         position: sticky !important;
-        
+   
     }
 
     & .bloques{

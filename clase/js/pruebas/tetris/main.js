@@ -1,4 +1,3 @@
-//Variables
 //Estos son las figuras que tendra el juego
 const figuras = {
     I: { forma: [[1, 1, 1, 1]], color: "#33ffe0" },
@@ -9,16 +8,23 @@ const figuras = {
     S: { forma: [[0, 1, 1], [1, 1, 0]], color: "#4cff33" },
     T: { forma: [[0, 1, 0], [1, 1, 1]], color: "#ff3333" }
 }
+//Variables globales
 let figuraActuall = newFigura()
-let memoria ;
+let siguiente = newFigura(false)
+document.querySelector("#siguiente").appendChild(siguiente.elemento)
+let memoria;
+let mover = setInterval(bajar, 500)
+let puntos = 0
+let nivel = 1;
+//Constantes globales
 const bloques = []
 const globalLineas = []
-let mover = setInterval(bajar, 500)
+
 
 //Funciones
-function newFigura(ajustar = true , posicion = { x: 40, y: 0 }) {
-    const figura = figuras["IOLJZST".charAt((Math.random() * 6).toFixed(0))]
-    //const figura = figuras.I
+function newFigura(ajustar = true, posicion = { x: 40, y: 0 }) {
+    //const figura = figuras["IOLJZST".charAt((Math.random() * 6).toFixed(0))]
+    const figura = figuras.I
     const elemento = document.createElement("div")
     elemento.style.left = `${posicion.x}%`
     elemento.style.top = `${posicion.y}%`
@@ -43,8 +49,8 @@ function addBloques(elemento = figuraActuall.elemento, figura = figuraActuall.fi
                     bloque.style.width = `${100 / forma[0].length}%`
                     bloque.style.height = `${100 / forma.length}%`
                 } else {
-                    bloque.style.width = `17px`
-                    bloque.style.height = `17px`
+                    bloque.style.width = `15px`
+                    bloque.style.height = `15px`
                 }
                 bloque.style.backgroundColor = figura.color
                 elemento.appendChild(bloque)
@@ -55,8 +61,8 @@ function addBloques(elemento = figuraActuall.elemento, figura = figuraActuall.fi
         elemento.style.width = `${forma[0].length * 10}%`
         elemento.style.height = `${forma.length * 5}%`
     } else {
-        elemento.style.width = `${forma[0].length * 17}px`
-        elemento.style.height = `${forma.length * 17}px`
+        elemento.style.width = `${forma[0].length * 15}px`
+        elemento.style.height = `${forma.length * 15}px`
     }
 
 }
@@ -116,8 +122,9 @@ function bajar() {
     if ((figuraActuall.posicion.y + fh) > 100 || comprobarColisiones()) {
         figuraActuall.posicion.y -= 5
         figuraActuall.elemento.style.top = `${figuraActuall.posicion.y}%`
+        clearInterval(mover)
+        mover = setInterval(bajar, 500)
         colocar()
-        figuraActuall = newFigura()
     }
 }
 
@@ -129,8 +136,8 @@ function colocar() {
     const py = padre.getBoundingClientRect().y
     const ph = padre.getBoundingClientRect().height
     const pw = padre.getBoundingClientRect().width
-
-    figuraActuall.elemento.querySelectorAll(".bloque").forEach(bloque => {
+    const temBloques = [...figuraActuall.elemento.querySelectorAll(".bloque")]
+    temBloques.forEach(bloque => {
         let poss = bloque.getBoundingClientRect()
         let x = poss.x - px
         let y = poss.y - py
@@ -139,26 +146,44 @@ function colocar() {
         bloque.style.left = `${(x / pw * 100).toFixed(0)}%`
         bloque.style.top = `${(y / ph * 100).toFixed(0)}%`
         padre.append(bloque)
-        bloques.push(bloque)
-        const fila = 19 - (y / ph * 20).toFixed(0);
+        const fila = 19 - parseInt((y / ph * 20).toFixed(0))
+        if (temBloques.some(b => {
+            return bloques.some(b2 => detectarColision(b2, b))
+        })) {
+            temBloques.forEach(b => {
+                b.remove()
+                clearInterval(mover)
+                mover = false
+                return
+            })
+        }
         if (!globalLineas[parseInt(fila)]) {
             globalLineas[parseInt(fila)] = []
         }
         globalLineas[parseInt(fila)].push(bloque)
+
+    })
+    temBloques.forEach(b => {
+        bloques.push(b)
     })
     verificarLienas()
     figuraActuall.elemento.remove()
+    figuraActuall = newFigura()
+    siguiente = cambiar(document.querySelector("#siguiente"), siguiente)
+
 }
 
 
 function verificarLienas() {
     for (let i = 0; i < globalLineas.length; i++) {
-        const linea = globalLineas[i]
-        if (linea && linea.length >= 10) {
+        const linea = [...globalLineas[i]]
+        if (linea && linea.filter(bloque => bloque).length >= 10) {
             linea.forEach(bloque => {
                 bloques.splice(bloques.indexOf(bloque), 1)
                 bloque.remove()
             })
+            puntos += 10
+            renderDatos()
             globalLineas.splice(i, 1)
             gravedad(i)
             i--
@@ -194,22 +219,37 @@ function pausa() {
     else mover = setInterval(bajar, 500)
 }
 
-function cambiar(contenedor,figura){
+function cambiar(contenedor, figura) {
     let memoriaTem = figuraActuall
     figura.posicion = figuraActuall.posicion
     figuraActuall = figura
-    addBloques(figuraActuall.elemento,figuraActuall.figura)
+    figuraActuall.elemento.style.left = `${figura.posicion.x}%`
+    figuraActuall.elemento.style.top = `${figura.posicion.y}%`
+    addBloques(figuraActuall.elemento, figura.figura)
     document.querySelector("main").appendChild(figura.elemento)
-    addBloques(figura.elemento,figura.figura,false)
+    addBloques(memoriaTem.elemento, memoriaTem.figura, false)
+    memoriaTem.elemento.style.left = `10px`
+    memoriaTem.elemento.style.top = `10px`
     contenedor.appendChild(memoriaTem.elemento)
     return memoriaTem
 }
 
-function guardar(){
+function guardar() {
     memoria = figuraActuall
-    addBloques(memoria.elemento,memoria.figura,false)    
+    addBloques(memoria.elemento, memoria.figura, false)
     document.querySelector("#memoria").appendChild(memoria.elemento)
     figuraActuall = newFigura()
+    siguiente = cambiar(document.querySelector("#siguiente"), siguiente)
+}
+
+function renderDatos(){
+    if(puntos >= 100*nivel){
+        nivel++;
+        puntos = 0;
+        document.querySelector("#nivel").innerHTML = nivel;
+    }
+    document.querySelector("#puntuaje").innerHTML = puntos;
+    document.querySelector("#linea").style.width = `${puntos/(100*nivel)*100}%`
 }
 
 //Eventos
@@ -232,9 +272,9 @@ document.querySelector("#pausa").addEventListener("click", () => {
     pausa()
 })
 
-document.querySelector("#guardar").addEventListener("click",()=>{   
-        if(memoria) memoria = cambiar(document.querySelector("#memoria"),memoria)
-        else guardar()
+document.querySelector("#guardar").addEventListener("click", () => {
+    if (memoria) memoria = cambiar(document.querySelector("#memoria"), memoria)
+    else guardar()
 })
 
 
@@ -259,8 +299,17 @@ addEventListener("keyup", (e) => {
             if (comprobarColisiones() || compobarSalidaPantalla())
                 rotarInversa()
             break;
+        case "c":
+            case "C":
+            if (mover) {
+                clearInterval(mover)
+                mover = setInterval(bajar, 1)
+            }
+            break;
+
     }
 })
+
 
 
 
