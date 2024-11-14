@@ -198,12 +198,16 @@ function cambiar(contenedor,figura){
     let memoriaTem = figuraActuall
     figura.posicion = figuraActuall.posicion
     figuraActuall = figura
+    addBloques(figuraActuall.elemento,figuraActuall.figura)
     document.querySelector("main").appendChild(figura.elemento)
+    addBloques(figura.elemento,figura.figura,false)
     contenedor.appendChild(memoriaTem.elemento)
+    return memoriaTem
 }
 
 function guardar(){
     memoria = figuraActuall
+    addBloques(memoria.elemento,memoria.figura,false)    
     document.querySelector("#memoria").appendChild(memoria.elemento)
     figuraActuall = newFigura()
 }
@@ -229,7 +233,8 @@ document.querySelector("#pausa").addEventListener("click", () => {
 })
 
 document.querySelector("#guardar").addEventListener("click",()=>{   
-    guardar()
+        if(memoria) memoria = cambiar(document.querySelector("#memoria"),memoria)
+        else guardar()
 })
 
 
